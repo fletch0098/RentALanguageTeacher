@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace RentALanguageTeacher.App_Code
+{
+    public class aspProfile
+    {
+        [Serializable]
+        public class ProfileInfo
+        {
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string Email { get; set; }
+            public string Language { get; set; }
+            public DateTime LastVisit { get; set; }
+            public string AccountFlag { get; set; }
+        }
+    }
+}

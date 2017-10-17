@@ -1,0 +1,110 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Stripe;
+
+namespace RentALanguageTeacher
+{
+    public partial class Stripe : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Page.IsPostBack)
+            {
+
+                var customerToken = this.Request.Form["stripeToken"];
+
+                if (!object.ReferenceEquals(customerToken, null))
+                {
+                    try
+                    {
+
+                        var myCharge = new StripeChargeCreateOptions();
+
+                        // always set these properties
+                        myCharge.AmountInCents = 5153;
+                        myCharge.Currency = "usd";
+
+                        // set this if you want to
+                        myCharge.Description = "Charge it like it's hot";
+
+                        Dictionary<string, string> dictionary =
+	                        new Dictionary<string, string>();
+	                    dictionary.Add("RALTUserName", "fletch0098");
+	                    dictionary.Add("RALTUserID", "1");
+
+                        myCharge.Metadata =  dictionary;
+
+                        // set this property if using a token
+                        myCharge.TokenId = customerToken;
+
+                        // set these properties if passing full card details
+                        // (do not set these properties if you have set a TokenId)
+                        //myCharge.CardNumber = "4242424242424242";
+                        //myCharge.CardExpirationYear = "2017";
+                        //myCharge.CardExpirationMonth = "01";
+                        //myCharge.CardAddressCountry = "US";               // optional
+                        //myCharge.CardAddressLine1 = "24 Beef Flank St"    // optional
+                        //myCharge.CardAddressLine2 = "Apt 24";             // optional
+                        //myCharge.CardAddressState = "NC";                 // optional
+                        //myCharge.CardAddressZip = "27617";                // optional
+                        //myCharge.CardName = "Joe Meatballs";              // optional
+                        //myCharge.CardCvc = "1223";                        // optional
+
+                        // set this property if using a customer
+                        //myCharge.CustomerId = *customerId*;
+
+                        // if using a customer, you may also set this property to charge
+                        // a card other than the customer's default card
+                        //myCharge.Card = *cardId*;
+
+                        // set this if you have your own application fees (you must have your application configured first within Stripe)
+                        //myCharge.ApplicationFeeInCents = 25;
+
+                        // (not required) set this to false if you don't want to capture the charge yet - requires you call capture later
+                        myCharge.Capture = true;
+
+                        var chargeService = new StripeChargeService();
+                        StripeCharge stripeCharge = chargeService.Create(myCharge);
+
+                        App_Code.NotificationService.SendNotification("ChargeComplete", "Thank you, your payment is complete.", "success", "3000");
+
+                    }
+
+                    catch (Exception ex)
+                    
+                    {
+
+                        App_Code.NotificationService.SendNotification("ChargeError",ex.Message , "error");
+                    
+                    }
+
+                    
+                
+                }
+
+
+            
+            }
+
+           
+
+
+
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+           
+
+        }
+
+
+    }
+
+}

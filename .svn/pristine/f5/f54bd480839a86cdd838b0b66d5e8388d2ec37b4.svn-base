@@ -1,0 +1,395 @@
+﻿<%@ Page Title="Administer-Student" Language="C#" MasterPageFile="~/MasterPages/RentALanguageTeacher.Master" AutoEventWireup="true" CodeBehind="AdministerStudent.aspx.cs" Inherits="RentALanguageTeacher.Pages.Administrator.AdministerStudent" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+
+    <link href="/Styles/jquery.simple-dtpicker.css" rel="stylesheet" />
+    <script src="/Scripts/jquery.simple-dtpicker.js"></script>
+
+	<script type="text/javascript">
+	    function pageLoad() {
+	        $(function () {
+	            $('*[id=txtFirstClass]').appendDtpicker({
+	                "closeOnSelected": true
+	            });
+
+	            $('*[id=txtFirstClass]').val($("#<%=FirstClass.ClientID%>").val())
+
+	            $('*[id=txtTransDate]').appendDtpicker({
+	                "closeOnSelected": true
+	            });
+
+	            $('*[id=txtTransDate]').val($("#<%=TransDate.ClientID%>").val())
+	        });
+
+	        BindRequestForm();
+	    }
+
+	    function GetFirstClass() {
+	        $("#<%=FirstClass.ClientID%>").val($('*[id=txtFirstClass]').val())
+
+
+        	        }
+        	        function SetFirstClass() {
+        	            $('*[id=txtFirstClass]').val($("#<%=FirstClass.ClientID%>").val())
+
+
+        	        }
+
+	    function GetTransDate() {
+	        $("#<%=TransDate.ClientID%>").val($('*[id=txtTransDate]').val())
+
+
+        	        }
+        	        function SetTransDate() {
+        	            $('*[id=txtTransDate]').val($("#<%=TransDate.ClientID%>").val())
+
+
+	        }
+	</script>   
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="cpMainContent" runat="server">
+
+    <div class="ContentSection">
+        
+        <div class="ContentSectionHeader"><div class="ContentSectionHeaderText"><%: Page.Title %></div></div>
+        
+        <div class="ContentSectionContent">
+
+            <div class="Content">
+
+                <div class="ContentTitleImage"><a href="/Home"><img src="/Images/LogoBlack.png" class="center" /></a></div>
+                
+                <div class="ContentTitletext">
+
+                    <p>view Students</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+        <ContentTemplate> 
+
+            
+
+                <div class="ContentSection">
+
+                    <div class="ContentSectionHeader"><div class="ContentSectionHeaderText">Student Information</div></div>
+
+                    <div class="ContentSectionContent" id="AccountInfo">
+
+                        <div class="Content">                
+
+                            <div class="formfield-container long">
+                                <asp:Label ID="lblUserName" CssClass="RALT required" runat="server" AssociatedControlID="UserName" Text="UserName"></asp:Label><br />
+                                <asp:TextBox ID="UserName"  cssclass="RALT long validate[required]" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="UserName"
+                                    CssClass="field-validation-error" Text="*"  ErrorMessage="UserName is required." ValidationGroup="StudentInfo"></asp:RequiredFieldValidator>
+                            </div>
+                
+                            <div class="formfield-container long">
+                                <asp:Label ID="lblEmail" CssClass="RALT required" runat="server" AssociatedControlID="Email" Text="Email"></asp:Label><br />
+                                <asp:TextBox ID="Email" TextMode="Email" cssclass="RALT long validate[required, custom[email]]" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Email"
+                                    CssClass="field-validation-error" Text="*"  ErrorMessage="Email is required." ValidationGroup="StudentInfo" />
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="Email" 
+                                    ValidationExpression="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" CssClass="field-validation-error" Text="*"  
+                                    ErrorMessage="Please enter a Valid Email" ValidationGroup="StudentInfo"></asp:RegularExpressionValidator>
+                            </div>
+
+                            <div class="formfield-container long">
+                                <asp:Label ID="lblFirstName" CssClass="RALT required" runat="server" AssociatedControlID="FirstName" Text="First Name"></asp:Label><br />
+                                <asp:TextBox ID="FirstName" cssclass="RALT long validate[required]" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="FirstName"
+                                    CssClass="field-validation-error" Text="*"  ErrorMessage="First Name is required." ValidationGroup="StudentInfo" />
+                            </div>
+                                                                                
+                            <div class="formfield-container long">
+                                <asp:Label ID="lblLastName" CssClass="RALT required" runat="server" AssociatedControlID="LastName" Text="Last Name"></asp:Label><br />
+                                <asp:TextBox ID="LastName" cssclass="RALT long validate[required]"  runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="LastName"
+                                    CssClass="field-validation-error" Text="*" ErrorMessage="Email is required." ValidationGroup="StudentInfo"/>                                                    
+                            </div>
+                                                                                
+                            <div class="formfield-container long">
+                                <asp:Label ID="lblNationality" CssClass="RALT" runat="server" AssociatedControlID="Nationality" Text="Nationality"></asp:Label><br />
+                                <asp:DropDownList ID="Nationality" CssClass="DDLlong ui-spinner ui-widget ui-widget-content ui-corner-all Shadow" runat="server"></asp:DropDownList>
+                            </div>
+                                                                                    
+                            <div class="formfield-container short">
+                                <asp:Label ID="lblSkype" CssClass="RALT required" runat="server" AssociatedControlID="SkypeID" Text="SkypeID"></asp:Label><br />
+                                <asp:TextBox ID="SkypeID" cssclass="RALT short validate[required]" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="SkypeID"
+                                    CssClass="field-validation-error" Text="*"  ErrorMessage="Skype ID is required." ValidationGroup="StudentInfo" />
+                            </div>       
+                                                                  
+                            <div class="formfield-container short">
+                                    <asp:Label ID="lblAge" CssClass="RALT" runat="server" AssociatedControlID="Age" Text="Age"></asp:Label><br />
+                                    <asp:DropDownList ID="Age" CssClass="DDLshort ui-spinner ui-widget ui-widget-content ui-corner-all" runat="server">
+                                        <asp:ListItem Value="0">Select Age</asp:ListItem>
+                                        <asp:ListItem Value="1">7-12</asp:ListItem>
+                                        <asp:ListItem Value="2">13-18</asp:ListItem>
+                                        <asp:ListItem Value="3">19-25</asp:ListItem>
+                                        <asp:ListItem Value="4">26-35</asp:ListItem>
+                                        <asp:ListItem Value="5">36-46</asp:ListItem>
+                                        <asp:ListItem Value="6">47-57</asp:ListItem>
+                                        <asp:ListItem Value="7">58+</asp:ListItem>
+                                    </asp:DropDownList>
+                            </div>
+
+                            <div class="formfield-container long">
+                                <asp:Label ID="lblCountry" CssClass="RALT long required" runat="server" AssociatedControlID="Country" Text="Country"></asp:Label><br />
+                                <asp:DropDownList ID="Country" CssClass="DDLlong ui-spinner ui-widget ui-widget-content ui-corner-all validate[funcCall[CheckDefault]]" 
+                                    runat="server" AutoPostBack="true" OnSelectedIndexChanged="Country_SelectedIndexChanged" ></asp:DropDownList>
+                                 <asp:CustomValidator ID="CustomValidator1" ControlToValidate="Country" CssClass="field-validation-error" 
+                                    Text="*" runat="server" ErrorMessage="Country is required." ValidationGroup="StudentInfo" 
+                                    OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>                                  
+                            </div>
+
+                            <div class="formfield-container long">
+                                <asp:Label ID="lblTimeZone" CssClass="RALT long required" runat="server" AssociatedControlID="TimeZone" Text="Time Zone"></asp:Label><br />
+                                <asp:DropDownList ID="TimeZone" CssClass="DDLlong ui-spinner ui-widget ui-widget-content ui-corner-all validate[funcCall[CheckTimeZone]]" runat="server"></asp:DropDownList>
+                                 <asp:CustomValidator ID="CustomValidator2" ControlToValidate="TimeZone" CssClass="field-validation-error" 
+                                        Text="*" runat="server" ErrorMessage="Time Zone is required." ValidationGroup="StudentInfo" OnServerValidate="CustomValidator2_ServerValidate"></asp:CustomValidator>                                  
+                            </div>
+
+                        </div>
+
+                    </div>    
+
+                </div>
+
+                <div class="ContentSection">
+
+                    <div class="ContentSectionHeader" ><div class="ContentSectionHeaderText">Teacher Request Information</div></div>
+
+                    <div class="ContentSectionContent">
+
+                        <div class="Content">
+
+                            <div class="formfield-container long">
+                                <asp:Label ID="lblLevel" CssClass="RALT required" runat="server" Text="Spanish level"></asp:Label><br />
+                                <asp:TextBox ID="txtLevel" cssclass="RALT long validate[required]"  runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtLevel"
+                                CssClass="field-validation-error" Text="*" ErrorMessage="Level is required." ValidationGroup="StudentInfo"/>    
+                            </div>
+
+                            <div class="formfield-container short">
+                                <asp:Label ID="lblClassFrequency" CssClass="RALT required" runat="server"  Text="# Of Classes"></asp:Label><br />
+                                <asp:TextBox ID="txtFrequency" cssclass="RALT short validate[required]"  runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtFrequency"
+                                    CssClass="field-validation-error" Text="*" ErrorMessage="Frequency is required." ValidationGroup="StudentInfo"/>    
+                            </div>
+
+                            <div class="formfield-container short">
+                                <asp:Label ID="lblPeriod" CssClass="RALT required" runat="server"  Text="Period"></asp:Label><br />
+                                <asp:TextBox ID="txtPeriod" cssclass="RALT short validate[required]"  runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtPeriod"
+                                    CssClass="field-validation-error" Text="*" ErrorMessage="Period Frequency is required." ValidationGroup="StudentInfo"/>    
+                            </div>
+
+                            <div class="formfield-container short">
+                                <asp:Label ID="lblDuration" CssClass="RALT required" runat="server"  Text="Class Duration"></asp:Label><br />
+                                <asp:TextBox ID="Duration" cssclass="RALT short validate[required]"  runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="Duration"
+                                    CssClass="field-validation-error" Text="*" ErrorMessage="Duration Frequency is required." ValidationGroup="StudentInfo"/>    
+                            </div>
+
+                            <div class="formfield-container short">                                  
+                                <asp:Label ID="Label2" CssClass="RALT required" runat="server" Text="Starting when?"></asp:Label><br />
+                                <asp:TextBox ID="txtStartDate" cssclass="RALT short validate[required]"  runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtStartDate"
+                                    CssClass="field-validation-error" Text="*" ErrorMessage="StartingDate is required." ValidationGroup="StudentInfo"/>
+                                <asp:CustomValidator runat="server"
+                                    ID="valDateRange"  CssClass="field-validation-error" Text="*" 
+                                    ControlToValidate="txtStartDate" ValidationGroup="StudentInfo"
+                                    onservervalidate="valDateRange_ServerValidate" 
+                                    ErrorMessage="enter valid date" />
+                            </div>
+
+                            <div class="formfield-container short">
+                                <asp:Label ID="lblBlockTime" CssClass="RALT required" runat="server" AssociatedControlID="txtBlockTime" Text="Block Time"></asp:Label><br />
+                                <asp:TextBox ID="txtBlockTime" cssclass="RALT short validate[required]"  runat="server"></asp:TextBox>                                   
+                            </div>
+
+                            <div  class="formfield-container" style="width:100%;">
+                                <asp:Label ID="Label1" CssClass="RALT" runat="server" AssociatedControlID="SpecialRequests" Text="Specific Requests"></asp:Label><br />
+                                <asp:TextBox ID="SpecialRequests" cssclass="RALT Shadow Corners" style="width:95%;height:100px;resize:none;" TextMode="MultiLine"   runat="server"></asp:TextBox>
+                            </div>
+                                                                            
+                        </div>
+                                                                        
+                    </div>
+                
+                </div>
+
+            <fieldset class="validationGroup">
+                <legend>AdministerStudent</legend>
+
+                <div class="ContentSection">
+
+                    <div class="ContentSectionHeader" ><div class="ContentSectionHeaderText">Student Administration</div></div>
+
+                    <div class="ContentSectionInput">
+
+                        <div class="Content" style="height:300px;">
+
+                            <div class="formfield-container short">
+                                <asp:Label ID="lblTeacher" CssClass="RALT required" runat="server"  Text="Teacher"></asp:Label><br />
+                                <asp:TextBox ID="Teacher" cssclass="RALT short validate[]"  runat="server"></asp:TextBox>
+<%--                                <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="Teacher"
+                                    CssClass="field-validation-error" Text="*" ErrorMessage="Teacher is required." ValidationGroup="AdministerStudent"/> --%>   
+                            </div>
+
+                            <div class="formfield-container short">
+                                <asp:Label ID="lblTeacherSkype" CssClass="RALT required" runat="server"  Text="Teacher SkypeID"></asp:Label><br />
+                                <asp:TextBox ID="TeacherSkype" cssclass="RALT short validate[]"  runat="server"></asp:TextBox>
+                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="TeacherSkype"
+                                    CssClass="field-validation-error" Text="*" ErrorMessage="TeacherSkype is required." ValidationGroup="AdministerStudent"/>    --%>
+                            </div>
+
+                            <div class="formfield-container short">
+                                <asp:Label ID="Label3" CssClass="RALT required" runat="server" Text="First Class"></asp:Label><br />
+                                <input type="text" id="txtFirstClass" value="" class="RALT short validate[] text-input datepicker" style="font-size:12px;">
+                                <asp:HiddenField ID="FirstClass" runat="server" />
+                                     
+                            </div>
+
+                            <div class="formfield-container short">
+                                <asp:Label ID="lblStatus" CssClass="RALT required" runat="server" AssociatedControlID="ddlStatus" Text="Status"></asp:Label><br />
+                                <asp:DropDownList ID="ddlStatus" CssClass="DDLshort ui-spinner ui-widget ui-widget-content ui-corner-all" runat="server"></asp:DropDownList>                                       
+                            </div>
+
+                            <div  class="formfield-container" style="width:100%;">
+                                <asp:Label ID="lblAdminComments" CssClass="RALT" runat="server" AssociatedControlID="txtAdminComments" Text="Admin Comments"></asp:Label><br />
+                                <asp:TextBox ID="txtAdminComments" cssclass="RALT Shadow Corners" style="width:95%;height:100px;resize:none;" TextMode="MultiLine"   runat="server"></asp:TextBox>
+                            </div>
+
+                             <div style="width:192px;" class="center">
+
+                            <div style="float:left;">
+                        
+                                <asp:Button ID="UpDateStudent" OnClientClick="GetFirstClass()" runat="server" Text="Save" CssClass="button causesValidation"  ValidationGroup="AdministerStudent" OnClick="UpDateStudent_Click" />
+                    
+                            </div>
+                        
+                            <div style="float:left;">
+                                    
+                                <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+                                    <ProgressTemplate>
+                                        <div class="PleaseWait">
+                                               
+                                        </div>
+                                    </ProgressTemplate>
+                                </asp:UpdateProgress>
+
+                            </div>
+
+                            </div>   
+
+                        </div>
+                        
+                    </div>
+                                    
+                </div>
+
+            </fieldset>
+
+                <div class="ContentSection">
+
+                    <div class="ContentSectionHeader" ><div class="ContentSectionHeaderText">Payment Information</div></div>
+
+                    <div class="ContentSectionInput">
+
+                        <div class="Content" style="height:300px;">
+
+                            <fieldset class="validationGroup">
+                                <legend>NewPayment</legend>
+
+                                <div  class="formfield-container short">
+                                
+   
+                                <asp:Label ID="lblHours" CssClass="RALT required" runat="server" AssociatedControlID="txtHours" Text="Hours"></asp:Label><br />
+                                <asp:TextBox ID="txtHours" cssclass="RALT short validate[required]"   runat="server"></asp:TextBox>
+
+                    </div>
+
+                                <div  class="formfield-container short">
+                                
+   
+                                <asp:Label ID="lblTransDate" CssClass="RALT required" runat="server"  Text="Transaction Date"></asp:Label><br />
+                                <input type="text" id="txtTransDate" value="" class="RALT short validate[required] text-input datepicker" style="z-index:100000;">
+                                    <asp:HiddenField ID="TransDate" runat="server" />
+                    </div>
+
+                                <div  class="formfield-container short">
+                                
+   
+                                <asp:Label ID="lblPaypalEmail" CssClass="RALT required" runat="server" AssociatedControlID="PaypalEmail" Text="PayPal Email"></asp:Label><br />
+                                <asp:TextBox ID="PaypalEmail" cssclass="RALT short validate[required]"   runat="server"></asp:TextBox>
+
+                    </div>
+
+                                <div  class="formfield-container short">
+                                
+   
+                                <asp:Label ID="lblTxnID" CssClass="RALT required" runat="server" AssociatedControlID="TxnId" Text="Transaction ID"></asp:Label><br />
+                                <asp:TextBox ID="TxnId" cssclass="RALT short validate[required]"   runat="server"></asp:TextBox>
+
+                    </div>
+
+                                <div  class="formfield-container long">
+                                                                            <div style="width:192px;" class="center">
+
+                        <div style="float:left;">
+                        
+                            <asp:Button ID="btnNewPayment" OnClientClick="GetTransDate()" runat="server" Text="Create New Payment" CssClass="button causesValidation"  ValidationGroup="NewPayment" OnClick="btnNewPayment_Click" />
+                    
+                        </div>
+                        
+                        <div style="float:left;">
+                                    
+                            <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+                                <ProgressTemplate>
+                                    <div class="PleaseWait">
+                                               
+                                    </div>
+                                </ProgressTemplate>
+                            </asp:UpdateProgress>
+
+                        </div>
+
+                                            </div>
+                                            </div>
+
+                            </fieldset>
+
+                            <div class="formfield-container">
+                                <asp:GridView ID="GridPayments" runat="server" AutoGenerateColumns="False" AllowSorting="false" 
+                                    AllowPaging="True" PageSize="20" CssClass="mGrid" AlternatingRowStyle-CssClass="alt"
+                                    OnSorting="Sorting" OnPageIndexChanging="PageIndexChanging" ShowHeaderWhenEmpty="true" >
+                                    <Columns>
+                                         <asp:BoundField DataField="payment_id" HeaderText="Trans ID" SortExpression="PaymentID" HeaderStyle-Width="100px" />
+                                         
+                                        <asp:BoundField DataField="item_name" HeaderText="Item" SortExpression="Item"  HeaderStyle-Width="100px"/>
+                                        <asp:BoundField DataField="update_user" HeaderText="Update User" SortExpression="UpdateUser"  HeaderStyle-Width="150px"/>
+                                        <asp:BoundField DataField="transaction_id" HeaderText="Trans ID" SortExpression="TransID"  HeaderStyle-Width="200px"/>
+                                         <asp:BoundField DataField="transaction_date" HeaderText="Transaction Date (UTC)" SortExpression="TransactionDate"  HeaderStyle-Width="220px" />
+                                     </Columns>
+                                </asp:GridView>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>                         
+
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+</asp:Content>

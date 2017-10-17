@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="~/" title="Home" description="Home">
+    <siteMapNode url="~/Home" title="Home" description="Go to the homepage" />
+        <siteMapNode url="~/RALT/EN/About-Us" title="About Us" description="Learn more about Rentalanguageteacher.com" />
+    <siteMapNode url="~/Prices" title="Prices" description="See our prices" />
+
+    <siteMapNode url="~/RALT/EN/Frequently-Asked-Questions" title="FAQ" description="Frequently Asked Questions" />
+    <siteMapNode url="~/Contact-Us" title="Contact Us" description="Send us a message" />
+    </siteMapNode>
+</siteMap>

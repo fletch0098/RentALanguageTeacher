@@ -1,0 +1,111 @@
+2014-02-28 12:39:42,248 [5] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 12:39:51,953 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 12:39:51,953 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 12:39:51,956 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 12:39:51,956 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 12:39:51,957 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 12:40:44,565 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 12:40:44,566 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 12:40:44,570 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 12:40:44,571 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 12:40:44,571 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 12:41:35,657 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 12:41:35,658 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 12:41:35,667 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 12:41:35,668 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 12:41:35,669 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 12:51:24,565 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId**********************************************************************************************************
+2014-02-28 12:51:24,583 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId() - Start
+2014-02-28 12:51:24,623 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId() - The item for MemberID 111 returned 0 results
+2014-02-28 12:51:24,624 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId() - Finish
+2014-02-28 12:51:24,624 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId**********************************************************************************************************
+2014-02-28 12:51:38,082 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 12:51:38,083 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 12:51:38,091 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 12:51:38,091 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 12:51:38,092 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 12:58:55,418 [15] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 12:58:55,435 [15] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 12:58:55,473 [15] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 12:58:55,474 [15] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 12:58:55,474 [15] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:00:14,612 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:00:14,612 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 13:00:14,615 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 13:00:14,615 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 13:00:14,616 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:00:17,856 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:00:17,856 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 13:00:17,860 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 13:00:17,860 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 13:00:17,860 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:00:20,921 [20] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:00:20,921 [20] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 13:00:20,924 [20] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 13:00:20,924 [20] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 13:00:20,925 [20] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:00:25,900 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:00:25,901 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 13:00:25,903 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 13:00:25,904 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 13:00:25,904 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:00:30,909 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:00:30,909 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 13:00:30,912 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 13:00:30,912 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 13:00:30,912 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:00:37,850 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:00:37,851 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 13:00:37,854 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 13:00:37,855 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 13:00:37,855 [14] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:00:41,983 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:00:41,984 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 13:00:41,987 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 13:00:41,987 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 13:00:41,988 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:56:20,107 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:56:20,125 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 13:56:20,163 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 13:56:20,163 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 13:56:20,163 [8] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:59:35,816 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId**********************************************************************************************************
+2014-02-28 13:59:35,843 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId() - Start
+2014-02-28 13:59:35,897 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId() - The item for MemberID 111 returned 0 results
+2014-02-28 13:59:35,898 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId() - Finish
+2014-02-28 13:59:35,898 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId**********************************************************************************************************
+2014-02-28 13:59:39,686 [11] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 13:59:39,687 [11] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 13:59:39,692 [11] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 13:59:39,692 [11] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 13:59:39,693 [11] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 14:06:51,487 [6] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 14:06:51,505 [6] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 14:06:51,541 [6] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 14:06:51,541 [6] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 14:06:51,542 [6] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 14:07:08,084 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 14:07:08,085 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 14:07:08,089 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 14:07:08,089 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 14:07:08,089 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 14:07:13,301 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 14:07:13,301 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 14:07:13,304 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 14:07:13,304 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 14:07:13,304 [13] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 14:07:29,932 [16] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 14:07:29,933 [16] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 14:07:29,937 [16] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 14:07:29,937 [16] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 14:07:29,938 [16] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 14:16:08,294 [12] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 14:16:08,312 [12] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 14:16:08,349 [12] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 14:16:08,349 [12] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 14:16:08,349 [12] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 14:16:30,778 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************
+2014-02-28 14:16:30,779 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Start
+2014-02-28 14:16:30,782 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - The item for ID 58 was returned
+2014-02-28 14:16:30,782 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById() - Finish
+2014-02-28 14:16:30,782 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserById**********************************************************************************************************

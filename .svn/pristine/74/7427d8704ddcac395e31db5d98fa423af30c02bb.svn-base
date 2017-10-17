@@ -1,0 +1,55 @@
+﻿<%@ Page Title="Profile Test" Language="C#" MasterPageFile="~/MasterPages/RentALanguageTeacher.Master" AutoEventWireup="true" CodeBehind="ProfileTest.aspx.cs" Inherits="RentALanguageTeacher.Tests.ProfileTest" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+
+
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="cpMainContent" runat="server">
+
+    <div class="ContentSection">
+        
+        <div class="ContentSectionHeader"><div class="ContentSectionHeaderText"><%: Page.Title %></div></div>
+        
+        <div class="ContentSectionContent">
+
+            <div class="Content">
+
+                <div class="ContentTitleImage"><a href="/Home"><img src="/Images/LogoBlack.png" class="center" /></a></div>
+                
+                <div class="ContentTitletext">
+
+                 <p>ASP.Net Profile features</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+        <div class="ContentSection">
+        
+        <div class="ContentSectionHeader"><div class="ContentSectionHeaderText"><%: Page.Title %></div></div>
+        
+        <div class="ContentSectionContent">
+
+            <div class="Content">
+
+              
+                    <div class="formfield-container long">
+                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                    </div>
+                    
+
+            
+
+            </div>
+
+        </div>
+
+    </div>
+
+</asp:Content>

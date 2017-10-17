@@ -1,0 +1,466 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.Services;
+using System.Reflection;
+using System.Security.Permissions;
+using System.Security.Principal;
+using System.Text;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
+using System.Data.Objects;
+using System.Data.Objects.DataClasses;
+using System.Data.Spatial;
+
+namespace RentALanguageTeacher.Pages.Content
+{
+    public partial class Content : System.Web.UI.Page
+    {
+
+        protected void Page_Init(object sender, EventArgs e)
+        {
+
+            //First Time Load
+            if (!Page.IsPostBack)
+            {
+
+                try
+                {
+
+                    // PrincipalPolicy must be set to WindowsPrincipal to check roles.
+                    AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
+                        
+                    //Get the ContentName from URL Data (psuedo queryString)
+                    string ContentTitle = Page.RouteData.Values["Title"] as string;
+                    string Language = Page.RouteData.Values["Language"] as string;
+
+                    //If not null
+                    if (ContentTitle != null && Language != null)
+                    {
+
+                        //Set the page Title
+                        Page.Header.Title = ContentTitle;
+
+                        //Get the Content data from DB
+                        content MyContent = new content();
+                        MyContent = App_Code.ContentService.GetObjectByTitle(ContentTitle);
+
+                        //BindVersions
+                        List<contentmarkup> ThisLanguageVersions = App_Code.ContentService.GetMarkupByLanguage(MyContent.content_id, Language);
+
+                        //GetCurrent Version
+                        contentmarkup CurrentVersion = ThisLanguageVersions.Last<contentmarkup>();
+
+                        var AdminRole = User.IsInRole("Administrators");
+                        var EditorRole = User.IsInRole("Editors");
+
+                        if ((AdminRole) || (EditorRole))
+                        {
+
+                            //BindVersionsDDL
+                            BindVersionControl(ThisLanguageVersions, Convert.ToString(CurrentVersion.contentmarkup_id));
+
+                            //Bind LanguagesDDL
+                            BindLanguages(Language);
+
+                           
+
+                        }
+
+                        BindPage(MyContent, CurrentVersion);
+
+                        //Set Control data
+                        HFcontentControl.Value = HFContent.Value;
+
+                    }
+
+                    else
+                    {
+                
+                        //QS error
+                        App_Code.NotificationService.SendNotification("ContentPageError","There was an error loading this page, please try again","error");
+            
+                    }
+                }
+                    
+                catch (Exception ex)
+                {
+                    
+                    //Loading Content Error
+                    App_Code.NotificationService.SendNotification("ContentError", ex.Message, "error");
+                    
+                }
+            }
+        }
+        
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            //First Time Load
+            if (!Page.IsPostBack)
+            {
+
+                try
+                {
+
+                    //Get the ContentName from URL Data (psuedo queryString)
+                    string ContentTitle = Page.RouteData.Values["Title"] as string;
+                    string Language = Page.RouteData.Values["Language"] as string;
+
+                    //If not null
+                    if (ContentTitle != null && Language != null)
+                    {
+
+                        //Store in Session Data
+                        ViewState["ContentTitle"] = ContentTitle;
+                        ViewState["Language"] = Language;
+                    }
+                }
+
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
+
+        protected void BindPage(content MyContent, contentmarkup MyPageContent)
+        {
+
+            if (!object.ReferenceEquals(MyPageContent, null))
+            {
+
+                //Get Author Data
+                user MyContentAuthor = new user();
+                MyContentAuthor = UserService.GetUserById((int)MyContent.author_user_id);
+
+                string Content = MyPageContent.markup;
+
+                var AdminRole = User.IsInRole("Administrators");
+                var EditorRole = User.IsInRole("Editors");
+
+                if ((AdminRole) || (EditorRole))
+                {
+
+                    Content = Content.Replace("class=\"ContentSection\">", "class=\"ContentSection editable\">");
+
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "EditorTools", "ToggleEditorTools();", true);
+
+                }
+
+                else
+                {
+                    Content = Content.Replace("ContentSection editable", "ContentSection");
+
+                    if (!MyPageContent.published)
+                    {
+                        Response.Redirect("/Error404");
+                    }
+                }
+
+
+                //Set Page Date
+                HFContentId.Value = MyContent.content_id.ToString();
+                HFContentTitle.Value = MyContent.title;
+                HFLanguage.Value = MyPageContent.language;
+               chkPublished.Checked = (Boolean)MyPageContent.published;
+
+                HFAuthor.Value = MyContentAuthor.first_name + " " + MyContentAuthor.last_name;
+                HFImageURL.Value = MyContent.image_url;
+                HFNavLink.Value = "/" + MyContent.category + "/" + MyPageContent.language + "/" + MyContent.title;
+                HFPublishDate.Value = MyPageContent.time_stamp.ToLongDateString();
+                HFTitle.Value = MyContent.title;
+
+                //Set Page
+                HFContent.Value = Content;
+
+                //Envoke Tranfser from ServerControls to HTMLPlaceHolders
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "BindPage", "LoadPage();", true);
+
+            }
+
+        }
+
+        protected void BindVersionControl(List<contentmarkup> Versions, string CurrentVersion)
+        {
+
+            //Bind DDL
+            ddlContentVersion.DataSource = Versions;
+            ddlContentVersion.DataTextField = "time_stamp";
+            ddlContentVersion.DataValueField = "contentmarkup_id";
+
+            ddlContentVersion.DataBind();
+            ddlContentVersion.SelectedValue = CurrentVersion;
+
+
+        }
+
+        protected void BindLanguages(string Language)
+        {
+            try
+            {
+                List<contentlanguage> Languages = App_Code.ContentService.GetContentLanguageList();
+
+                ddlContentLanguage.DataSource = Languages;
+                ddlContentLanguage.DataTextField = "language";
+                ddlContentLanguage.DataValueField = "language";
+                ddlContentLanguage.DataBind();
+
+                ddlContentLanguage.SelectedValue = Language;
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        protected void btnSavePage_Click(object sender, EventArgs e)
+        {
+
+            string Currentpath = HttpContext.Current.Request.Url.AbsolutePath;
+
+            try
+            {
+
+                SavePage();
+
+            }
+            catch (System.Security.SecurityException Securityex)
+            {
+
+                Response.Redirect("/SecurityError");
+
+            }
+            catch (Exception ex)
+            {
+
+                App_Code.NotificationService.SendNotification("SaveError", "An error has occured", "error", "3000");
+
+            }
+
+
+        }
+
+        protected void ddlContentVersion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            string Currentpath = HttpContext.Current.Request.Url.AbsolutePath;
+
+            try
+            {
+
+                ChangeVersion();
+
+            }
+            catch (System.Security.SecurityException Securityex)
+            {
+
+                Response.Redirect("/SecurityError");
+
+            }
+            catch (Exception ex)
+            {
+
+                App_Code.NotificationService.SendNotification("ChangeVersionError", "An error has occured", "error", "3000");
+
+            }
+
+        }
+
+        protected void ddlContentLanguage_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+
+            string Currentpath = HttpContext.Current.Request.Url.AbsolutePath;
+
+            try
+            {
+
+                AdministratorChangeLanguage();
+
+            }
+            catch (System.Security.SecurityException Securityex)
+            {
+
+                Response.Redirect("/SecurityError");
+
+            }
+            catch (Exception ex)
+            {
+
+                App_Code.NotificationService.SendNotification("ChangeLanguageError", "An error has occured", "error", "3000");
+
+            }
+
+        }
+
+        #region Secure
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "Administrators")]
+        [PrincipalPermission(SecurityAction.Demand, Role = "Editors")] 
+        protected void SavePage()
+        {
+            try
+            {
+                //Retrieve ContentName from Session
+                string ContentTitle = (string)ViewState["ContentTitle"];
+                string Language = (string)ViewState["Language"];
+
+                //Get Content Data
+                content MyContent = new content();
+                MyContent = App_Code.ContentService.GetObjectByTitle(ContentTitle);
+
+                contentmarkup MyPageContent = new contentmarkup();
+
+                if (!string.Equals(HFContent.Value, HFcontentControl.Value) || (!MyPageContent.published == chkPublished.Checked))
+                {
+
+                   
+
+                    MyPageContent.content_id = MyContent.content_id;
+                    MyPageContent.language = Language;
+                    MyPageContent.published = chkPublished.Checked;
+
+                    MyPageContent.markup = HFContent.Value.Replace("ContentSection editable", "ContentSection"); ;
+                   // MyPageContent.header_markup = HFHeader.Value.Replace("ContentSection editable", "ContentSection"); ;
+
+
+                    App_Code.ContentService.SaveContent(MyPageContent);
+
+                    //Update Control Data
+                  //  HFHeaderControl.Value = HFHeader.Value;
+                    HFcontentControl.Value = HFContent.Value;
+
+                    //BindVersions
+                    List<contentmarkup> ThisLanguageVersions = App_Code.ContentService.GetMarkupByLanguage(MyContent.content_id, Language);
+
+                    //GetCurrent Version
+                    contentmarkup CurrentVersion = ThisLanguageVersions.Last<contentmarkup>();
+
+                    //BindVersionsDDL
+                    BindVersionControl(ThisLanguageVersions, Convert.ToString(CurrentVersion.contentmarkup_id));
+
+                }
+
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "EditorTools", "ToggleEditorTools();", true);
+
+            }
+
+            catch (Exception ex)
+            {
+
+                //Loading Content Error
+                //App_Code.NotificationService.SendNotification("ContentSaveError", ex.Message, "error");
+                throw ex;
+
+            }
+        }
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "Administrators")]
+        [PrincipalPermission(SecurityAction.Demand, Role = "Editors")]
+        protected void ChangeVersion()
+        {
+            try
+            {
+                int VersionNumber = Convert.ToInt32(ddlContentVersion.SelectedValue);
+
+                contentmarkup MyPageContent = App_Code.ContentService.GetContentVersionById(VersionNumber);
+
+                string ContentTitle = (string)ViewState["ContentTitle"];
+
+                //Get the Content data from DB
+                content MyContent = new content();
+                MyContent = App_Code.ContentService.GetObjectByTitle(ContentTitle);
+
+                BindPage(MyContent, MyPageContent);
+            }
+
+            catch (Exception ex)
+            {
+
+                //Loading Content Error
+                App_Code.NotificationService.SendNotification("ContentError", ex.Message, "error");
+
+            }
+        }
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "Administrators")]
+        [PrincipalPermission(SecurityAction.Demand, Role = "Editors")]
+        protected void AdministratorChangeLanguage()
+        {
+
+            try
+            {
+
+                //Check if page is dirty
+                if (string.Equals(HFContent.Value, HFcontentControl.Value))
+                {
+
+                    //Retrieve ContentName from Session
+                    string ContentTitle = (string)ViewState["ContentTitle"];
+
+                    //Get Content Data
+                    content MyContent = new content();
+                    MyContent = App_Code.ContentService.GetObjectByTitle(ContentTitle);
+
+                    //Store Selected Language
+                    string SelectedLanguage = ddlContentLanguage.SelectedValue;
+
+                    //get Versions of this language if any
+                    int NumberOfVersions = App_Code.ContentService.GetMarkupByLanguage(MyContent.content_id, SelectedLanguage).Count();
+
+                    //Check for versions
+                    if (NumberOfVersions > 0)
+                    {
+                        //Load page for this language
+                        Response.Redirect("/" + MyContent.category + "/" + SelectedLanguage + "/" + ContentTitle);
+
+                    }
+
+                    else
+                    {
+                        //Create this content in the selected language
+                        contentmarkup MyMarkup = new contentmarkup();
+
+                        MyMarkup.content_id = MyContent.content_id;
+                        MyMarkup.language = SelectedLanguage;
+                      //  MyMarkup.header_markup = HFHeader.Value;
+                        MyMarkup.markup = HFContent.Value;
+
+                        App_Code.ContentService.SaveContent(MyMarkup);
+
+                        //Redirect to new language
+                        Response.Redirect("/" + MyContent.category + "/" + SelectedLanguage + "/" + ContentTitle);
+
+                    }
+                }
+
+                else
+                {
+
+                    //Page Dirty notification
+                    App_Code.NotificationService.SendNotification("DirtyPage", "Please save the page to continue to a new language", "alert");
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "EditorTools", "ToggleEditorTools();", true);
+
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+
+                //Error
+                App_Code.NotificationService.SendNotification("LanguageChangeError", ex.Message, "error");
+
+            }
+
+        }
+
+        #endregion
+
+    }
+}

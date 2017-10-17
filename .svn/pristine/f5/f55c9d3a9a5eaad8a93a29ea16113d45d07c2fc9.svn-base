@@ -1,0 +1,187 @@
+﻿<%@ Page Title="membership" Language="C#" MasterPageFile="~/MasterPages/RentALanguageTeacher.Master" AutoEventWireup="true" CodeBehind="membership.aspx.cs" Inherits="RentALanguageTeacher.Tests.membership" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+
+<script>
+
+    var roleProxy;
+    var roles;
+
+    // This function creates the role proxy and 
+    // sets its default callback functions.
+    function pageLoad() {
+        // Create role service proxy.
+        roleProxy = Sys.Services.RoleService;
+
+        // Set the default failed callback function.
+        DefaultFailedCallBack();
+
+        // Set the default load completed callback function.
+        DefaultLoadCompletedCallBack()
+
+    }
+
+
+    // This function sets and gets the role service
+    // default failed callback function.
+    function DefaultFailedCallBack() {
+        // Set default failed callback function.
+        roleProxy.set_defaultFailedCallback(FailedCallback);
+
+        // Get the default callback function. 
+        var failedCallBack =
+            roleProxy.get_defaultFailedCallback();
+
+      //  alert(failedCallBack);
+    }
+
+
+
+    // This function sets and gets the role service
+    // default load completed callback function.
+    function DefaultLoadCompletedCallBack() {
+        // Set the default callback function.
+        roleProxy.set_defaultLoadCompletedCallback(LoadCompletedCallback);
+
+        // Get the default callback function. 
+        var loadCompletedCallBack =
+            roleProxy.get_defaultLoadCompletedCallback();
+
+      //  alert(loadCompletedCallBack);
+    }
+
+
+    // This function checks if the currently
+    // authenticated user belongs to the
+    // passed role. 
+    function UserIsInRole(role) {
+        DisplayInformation("");
+        var isUserInRole = roleProxy.isUserInRole(role);
+        DisplayInformation("The user is in the " + role +
+            " role: " + isUserInRole);
+    }
+
+
+    // This function gets the role service path.
+    function GetRoleServicePath() {
+        // Get the role service path.
+        var roleServicePath =
+            Sys.Services.RoleService.get_path();
+        if (roleServicePath == "") {
+            DisplayInformation(
+                "The role service path is the default value.");
+        }
+    }
+
+
+    // This function gets the roles of the
+    // currently authenticated user. 
+    function ReadUserRoles() {
+        // Clear the feedback output.
+        DisplayInformation("");
+
+        // You must load the user's roles 
+        // first before you can use them.
+        roleProxy.load();
+
+        // Read the user's roles. 
+        roles = roleProxy.get_roles();
+
+    }
+
+
+    // This function gets the role service timeout.
+    function GetRoleServiceTimeout() {
+        // Get the role service path.
+        var roleServiceTimeout =
+            Sys.Services.RoleService.get_timeout();
+
+        DisplayInformation(
+                "Role service timeout: " + roleServiceTimeout);
+
+    }
+
+
+    // This is the callback function
+    // called if the role service load function
+    // completed.
+    function LoadCompletedCallback(roles) {
+        // Read the user's roles loaded
+        // before.
+        roles.sort();
+        for (var i = 0; i < roles.length; i++) {
+            var roleInfo = "Role: " + roles[i];
+            DisplayInformation(roleInfo);
+        }
+    }
+
+    // This is the callback function
+    // called if the role service fails.
+    function FailedCallback(error) {
+        DisplayInformation("Error: " + error.get_message());
+    }
+
+    // This function displays user's 
+    // feedback information.
+    function DisplayInformation(text) {
+       document.getElementById('placeHolder').innerHTML =
+        "<br/>" + text;
+    }
+
+    if (typeof (Sys) !== "undefined") Sys.Application.notifyScriptLoaded();
+
+
+</script>
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cpMainContent" runat="server">
+
+    <h2>Access Authenticated User's Roles</h2>
+	    Using the Sys.Services.RoleService client type to obtain roles information.
+
+	    <p>
+	        You must be authenticated to access roles information. <br /> 
+	        Refer to the Forms Authentication example.
+	    </p>
+	
+
+
+        <hr />
+        <table>
+	        <tr>
+			    <td align="left">User's roles: </td>
+			    <td align="left"> 
+			        <input type="button" id="UserRoles" 
+					       onclick="ReadUserRoles(); return false;" 
+					       value="UserRoles" />
+		        </td>
+			</tr>
+			<tr>
+			    <td align="left">Is User in Administrators Role?: </td>
+				<td align="left" >
+				    <input type="button" id="UserInRole" 
+					       onclick="UserIsInRole('Administrators'); return false;" 
+					       value="Check Role" /></td>
+			</tr>
+			
+			<tr>
+			    <td align="left">Role Service path: </td>
+				<td align="left">
+				    <input type="button" id="ServicePathId" 
+					       onclick="GetRoleServicePath(); return false;" 
+					       value="Role Service Path" /></td>
+			</tr>
+
+			<tr>
+			    <td align="left">Role Service timeout: </td>
+				<td align="left">
+				    <input type="button" id="ServiceTimeoutId" 
+					       onclick="GetRoleServiceTimeout(); return false;" 
+					       value="Role Service Timeout" /></td>
+			</tr>
+				
+		</table>				
+
+
+    <div id="placeHolder" ></div>
+
+</asp:Content>

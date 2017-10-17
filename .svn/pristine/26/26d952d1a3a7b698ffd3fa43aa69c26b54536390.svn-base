@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.Security;
+using System.Web.Profile;
+
+namespace RentALanguageTeacher.Tests
+{
+    public partial class ProfileTest : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            //App_Code.wProfile lProfile = new App_Code.wProfile();
+            //lProfile = App_Code.wProfile.GetProfile();
+            //Label1.Text = "Welcome, " + lProfile.ProfileInfo.FirstName + " " +
+            //lProfile.ProfileInfo.LastName;
+
+            //Profile_Code.wprofile lProfile = new Profile_Code.wprofile();
+            //  lProfile =  Profile_Code.wprofile.GetProfile();
+            //  Label1.Text = "Welcome, " + lProfile.profileinfo.FirstName + " " + lProfile.profileinfo.LastName;
+            //  lProfile.profileinfo.FirstName = "Brian";
+            //    lProfile.Save();
+
+            //var me = HttpContext.Current.Profile;
+            if (!Page.IsPostBack)
+            {
+
+                App_Code.RALTProfile MyProfile = new App_Code.RALTProfile();
+
+                MyProfile = MyProfile.GetRALTProfile();
+
+          
+
+                //if (MyProfile.DismissFlag == false)
+                //{
+                //    //New access
+                //    MyProfile.DismissFlag = true;
+                //    MyProfile.FirstName = "Brian";
+
+                //    App_Code.ProfileService.SaveRALTProfile(MyProfile);
+
+                //}
+                //else
+                //{
+                //    //User Has Profile
+                  
+
+                //}
+                
+            }
+            
+    
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string UserName = HttpContext.Current.Profile.UserName;
+            dynamic profile = ProfileBase.Create(UserName, false);
+
+        }
+    }
+}

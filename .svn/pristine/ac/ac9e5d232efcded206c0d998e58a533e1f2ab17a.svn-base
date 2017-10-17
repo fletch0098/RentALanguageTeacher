@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Profile;
+
+namespace RentALanguageTeacher.App_Code
+{
+    public class WaspProfile : ProfileBase
+    {
+
+        public ProfileInfo ProfileInfo
+        {
+            get { return (ProfileInfo)GetPropertyValue("ProfileInfo"); }
+        }
+
+        public static WaspProfile GetProfile()
+        {
+            return (WaspProfile)HttpContext.Current.Profile;
+        }
+
+        public static WaspProfile GetProfile(string userName)
+        {
+            return (WaspProfile)Create(userName);
+        }
+    }
+}

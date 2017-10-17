@@ -1,0 +1,301 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Linq;
+using System.Text;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
+using System.Data.Objects;
+using System.Data.Objects.DataClasses;
+using System.Data.Spatial;
+using log4net;
+using RentALanguageTeacher.App_Code;
+using RentALanguageTeacher;
+using MySql.Data.MySqlClient;
+using System.Net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+namespace RentALanguageTeacher.App_Code
+{
+    public static class TimeService
+    {
+        //Use reflection and set up log4net log
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger
+            (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        public static List<RentALanguageTeacher.App_Code.Time.CountryDDL> FillCountryDDL()
+        {
+            
+            //get method name
+            string MethodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+            //initialize entities
+            var ctx = new rentalanguageteacherEntities();
+            {
+
+                try
+                {
+                    log.Debug(MethodName + "**********************************************************************************************************");
+                    log.Debug(MethodName + "() - Start");
+
+                    // get user
+                    var MyObjects = (from s in ctx.countries
+                                     orderby s.short_name
+                                     select new RentALanguageTeacher.App_Code.Time.CountryDDL() { CountryName = s.short_name, CountryCode = s.iso2 });
+
+                    //log 
+                    if (object.ReferenceEquals(MyObjects, null))
+                    {
+                        log.Debug(MethodName + "() - No Objects were returned");
+                        return null;
+                    }
+
+                    else
+                    {
+                        log.Debug(MethodName + "() - Returned results");
+                        return MyObjects.ToList();
+                    }
+
+
+
+                }
+
+                catch (NullReferenceException e)
+                {
+                    log.Error(MethodName + "() - " + e.Message);
+                    log.Debug(MethodName + "() - " + e.StackTrace);
+                    throw (e);
+                }
+
+                catch (Exception e)
+                {
+                    log.Error(MethodName + "() - " + e.Message);
+                    log.Debug(MethodName + "() - " + e.StackTrace);
+                    throw (e);
+                }
+
+                finally
+                {
+                    log.Debug(MethodName + "() - Finish");
+                    log.Debug(MethodName + "**********************************************************************************************************");
+
+                }
+            }
+        }
+
+        public static List<RentALanguageTeacher.App_Code.Time.TimeZoneDDL> FillTimeZoneDDL(string CountryCode)
+        {
+
+            //get method name
+            string MethodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+            //initialize entities
+            var ctx = new rentalanguageteacherEntities();
+            {
+
+                try
+                {
+                    log.Debug(MethodName + "**********************************************************************************************************");
+                    log.Debug(MethodName + "() - Start");
+
+                    // get user
+                    var MyObjects = (from s in ctx.zones
+                                     where s.country_code_iso2 == CountryCode
+                                     orderby s.zone_name
+                                     select new RentALanguageTeacher.App_Code.Time.TimeZoneDDL() { ZoneId = s.zone_id, ZoneName = s.zone_name });
+
+                    //log 
+                    if (object.ReferenceEquals(MyObjects, null))
+                    {
+                        log.Debug(MethodName + "() - No Objects were returned");
+                        return null;
+                    }
+
+                    else
+                    {
+                        log.Debug(MethodName + "() - Returned results");
+                        return MyObjects.ToList();
+                    }
+
+
+
+                }
+
+                catch (NullReferenceException e)
+                {
+                    log.Error(MethodName + "() - " + e.Message);
+                    log.Debug(MethodName + "() - " + e.StackTrace);
+                    throw (e);
+                }
+
+                catch (Exception e)
+                {
+                    log.Error(MethodName + "() - " + e.Message);
+                    log.Debug(MethodName + "() - " + e.StackTrace);
+                    throw (e);
+                }
+
+                finally
+                {
+                    log.Debug(MethodName + "() - Finish");
+                    log.Debug(MethodName + "**********************************************************************************************************");
+
+                }
+            }
+        }
+
+        public static DateTime UnixTimeToDateTime(double unixTime)
+        {
+            // Unix timestamp is seconds past epoch
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            dtDateTime = dtDateTime.AddSeconds(unixTime).ToLocalTime();
+            return dtDateTime;
+        }
+
+        public static int DateTimeToUnixTime(DateTime MyTime)
+        {
+            return (Int32)(MyTime.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        }
+
+        public static DateTime GetUserLocalTime(RentALanguageTeacher.user MyUser)
+        {
+            RentALanguageTeacher.location MyLocation = LocationService.GetUserById(MyUser.user_id);
+
+            RentALanguageTeacher.zone MyZone = TimeZoneService.GetObjectByUserId(Convert.ToInt32(MyLocation.zone_id));
+
+            //Get Current UTC Time
+            DateTime MyTime = DateTime.UtcNow;
+
+            Int32 unixTimestamp = DateTimeToUnixTime(MyTime);
+
+            WebClient c = new WebClient();
+            var vLogin = c.DownloadString("http://api.timezonedb.com/?zone="+MyZone.zone_name.ToString()+"&format=json&key="+AppConfiguration.TimeZoneAPIKey+"&time=" + unixTimestamp);
+
+            JObject o = JObject.Parse(vLogin);
+            
+            App_Code.Time.TimeDataJson MyTZData = new Time.TimeDataJson();
+
+            MyTZData.Status = o["status"].ToString();
+            MyTZData.Message = o["message"].ToString();
+            MyTZData.CountryCode = o["countryCode"].ToString();
+            MyTZData.ZoneName = o["zoneName"].ToString();
+            MyTZData.Abbreviation = o["abbreviation"].ToString();
+             MyTZData.GMTOffset  = (double)o["gmtOffset"];
+             MyTZData.DST = (string)o["dst"];
+             MyTZData.TimeStamp = (double)o["timestamp"];
+
+             MyTZData.CurrentTime = DateTime.UtcNow.AddSeconds(MyTZData.GMTOffset);
+
+             return MyTZData.CurrentTime;
+
+
+        }
+
+        public static DateTime ConvertToMyTime(DateTime Time, RentALanguageTeacher.user MyUser)
+        {
+            RentALanguageTeacher.location MyLocation = LocationService.GetUserById(MyUser.user_id);
+
+            RentALanguageTeacher.zone MyZone = TimeZoneService.GetObjectByUserId(Convert.ToInt32(MyLocation.zone_id));
+
+            //Get Current UTC Time
+            DateTime MyTime = Time;
+
+            Int32 unixTimestamp = DateTimeToUnixTime(MyTime);
+
+            WebClient c = new WebClient();
+            var vLogin = c.DownloadString("http://api.timezonedb.com/?zone=" + MyZone.zone_name.ToString() + "&format=json&key=" + AppConfiguration.TimeZoneAPIKey + "&time=" + unixTimestamp);
+
+            JObject o = JObject.Parse(vLogin);
+
+            string status = o["status"].ToString();
+            string message = o["message"].ToString();
+            string countryCode = o["countryCode"].ToString();
+            string zoneName = o["zoneName"].ToString();
+            string abbreviation = o["abbreviation"].ToString();
+            double gmtOffset = (double)o["gmtOffset"];
+            string dst = (string)o["dst"];
+            double timestamp = (double)o["timestamp"];
+
+            return MyTime.AddSeconds(gmtOffset);
+        }
+
+        public static DateTime ConvertToUTC(DateTime Time, RentALanguageTeacher.user MyUser)
+        {
+            RentALanguageTeacher.location MyLocation = LocationService.GetUserById(MyUser.user_id);
+
+            RentALanguageTeacher.zone MyZone = TimeZoneService.GetObjectByUserId(Convert.ToInt32(MyLocation.zone_id));
+
+            //Get Current UTC Time
+            DateTime MyTime = Time;
+
+            Int32 unixTimestamp = DateTimeToUnixTime(MyTime);
+
+            WebClient c = new WebClient();
+            var vLogin = c.DownloadString("http://api.timezonedb.com/?zone=" + MyZone.zone_name.ToString() + "&format=json&key=" + AppConfiguration.TimeZoneAPIKey + "&time=" + unixTimestamp);
+
+            JObject o = JObject.Parse(vLogin);
+
+            string status = o["status"].ToString();
+            string message = o["message"].ToString();
+            string countryCode = o["countryCode"].ToString();
+            string zoneName = o["zoneName"].ToString();
+            string abbreviation = o["abbreviation"].ToString();
+            double gmtOffset = (double)o["gmtOffset"];
+            string dst = (string)o["dst"];
+            double timestamp = (double)o["timestamp"];
+
+            return MyTime.AddSeconds(-gmtOffset);
+        }
+
+        public static double GetTimeZoneDifference(RentALanguageTeacher.user MyUser1, RentALanguageTeacher.user MyUser2)
+        {
+            RentALanguageTeacher.location MyLocation1 = LocationService.GetUserById(MyUser1.user_id);
+
+            RentALanguageTeacher.zone MyZone1 = TimeZoneService.GetObjectByUserId(Convert.ToInt32(MyLocation1.zone_id));
+
+            RentALanguageTeacher.location MyLocation2 = LocationService.GetUserById(MyUser2.user_id);
+
+            RentALanguageTeacher.zone MyZone2 = TimeZoneService.GetObjectByUserId(Convert.ToInt32(MyLocation2.zone_id));
+
+            //Get Current UTC Time
+            DateTime MyTime = DateTime.UtcNow; 
+
+            Int32 unixTimestamp = DateTimeToUnixTime(MyTime);
+
+            WebClient c1 = new WebClient();
+            var vLogin1 = c1.DownloadString("http://api.timezonedb.com/?zone=" + MyZone1.zone_name.ToString() + "&format=json&key=" + AppConfiguration.TimeZoneAPIKey + "&time=" + unixTimestamp);
+
+            JObject o1 = JObject.Parse(vLogin1);
+
+            string status1 = o1["status"].ToString();
+            string message1 = o1["message"].ToString();
+            string countryCode1 = o1["countryCode"].ToString();
+            string zoneName1 = o1["zoneName"].ToString();
+            string abbreviation1 = o1["abbreviation"].ToString();
+            double gmtOffset1 = (double)o1["gmtOffset"];
+            string dst1 = (string)o1["dst"];
+            double timestamp1 = (double)o1["timestamp"];
+
+            WebClient c2 = new WebClient();
+            var vLogin2 = c2.DownloadString("http://api.timezonedb.com/?zone=" + MyZone2.zone_name.ToString() + "&format=json&key=" + AppConfiguration.TimeZoneAPIKey + "&time=" + unixTimestamp);
+
+            JObject o2 = JObject.Parse(vLogin2);
+
+            string status2 = o2["status"].ToString();
+            string message2 = o2["message"].ToString();
+            string countryCode2 = o2["countryCode"].ToString();
+            string zoneName2 = o2["zoneName"].ToString();
+            string abbreviation2 = o2["abbreviation"].ToString();
+            double gmtOffset2 = (double)o2["gmtOffset"];
+            string dst2 = (string)o2["dst"];
+            double timestamp2 = (double)o2["timestamp"];
+
+            return (gmtOffset1 - gmtOffset2)/3600;
+        }
+
+
+    }
+}

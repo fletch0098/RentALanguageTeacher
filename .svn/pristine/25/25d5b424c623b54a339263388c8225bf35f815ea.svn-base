@@ -1,0 +1,585 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="NoSideBar.Master.cs" Inherits="RentALanguageTeacher.MasterPages.NoSideBar" %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head id="Head1" runat="server">
+
+<%--    Not sure what this is?--%>
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server">     
+          <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>  
+
+<%--    SEO stuff--%>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+<%--    Persists page title for all pages--%>
+    <title>Rent a Language Teacher: <%: Page.Title %></title>
+
+<%--    RALT Icon--%>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+<%--    Google Hosted Jquery and Jquery UI Libraries--%>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-ui-1.10.3.custom.min.js"></script>
+
+<%--    Jquery Validations Engine and style--%>
+    <script src="/Scripts/jquery.validationEngine-en.js"></script>
+    <script src="/Scripts/jquery.validationEngine.js"></script>
+    <link href="/Styles/validationEngine.jquery.css" rel="stylesheet" />
+
+
+<%--    Validation Groups--%>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/Scripts/ValidationGroups.js"></script>
+
+<%--    Noty Notifications--%>
+    <script src="/Scripts/Notifications.js"></script>
+    <script src="/Scripts/jquery.noty.js"></script>
+    <script src="/Scripts/top.js"></script>
+    <script src="/Scripts/defaultNotyTheme.js"></script>
+
+<%--    Scripts--%>
+    <script src="/Scripts/LoginSlider.js"></script>
+    <script src="/Scripts/TabsnToolTips.js"></script>
+    <script src="/Scripts/RequestForm.js"></script>
+    <script src="/Scripts/jquery.ui.labeledslider.js"></script>
+    <script src="/Scripts/SideBar.js"></script>
+
+<%--    RALT CSS Style Sheets   --%> 
+    <link href="/Styles/RALT.css" rel="stylesheet" />
+    <link href="/Styles/grid.css" rel="stylesheet" />
+    <link href="/Content/themes/RALT-Theme/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+    <link href="/Styles/jquery.ui.labeledslider.css" rel="stylesheet" />
+
+
+
+
+
+<%--    InLine scripts--%>
+    <script>
+
+        $(document).ready(function () {
+        });
+
+
+      
+    </script>
+
+<%--    InLine styles--%>
+    <style>
+        
+    </style>
+
+<%--    Header Content--%>
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent">
+
+    </asp:ContentPlaceHolder>
+
+</head>
+
+<body>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-48127868-1', 'rentalanguageteacher.com');
+        ga('send', 'pageview');
+
+</script>
+
+    <form id="form1" runat="server">        
+         
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+        <Scripts>
+            <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=272931&clcid=0x409 --%>
+            <%--Framework Scripts--%>
+            
+            <asp:ScriptReference Name="MsAjaxBundle" />
+<%--            <asp:ScriptReference Name="jquery"/>--%>
+<%--            <asp:ScriptReference Name="jquery.ui.combined" />--%>
+<%--            <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+            <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+            <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+            <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+            <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+            <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+            <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+            <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+            <asp:ScriptReference Name="WebFormsBundle" />--%>
+            <%--Site Scripts--%>
+
+        </Scripts>
+
+    </asp:ScriptManager>
+
+         <div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+        <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+
+
+    <div id="PageWrapper"> 
+
+
+<%--        Top houses header, and Get connected panel--%>
+            <div id="Top">
+              
+<%--        Top Dark Grey w/Header--%>
+                <div id="TopBar">
+
+<%--        Grid Container for Header--%>
+                    <div id="HeaderContainer" class="container_12">
+
+<%--        Center Left Logo--%>
+                        <div id="Logo" class="grid_2 alpha " >
+                            <div style="width:100px;" class="center"><a href="/Home"><img src="/Images/Logo.png" title="RentaLanguageTeacher.com"/></a></div>
+                        </div>
+
+<%--        Center portion of header with TagLines and Menu--%>
+                                              
+                        <div id="TagLine" class="grid_8 alpha omega">
+                            Get connected with quality Spanish teachers. <br /> Learn and speak Spanish over Skype today!
+                        </div>
+
+                        <div class="omega grid_2">
+                            <%--<div style="width:140px;" class="center"><img src="../Images/LogoChars.png" title="RentaLanguageTeacher.com"/></div>--%>
+
+                             <div style="margin:10px 0 10px 0"><a href="https://twitter.com/RaLTSpanish"  class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @RaLTSpanish</a></div>
+
+                            <div class="fb-like" style="margin:0px 0 0px 0" data-href="https://www.facebook.com/RentaLanguageTeacher" data-width="220" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+
+               
+                        </div>
+
+                        <div id="Nav" class="grid_8 alpha omega ">
+
+                            <div class="center" style="width:450px;">
+                            <asp:Menu ID="Menu1" runat="server" CssClass="MainMenu center" DataSourceID="SiteMapDataSource1" 
+                                Orientation="Horizontal" StaticEnableDefaultPopOutImage="False">
+                            </asp:Menu>
+</div>
+                            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="False" />
+
+                        </div><%-- Close Nav--%>
+
+                        <div class="grid_2 omega login" style="max-height:25px;">
+
+                            <asp:LoginView ID="LoginView2" runat="server" ViewStateMode="Disabled">
+                                <AnonymousTemplate>
+                                    <div class="HeaderLogInView">
+                                        <a href="#" onclick="OpenSlider()" title="Click here to sign-up!">Get Connected!</a> 
+                                    </div>
+                                </AnonymousTemplate>
+                                                                        
+                                <LoggedInTemplate>
+                                    <div class="HeaderLogInView">
+                                        <a href="/StudentStatus" title="Go to your Account Page"><asp:LoginName ID="LoginName1" runat="server" CssClass="username" /></a>                                  
+                                        <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Sign Out" LogoutPageUrl="~/" />
+                                        
+                                    </div>
+                                </LoggedInTemplate>
+                                <RoleGroups>
+                                    <asp:RoleGroup Roles="Administrator">
+                                        <ContentTemplate>
+                                            <div class="HeaderLogInView">
+                          
+                                            <a href="/Administration/AdministratorMenu" title="Manage Students"><asp:LoginName ID="LoginName1" runat="server" CssClass="username" /></a>                                  
+                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Sign Out" LogoutPageUrl="~/" />
+                                        
+                                    </div>
+                                        </ContentTemplate>
+                                    </asp:RoleGroup>
+                                    <asp:RoleGroup Roles="Editors">
+                                        <ContentTemplate>
+                                            <div class="HeaderLogInView">
+                          
+                                            <a href="/Administration/AdministerContent" title="Administer Content"><asp:LoginName ID="LoginName1" runat="server" CssClass="username" /></a>                                  
+                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Sign Out" LogoutPageUrl="~/" />
+                                        
+                                    </div>
+                                        </ContentTemplate>
+                                    </asp:RoleGroup>
+                                </RoleGroups>
+                            </asp:LoginView> 
+                             
+                        </div>
+
+                    </div><%-- Close HeaderConatiner--%>
+
+                </div><%-- Close TopBar--%>
+
+<%--       Houses Get Connected PullDown--%>
+                <div id="SubTop">
+
+                    <div id="GetConnectedContainer" class="container_12">
+
+                        <div id="GetConnectedSlider" class="grid_12"> 
+                            
+                            <div id="GetConnected">
+                                         
+                                <div id="panel">
+
+                                    <div id="panel_contents">
+                                                
+                                        <div id="tabs">
+
+                                            <ul>
+                                                <li><a href="#tabs-1" title="Sign up with us">Sign Up</a></li>
+                                                <li><a href="#tabs-2" title="Login to your account">Log In</a></li>
+                                            </ul>
+                                                    
+                                            <div id="tabs-1">
+
+                                               <div class="TabContainer">
+
+                                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+
+                                                            <fieldset class="validationGroup"><%-- Get Connectedp--%>
+
+                                                                <legend>GetConnected</legend>
+
+                                                                <div class="ContentSection" style="width:355px;">
+
+                                                                    <div class="ContentSectionHeader" ><div class="ContentSectionHeaderText">Request a teacher today!</div></div>
+
+                                                                    <div class="ContentSectionInput">
+
+                                                                        <div class="Content">
+
+                                                                            <asp:HiddenField ID="SpanishLevel" Value="1" runat="server" />
+                                                                            <div class="formfield-container long">
+                                                                                <asp:Label ID="lblLevel" CssClass="RALT required" runat="server" Text="What's your Spanish level?"></asp:Label><br />
+                                                                                <div id="LevelSlider"></div>
+                                                                                <textarea id="LevelValue" class="ui-state-disabled RALT" readonly="readonly"  cols="40" rows="2">Total Beginner - I need a teacher that can speak some English</textarea>
+                                                                            </div>
+
+                                                                            <div class="formfield-container long">
+                                                                                <asp:Label ID="lblClassFrequency" CssClass="RALT required" runat="server"  Text="How often do you want classes?"></asp:Label><br />
+
+                                                                                <input id="FrequencySpinner"  readonly="readonly" value="7" runat="server" name="value">
+                                                                                <asp:Label ID="lblPer" CssClass="RALT required" runat="server"  Text="Per"></asp:Label>
+                                                                                <input id="SpinnerPeriod"  name="value" readonly="readonly" value="Week" runat="server"/>
+                                                                                <asp:Label ID="lblFor" CssClass="RALT required" runat="server"  Text="For"></asp:Label>
+                                                                                <asp:DropDownList ID="ddlDuration" CssClass="DDLShort ui-spinner ui-widget ui-widget-content ui-corner-all validate[funcCall[CheckForZero]]" runat="server">
+                                                                                        <asp:ListItem Value="0">Duration</asp:ListItem>
+                                                                                        <asp:ListItem Value="1">1 Hour</asp:ListItem>
+                                                                                        <asp:ListItem Value="2">2 Hours</asp:ListItem>
+                                                                                        <asp:ListItem Value="3">3 Hours</asp:ListItem>
+                                                                                        <asp:ListItem Value="4">4 Hours</asp:ListItem>
+                                                                                        <asp:ListItem Value="5">5 Hours</asp:ListItem>
+                                                                                        <asp:ListItem Value="6">6 Hours</asp:ListItem>
+                                                                                        <asp:ListItem Value="7">7 Hours</asp:ListItem>
+                                                                                        <asp:ListItem Value="8">8 Hours</asp:ListItem>
+                                                                                    </asp:DropDownList>
+                                                                                <asp:CustomValidator ID="CustomValidator1" ControlToValidate="ddlDuration" CssClass="field-validation-error" 
+                                                                                        Text="*" runat="server" ErrorMessage="Duration is required." ValidationGroup="GetConnected" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
+                                                                            </div>
+
+                                                                            <div class="formfield-container long">
+                                          
+                                                                                <div style="float:left">
+                                                                                    <asp:Label ID="Label2" CssClass="RALT required" runat="server" Text="Starting when?"></asp:Label><br />
+                                                                                    <input type="text" id="StartingDate" runat="server"  class="RALT validate[required, custom[date], future[NOW]] text-input datepicker" data-prompt-position="topRight:30" />
+                                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="StartingDate"
+                                                                                        CssClass="field-validation-error" Text="*" ErrorMessage="StartingDate is required." ValidationGroup="GetConnected"/>
+                                                                                    <asp:CustomValidator runat="server"
+                                                                                        ID="valDateRange"  CssClass="field-validation-error" Text="*" 
+                                                                                        ControlToValidate="StartingDate" ValidationGroup="GetConnected"
+                                                                                        onservervalidate="valDateRange_ServerValidate" 
+                                                                                        ErrorMessage="enter valid date" />
+                                                                                    </div>
+                                                                                 <div style="float:left">
+                                                                                    <asp:Label ID="lblBlockTime" CssClass="RALT required" runat="server" AssociatedControlID="BlockTime" Text="Start Time Between"></asp:Label><br />
+                                                                                    <asp:DropDownList ID="BlockTime" CssClass="DDLShort ui-spinner ui-widget ui-widget-content ui-corner-all validate[funcCall[CheckForZero]]" runat="server">
+                                                                                        <asp:ListItem Value="0">Select Time</asp:ListItem>
+                                                                                        <asp:ListItem Value="1">5:00am-8:00am</asp:ListItem>
+                                                                                        <asp:ListItem Value="2">8:00am-11:am</asp:ListItem>
+                                                                                        <asp:ListItem Value="3">11:00am-2:00pm</asp:ListItem>
+                                                                                        <asp:ListItem Value="4">2:00pm-5:00pm</asp:ListItem>
+                                                                                        <asp:ListItem Value="5">5:00pm-8:00pm</asp:ListItem>
+                                                                                        <asp:ListItem Value="6">8:00pm-11:00pm</asp:ListItem>
+                                                                                        <asp:ListItem Value="7">11:00pm-2:00am</asp:ListItem>
+                                                                                        <asp:ListItem Value="8">2:00am-5:00am</asp:ListItem>
+                                                                                    </asp:DropDownList>
+                                                                                    <asp:CustomValidator ID="CustomValidator2" ControlToValidate="BlockTime" CssClass="field-validation-error" 
+                                                                                        Text="*" runat="server" ErrorMessage="Block Time is required." ValidationGroup="GetConnected" OnServerValidate="CustomValidator2_ServerValidate"></asp:CustomValidator>
+                                                                                    
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div style="float:left; width:100%"> 
+                            
+                                                                                <div style="width:192px;" class="center">
+
+                                                                                    <div style="float:left;">
+                        
+                                                                                        <asp:Button ID="btnMoveNext" runat="server" Text="Continue" CssClass="button causesValidation"  ValidationGroup="GetConnected" OnClick="NewUser_Click" />
+                    
+                                                                                    </div>
+                        
+                                                                                    <div style="float:left;">
+                                    
+                                                                                        <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+                                                                                            <ProgressTemplate>
+                                                                                                <div class="PleaseWait">
+                                              
+                                                                                                </div>
+                                                                                            </ProgressTemplate>
+                                                                                        </asp:UpdateProgress>
+
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                    
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </fieldset><%-- Sign Up--%>
+
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                    
+                                                </div>
+
+                                            </div> <%--Close Tabs-1--%>
+                                                        
+                                            <div id="tabs-2">
+                                                        
+                                                 <div class="TabContainer">
+   
+                                                    <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+
+                                                            <fieldset class="validationGroup">
+
+                                                                <legend>LogIn</legend>
+                                                            
+                                                                <div class="ContentSection" style="width:355px;">
+
+                                                                    <div class="ContentSectionHeader" ><div class="ContentSectionHeaderText">Get Connected</div></div>
+
+                                                                    <div class="ContentSectionInput">
+
+                                                                        <div class="Content login">
+
+                                                                            <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
+
+                                                                                <AnonymousTemplate>
+
+                                                                                    <div class="login">
+
+                                                                                    <div class="formfield-container long">
+                                                                                        <asp:Label ID="lblLogInUserName" CssClass="RALT required" runat="server" AssociatedControlID="LogInUserName" Text="UserName"></asp:Label><br />
+                                                                                        <asp:TextBox ID="LogInUserName" cssclass="RALT long validate[required]" runat="server"></asp:TextBox>
+                                                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="LogInUserName"
+                                                                                            CssClass="field-validation-error" Text="*"  ErrorMessage="UserName is required." ValidationGroup="LogIn" />
+                                                                                    </div>
+                                                                                
+                                                                                    <div class="formfield-container long">
+                                                                                        <asp:Label ID="lblLogInPassword" CssClass="RALT required" runat="server" AssociatedControlID="LogInPassword" Text="Password"></asp:Label><br />
+                                                                                        <asp:TextBox ID="LogInPassword" cssclass="RALT long validate[required]" TextMode="Password" runat="server"></asp:TextBox>
+                                                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="LogInPassword"
+                                                                                            CssClass="field-validation-error" Text="*" ErrorMessage="Password is required." ValidationGroup="LogIn"/>
+                                                                                    </div>
+
+                                                                                    <div style="float:left; width:100%"> 
+                            
+                                                                                        <div style="width:192px;" class="center">
+
+                                                                                            <div style="float:left;">
+                        
+                                                                                                <asp:Button ID="LogIn" runat="server" Text="Log In" CssClass="button causesValidation"  ValidationGroup="LogIn" OnClick="LogIn_Click"/>
+                    
+                                                                                            </div>
+                        
+                                                                                            <div style="float:left;">
+                                    
+                                                                                                <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+                                                                                                    <ProgressTemplate>
+                                                                                                        <div class="PleaseWait">
+                                              
+                                                                                                        </div>
+                                                                                                    </ProgressTemplate>
+                                                                                                </asp:UpdateProgress>
+
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                   <%-- <div class="formfield-container long" style="height:30px;">
+                                                                                        <div style="width:150px;" class="center">
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>--%>
+                                                                                                                                                                        
+                                                                                    <div class="formfield-container long">
+                                                                                        <asp:Label ID="lblIsPersistant" CssClass="RALT" runat="server" AssociatedControlID="LogInIsPersistant" Text="Keep me logged in"></asp:Label>
+                                                                                        <asp:CheckBox ID="LogInIsPersistant" runat="server" />
+                                                                                    </div>
+
+                                                                                    <div class="formfield-container short login" >
+                                                                                        <a class="login" href="/RetrieveAccount">Need help logging in?</a>
+                                                                                    </div>
+
+                                                                                </div></AnonymousTemplate>
+
+                                                                                <LoggedInTemplate>
+                                                                                    <div>
+                                                                                        Hello, <asp:LoginName ID="LoginName1" runat="server" CssClass="username" />, Welcome back! <br />
+                                                                                        Please take a moment to update your <a href="/AccountSetup"> Account Page</a>
+                                                                                           <br /> 
+                                                                                        <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Sign Out" LogoutPageUrl="~/" />
+                                                                                    </div>
+                                                                                </LoggedInTemplate>
+
+                                                                            </asp:LoginView>
+                                                                              
+                                                                       </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </fieldset>                                                  
+
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                    
+                                                </div>
+
+                                            </div><%-- Close Tabs-2--%>
+                                                  
+                                        </div><%-- Close Tabs--%>
+                                                
+                                    </div><%-- Close panel-contents--%>
+
+                                </div><%-- Close Panel--%>
+
+                                <div class="panel_button" title="Click here to sign-up!"><img id="PanelButton" src="/images/GetConnectedOpen.png" /></div>
+
+                            </div><%-- Close GetConnected--%>
+
+                        </div><%-- Close GetConnectedSlider--%>
+
+                    </div><%-- Close GetConnectedcontainer--%>
+
+                </div><%-- Close subTop--%>
+
+            </div><%-- Close Top--%>
+            
+<%--      Main content--%>
+
+            <Section id="Main" class="container_12" style="position:relative">
+                                        
+                <asp:ContentPlaceHolder ID="cpMainContent"  runat="server">
+
+                </asp:ContentPlaceHolder>
+
+            </Section>
+
+<%--    Footer with small menu--%>
+        <div id="BottomBar">
+
+            <div id="Footer" class="container_12">
+
+                <div id="SEOPhrases"><a href="/">Learn Spanish Online</a>  |  <a href="/">Spanish over Skype</a>
+                      |  <a href="/">Rent a Language Teacher</a>  |  <a href="/">Practice Spanish</a>  |  <a href="/">Language Learning</a> </div>
+
+                <div id="FooterMenuContainer">
+
+                    <asp:Menu ID="Menu2" runat="server" CssClass="FooterMenu center" DataSourceID="SiteMapDataSource1" 
+                        Orientation="Horizontal" StaticEnableDefaultPopOutImage="False">
+                    </asp:Menu>
+
+                    </div><%-- CloseFooterMenuContainer--%>
+
+                <div style="text-align:center;width:100%;font-size:1.3em;">
+
+                    Rent A Language Teacher    *    
+                                <a href="http://www.rentalanguageteacher.com">www.rentalanguageteacher.com</a>
+
+                </div>
+
+                <div style="text-align:center;width:100%;font-size:1.3em;">
+
+                    <a href="/RALT/EN/Terms-Of-Service">Terms of Service</a>    *    <a href="/RALT/EN/Privacy-Policy">Privacy Policy</a>
+
+                </div>           
+
+                <div style="width:135px;font-size:1.5em;padding-top:10px;" class="center">
+                    <span id="siteseal"><script type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=A78TlwFvWusm3A2MsVLUbhyjp27cpFfYOtF0OM0Daqku0pDr9FqZN8jbT"></script></span>
+                </div>
+
+            </div><%-- Close Footer--%>
+
+        </div><%-- Close BottomBar--%>
+   
+    </div><%-- Close PageWrapper--%>
+
+     <div id="MailList" style="background:url(/Images/MailList.png) no-repeat  center bottom; " title="Rent A Language Teacher">
+     
+        <h2 class="Corners">Join our mailing list for free access to Spanish materials and updates</h2>
+
+        <fieldset class="validationGroup">
+
+            <legend>EmailList</legend>
+    
+            <div style="margin-left:40px; margin-top:50px;padding-top:0px;" class="long">
+
+                <div class="formfield-container long">
+                    <asp:Label ID="lblName" CssClass="RALT required" runat="server" AssociatedControlID="txtName" Text="Name"></asp:Label><br />
+                    <asp:TextBox ID="txtName" cssclass="RALT long validate[required]" data-prompt-position="bottomRight:-50" runat="server"></asp:TextBox>
+                </div>
+                                                                                
+                <div class="formfield-container long">
+                    <asp:Label ID="lblEmail" CssClass="RALT required" runat="server" AssociatedControlID="txtEmail" Text="Email"></asp:Label><br />
+                    <asp:TextBox ID="txtEmail" cssclass="RALT long validate[required, custom[email]]" data-prompt-position="bottomRight:-50" runat="server"></asp:TextBox>
+                </div>
+
+                <div class="formfield-container long">
+                    <asp:Label ID="Label1" CssClass="RALT required" runat="server" Text="What's your Spanish level?"></asp:Label><br />
+                    <div style="margin-top:5px;" id="EmailLevelSlider"></div><br />
+                    <textarea id="EmailLevelValue" class="ui-state-disabled RALT" readonly="readonly"  
+                        cols="40" rows="2">Total beginner - I have never learnt Spanish before but would like to start</textarea>
+                </div>
+
+                <div style="font-size:1em;margin-top:10px;">
+                    <a href="#" style="color:#1ee0e3;" onclick="NoThanks()" title="I don't want to sign up">No thanks</a>, just take me to the site. 
+                </div>
+
+            </div>
+
+            <div style="float:right;margin-top:50px;">
+
+                <asp:Button ID="Join" runat="server" Text="Join" CssClass="button causesValidation" OnClientClick="JoinMailList()" />
+                    
+            </div>
+
+        </fieldset>
+
+     </div>
+
+    </form>
+
+</body>
+
+</html>

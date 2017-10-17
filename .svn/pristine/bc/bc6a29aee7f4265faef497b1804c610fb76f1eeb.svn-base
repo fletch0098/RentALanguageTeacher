@@ -1,0 +1,131 @@
+﻿<%@ Page Title="Stripe" Language="C#" MasterPageFile="~/MasterPages/RentALanguageTeacher.Master" AutoEventWireup="true" CodeBehind="Stripe.aspx.cs" Inherits="RentALanguageTeacher.Stripe" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    <script>
+
+
+
+    </script>
+
+
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="cpMainContent" runat="server">
+
+    <asp:HiddenField ID="stripeToken" runat="server" />
+
+        <div class="ContentSection">
+        
+        <div class="ContentSectionHeader"><div class="ContentSectionHeaderText"><%: Page.Title %></div></div>
+        
+        <div class="ContentSectionContent">
+
+            <div class="Content">
+
+                <div class="ContentTitleImage"><a href="/Home"><img src="/Images/LogoBlack.png" class="center" /></a></div>
+                
+                <div class="ContentTitletext">
+
+                    String Test
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="ContentSection">
+        
+        <div class="ContentSectionHeader"><div class="ContentSectionHeaderText">Test Stripe CC</div></div>
+        
+        <div class="ContentSectionContent">
+
+            <div class="Content">
+
+                
+
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+
+                            <fieldset class="validationGroup"><%-- Get Connected--%>
+                                <legend></legend>
+
+                                <div class="ui-widget Hidden" id="Errors">
+	                                <div class="ui-state-error ui-corner-all" style="margin-top: 5px; padding: 0 .7em;">
+		                            <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+		                              <span class="payment-errors"></span>  </p>
+	                                </div>
+                                </div>
+                                                                
+                                <div class="formfield-container long">
+                                    <asp:Label ID="lblCardHolderName" CssClass="RALT required" runat="server"  Text="Card Holder Name"></asp:Label><br />
+                                    <asp:TextBox ID="CardHolderName" cssclass="RALT long validate[required]" data-stripe="name" runat="server"></asp:TextBox>
+                                </div>
+
+                                <div class="formfield-container long">
+                                    <asp:Label ID="lblCardNumber" CssClass="RALT required" runat="server"  Text="Card Number"></asp:Label><br />
+                                    <asp:TextBox ID="CardNumber" cssclass="RALT long validate[required]" data-stripe="number" runat="server"></asp:TextBox>
+                                </div>
+                
+                                <div class="formfield-container long">
+                                    <asp:Label ID="lblCVC" CssClass="RALT required" runat="server"  Text="CVC"></asp:Label><br />
+                                    <asp:TextBox ID="CVC" cssclass="RALT short validate[required]" data-stripe="cvc" runat="server"></asp:TextBox>
+                                </div>
+
+                                <div class="formfield-container long">
+                                    <asp:Label ID="lblExpiration" CssClass="RALT required" runat="server"  Text="Expiration (MM/YYYY)"></asp:Label><br />
+                                    <div>
+                                    <asp:TextBox ID="EXPMonth" cssclass="RALT short validate[required]" data-stripe="exp-month" runat="server"></asp:TextBox>
+                                    <asp:Label ID="lblDash" runat="server" Text=" / "></asp:Label>
+                                    <asp:TextBox ID="EXPYear" cssclass="RALT short validate[required]" data-stripe="exp-year" runat="server"></asp:TextBox>
+
+                                    </div>
+                                </div>
+
+                                <div style="float:left; width:100%"> 
+                            
+                                    <div style="width:192px;" class="center">
+
+                                        <div style="float:left;">
+
+                                            <button id="BtnSubmit" type="submit" Class="button causesValidation" runat="server">Submit Payment</button>
+                                           
+                                        </div>
+                        
+                                        <div style="float:left;">
+                                    
+                                            <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+                                                <ProgressTemplate>
+                                                    <div class="PleaseWait">
+                                              
+                                                    </div>
+                                                </ProgressTemplate>
+                                            </asp:UpdateProgress>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                  
+
+                                </ContentTemplate>
+                      </asp:UpdatePanel>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+</asp:Content>

@@ -1,0 +1,746 @@
+﻿*
+{
+  /* 
+    Defines the main font used throughout the entire site 
+  */
+  font-family: Arial, Sans-Serif;
+  padding: 0px;
+}
+.PleaseWait
+{
+    height: 32px;
+    width: 100px;
+    background-image: url('../Images/PleaseWait.gif');
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    line-height: 32px;
+}
+body
+{
+    /* 
+    Clears white space around the body and gives it a blue color.
+  */
+  padding: 0px;
+    margin: 0px;
+    background-color: #376b94;
+    /*background-image: url('../Images/bg.gif');*/
+}
+
+a
+{
+    /*
+    Clears the underline on normal links, and gives them a blue text color.
+  */
+    text-decoration: none;
+    color:#055892;;
+}
+
+a:hover
+{
+  /*
+    Underlines links when the user hovers the mouse over them.
+  */
+  text-decoration : underline;
+}
+
+h1
+{
+  /*
+    Makes h1 elements smaller than their browser default.
+  */
+  font-size : 20px;
+  color:#055892;
+}
+
+h2
+{
+    /* 
+    Gives h2 elements a different background color and size, 
+    and adds a bit of margin at the top to create room between the heading and the preceding element.
+  */
+    font-size: 16px;
+    color:#055892;
+    margin-top: 10px;
+}
+
+h3
+{
+    /* 
+    Gives h2 elements a different background color and size, 
+    and adds a bit of margin at the top to create room between the heading and the preceding element.
+  */
+    font-size: 14px;
+    color:#055892;
+    margin-top: 10px;
+}
+
+p
+{
+    /* 
+    Gives h2 elements a different background color and size, 
+    and adds a bit of margin at the top to create room between the heading and the preceding element.
+  */
+    font-size: 14px;
+    color:#222222;
+    margin: 4px 2px;
+}
+
+#PageWrapper
+{
+    /*
+    Sets the total width for the entire page. Also sets the background-color
+    which is used to fill the background of the Sidebar in case the MainContent block is taller than the Sidebar.
+    Uses margin: auto to center the entire page in the middle of the browser's window.
+  */
+    width: 1000px;
+    background: url('../Images/bg-center1.png');
+	min-height: 500px;
+    margin: auto;
+    padding: 0px;
+	background-repeat:repeat-y;
+}
+
+#Header
+{
+    /*
+    Gives the header the same width as the PageWrapper. The height creates some room for the logo
+    that is set with the background-image.
+  */
+  float:left;
+    background-image: url('../Images/bgmainbanner4.png');
+    width: 1000px;
+    height: 140px;
+}
+
+
+#text-center{
+	text-align:center;}
+
+#header-link{
+	float:left;
+    width: 760px;
+    height: 140px;
+}
+
+#header-link a{
+    width: 760px;
+    height: 140px;
+	display:block;
+}
+
+.header-infobox{
+	width:180px;
+	height:100px;
+	padding:0px;
+	margin:40px 20px 0px 0px;
+	float:right;
+	font-size:14px;
+	text-align:left;
+}
+
+#Header a
+{
+  /*
+    The #Header a is a link nested in #Header. It provides a link back to the homepage.
+    The size of the link is the same as the header, so the entire header is clickable.
+  */ 
+ 
+}
+#Sidebar
+{
+    /*
+    The Sidebar is positioned to the right of the MainContent area. It gets the same font-size as #MainContent
+    and gets a background image called Sidebar.jpg. To ensure the image is visible in (most) browsers
+    on a small page, the element gets a minimum height of 500px. This is ignored by IE 6.
+  */
+    color: White;
+    background-repeat: no-repeat;
+    width: 232px;
+    min-height: 500px;
+    margin: 0px 0px 0px 4px;
+    float: left;
+}
+
+#Sidebar a{
+	font-size:18px;}
+
+#sidebar-top {
+	background: url('../Images/sidebar1-top.png');
+	width: 232px;
+	height: 24px;
+	padding: 0px; 
+	margin: 0px 0px 0px 12px;
+}
+#sidebar-mid {
+	background: url('../Images/sidebar1-mid.png');
+	width: 232px;
+	min-height: 200px;
+	padding: 0px; 
+	margin: 0px 0px 0px 12px;
+}
+#sidebar-bot {
+	background: url('../Images/sidebar1-bot.png'); 
+	width: 232px;
+	height: 24px;
+	padding: 0px; 
+	margin: 0px 0px 0px 12px;
+}
+
+
+
+
+
+#MainContent
+{
+    /*
+    Defines the main content area. The #MainContent element has a minimum height of 500 pixels, but can grow if necessary.
+    The font-size is 80% of its parent element, which in this case comes down to 80% of the font
+    the user has specified as the default font in the browser.
+  */
+    font-size: 0.8em;
+    width: 700px;
+    border: 1px solid;
+    border-color:#cccccc;
+    float: right;
+    background-color: #FFFFFF;
+    min-height: 500px;
+    margin: 4px 20px 12px 0px;
+    color: #000000;
+    padding:10px;
+}
+
+
+
+#Footer
+{
+  /*
+    The footer is positioned below all other content (yet still within PageWrapper).
+    clear: both is used to clear the impact of the float properties used for #MainContent and #Sidebar.
+  */
+
+  background: url('../Images/bg-bottom1.png');
+  background-repeat:no-repeat;
+  height: 17px;
+  margin: auto;
+  padding: 2px;
+  clear: both;
+  text-align: center;
+  font-size: 10px;
+  line-height: 37px;
+}
+.FirstLevelMenuItems
+{
+
+    padding-top: 12px;
+    font-size:14px;
+}
+.ImageButton
+{
+    padding: 10px;
+    margin: auto;
+    
+}
+
+/*side bar links*/
+.TreeView
+{
+    margin: 0px 0px 0px 20px;
+    }
+    
+.TreeView a
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:16px;
+	color:#055892;
+	text-decoration: none;
+	padding: 2px 2px 2px 2px;
+}
+
+.TreeView a:hover
+{
+	color:#333333;
+	background-color:#ffffff;
+	padding: 2px 2px 2px 2px;
+	text-decoration: none;
+}
+
+.EmptySalesCall
+{
+    border-style: none;
+   
+    padding-top: 50px;
+}
+
+/*GridViewCSS Chrome Black Style*/
+.GridViewStyle
+{
+    font-family: Arial, Sans-Serif;
+    font-size: small;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: 5px solid #99CCFF;
+}
+/*Header and Pager styles*/
+.HeaderStyle, .PagerStyle
+{
+    height:5px;
+    background-position: center;
+    background-repeat: repeat-x;
+    background-color: #99CCFF;
+}
+.HeaderStyle th
+{
+    padding: 5px;
+    color: #ffffff;
+}
+.HeaderStyle a
+{
+    text-decoration:none;
+    color:#ffffff;
+    display:block;
+    text-align:left;
+    font-weight:normal;
+}
+.PagerStyle table
+{
+    text-align:center;
+    margin:auto;
+}
+.PagerStyle table td
+{
+    border:0px;
+    padding:5px;
+}
+.PagerStyle td
+{
+    border-top: #1d1d1d 3px solid;
+}
+.PagerStyle a
+{
+    color:#ffffff;
+    text-decoration:none;
+    padding:2px 10px 2px 10px;
+    border-top:solid 1px #777777;
+    border-right:solid 1px #333333;
+    border-bottom:solid 1px #333333;
+    border-left:solid 1px #777777;
+}
+.PagerStyle span
+{
+    font-weight:bold;
+    color:#FFFFFF;
+    text-decoration:none;
+    padding:2px 10px 2px 10px;
+}
+/*RowStyles*/
+.RowStyle td, .AltRowStyle td, .SelectedRowStyle td, .EditRowStyle td /*Common Styles*/
+{
+    padding: 5px;
+    border-right: solid 1px #1d1d1d;
+}
+.RowStyle td
+{
+    background-color: #c9c9c9;
+}
+.EmptyRowStyle
+{
+    border-style: none;
+    padding: 20px;
+    margin: 20px;
+}
+.AltRowStyle td
+{
+    background-color: #f0f0f0;
+}
+.SelectedRowStyle td
+{
+    background-color: #ffff66;
+}
+#CallLogs
+{
+    border: thick solid #99CCFF;
+    margin: 10px;
+    padding: 10px;
+}
+#NewFacilityTable
+{
+    border: thick solid #99CCFF;
+    padding: 10px;
+    margin-top: 5%;
+    margin-left: 20%;
+}
+.Important
+{
+    color: #FF0000;
+    margin: auto;
+    font-size: 2em;
+}
+.modalBackground
+
+{
+
+background-color: Gray;
+
+}
+
+.modalPopup
+{
+
+background-color: #ffffdd;
+border-width: 3px;
+
+border-style: solid;
+border-color: Gray;
+
+padding: 10px;
+width: 600px;
+
+text-align: center;
+}
+
+/*form background classes*/
+
+.greenbox 
+{
+    float:left;
+    width:660px;
+    margin:0px 40px 20px 0px;
+    background:#DCFCDF;
+    padding:8px;
+-moz-border-radius: 7px;
+border-radius: 7px; 
+-webkit-border-radius: 7px;
+    
+}
+
+.redbox 
+{
+    float:left;
+    width:652px;
+    margin:0px 40px 20px 0px;
+    background:#FAF689;
+	background-image:url(../Images/alert1.png);
+	background-repeat:no-repeat;
+	background-position: 1% 50%;
+    padding:8px 8px 8px 32px;
+-moz-border-radius: 7px;
+border-radius: 7px; 
+-webkit-border-radius: 7px;
+border-width:1px;
+border-color:#999;
+border-style:solid;
+    
+}
+
+.smallredbox 
+{
+    float:left;
+    width:200px;
+    margin:0px 40px 20px 0px;
+    background:#FA989D;
+    padding:8px;
+-moz-border-radius: 7px;
+border-radius: 7px; 
+-webkit-border-radius: 7px;
+border-width:1px;
+border-color:#d95d64;
+border-style:solid;
+    
+}
+
+.bluebox 
+{
+float:left;
+width:676px;
+margin:0px 40px 20px 0px;
+background:#E6F3FC;
+padding:8px;
+-moz-border-radius: 7px;
+border-radius: 7px; 
+-webkit-border-radius: 7px;
+border-width:1px;
+border-color:#c4d1da;
+border-style:solid;
+}
+
+.ltbluebox 
+{
+float:left;
+width:676px;
+margin:0px 40px 20px 0px;
+background:#F0F6FA;
+padding:8px;
+-moz-border-radius: 7px;
+border-radius: 7px; 
+-webkit-border-radius: 7px;
+border-width:1px;
+border-color:#c4d1da;
+border-style:solid;
+}
+
+.greybox 
+{
+float:left;
+width:676px;
+margin:0px 40px 20px 0px;
+background:#eeeeee;
+padding:8px;
+-moz-border-radius: 7px;
+border-radius: 7px; 
+-webkit-border-radius: 7px;
+border-width:1px;
+border-color:#aaaaaa;
+border-style:solid;
+}
+
+.whitebox 
+{
+float:left;
+width:676px;
+margin:0px 40px 20px 0px;
+background:#ffffff;
+padding:8px;
+-moz-border-radius: 7px;
+border-radius: 7px; 
+-webkit-border-radius: 7px;
+}
+
+/* 1/3 space of box div on content pages */
+
+.formfield-container
+{
+    float:left;
+    width:204px;
+    height:35px;
+    margin:8px 8px 4px 8px;
+}
+
+
+
+
+/*label css */
+
+.longlabel
+{
+    overflow:hidden;
+    width:200px;}
+
+.commentbox
+{
+    width:644px;
+    height:80px;
+}
+
+
+/*half screen block div */
+.half-container
+{
+	float:left;
+	width:314px;
+	min-height:24px;
+	padding:0px;
+	margin:0px 0px 0px 0px;
+}
+
+/*note bubble css div */
+.note-container
+{
+float:left;
+width:644px;
+margin:4px 0px;
+padding: 0px 0px;
+background:#FFF;
+-moz-border-radius: 7px;
+border-radius: 7px; 
+-webkit-border-radius: 7px;
+border-width:1px;
+border-color:#AAADAD;
+border-style:solid;
+}
+
+.note-date
+{
+	text-align:left;
+	width:616px;
+	float:left;
+	padding: 4px 4px;
+	margin:4px 4px; 
+    color: #000000;   
+    background: #E6F3FC;    
+    font-size: 14px;   
+	border: solid 0px #AAADAD;
+}
+
+.note-content
+{
+	text-align:left;
+	padding: 4px;
+	width:624px;
+	float:left; 
+}
+
+
+
+
+/* data Grid css */
+
+.mGrid {   
+    width: 100%;
+	max-width: 672px;
+    background: #E8E8E8;   
+    margin: 0px 0 0px 0;
+	border: solid 1px #AAADAD;
+	text-align:center;
+   
+}  
+.mGrid td { 
+    padding: 3px 8px;   
+    border: solid 1px #AAADAD;   
+    color: #444444;   
+}  
+.mGrid th {   
+    padding: 4px 2px;   
+    color: #000000;   
+    background: #C3C6C7;    
+    font-size: 14px;   
+	border: solid 1px #AAADAD; 
+}  
+.mGrid .alt { background: #DEDCDC; }
+
+
+
+/* mgrid pages css 
+.mGrid .pgr { background: #424242 repeat-x top; }  
+.mGrid .pgr table { margin: 5px 0; }  
+.mGrid .pgr td {   
+    border-width: 0;   
+    padding: 0 6px;   
+    border-left: solid 1px #666;   
+    font-weight: bold;   
+    color: #fff;   
+    line-height: 12px;   
+ }     
+.mGrid .pgr a { color: #666; text-decoration: none; }  
+.mGrid .pgr a:hover { color: #000; text-decoration: none; } 
+*/
+
+/* ajax accordian css */
+
+
+        .accordionHeader
+
+        {
+			
+
+width:644px;
+margin:4px 0px;
+padding: 4px 2px;
+-moz-border-radius: 7px;
+border-radius: 7px; 
+-webkit-border-radius: 7px;
+border-width:0px;
+border-color:#AAADAD;
+border-style:solid;
+max-height:24px;
+
+        }
+		
+		.accordionHeaderSelected
+		
+		   {
+			
+width:644px;
+margin:4px 0px;
+padding: 4px 2px;
+-moz-border-radius: 7px;
+border-radius: 7px; 
+-webkit-border-radius: 7px;
+border-width:0px;
+border-color:#AAADAD;
+border-style:solid;
+max-height:24px;
+
+        }
+
+.accordionContent
+        {
+overflow:auto;
+width:644px;
+margin:4px 0px;
+padding: 2px 4px;
+background:#FFF;
+-moz-border-radius: 7px;
+border-radius: 7px; 
+-webkit-border-radius: 7px;
+border-width:1px;
+border-color:#AAADAD;
+border-style:solid;
+max-height:320px;}
+
+.loginbox
+{
+text-align:center;
+width:588px;
+margin:24px auto 10px auto;
+background:#ffffff;
+padding:8px 8px 24px 8px;
+-moz-border-radius: 7px;
+border-radius: 7px; 
+-webkit-border-radius: 7px;
+}
+
+.loginfield{
+	text-align:center;
+	margin:16px auto;
+	width:240px;
+}
+
+
+/*adding notes and flaggs pop up window */
+.modalPopup{
+	width:644px;
+	height:360px;
+	background:#E6F3FC;
+	-moz-border-radius: 2px;
+border-radius: 2px; 
+-webkit-border-radius: 2px;
+border: 1px solid #666;
+-moz-box-shadow: 0px 0px 9px 9px #ddd;
+-webkit-box-shadow: 0px 0px 9px 9px #ddd;
+box-shadow: 0px 0px 9px 9px #ddd;}
+
+.modalPopupflags{
+	width:644px;
+	height:140px;
+	background:#E6F3FC;
+	text-align:center;
+	-moz-border-radius: 2px;
+border-radius: 2px; 
+-webkit-border-radius: 2px;
+border: 1px solid #666;
+-moz-box-shadow: 0px 0px 9px 9px #ddd;
+-webkit-box-shadow: 0px 0px 9px 9px #ddd;
+box-shadow: 0px 0px 9px 9px #ddd;}
+
+.modalbg{
+	width:100%;
+	height:100%;
+
+	font-size:12px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

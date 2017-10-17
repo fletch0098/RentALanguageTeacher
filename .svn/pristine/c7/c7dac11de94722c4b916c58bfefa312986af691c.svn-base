@@ -1,0 +1,314 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.Security;
+using System.Web.Services;
+using System.Web.UI.WebControls;
+
+namespace RentALanguageTeacher.MasterPages
+{
+    public partial class NoSideBar : System.Web.UI.MasterPage
+    {
+        private const string AntiXsrfTokenKey = "__AntiXsrfToken";
+        private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
+        private string _antiXsrfTokenValue;
+
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            // The code below helps to protect against XSRF attacks
+            var requestCookie = Request.Cookies[AntiXsrfTokenKey];
+            Guid requestCookieGuidValue;
+            if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
+            {
+                // Use the Anti-XSRF token from the cookie
+                _antiXsrfTokenValue = requestCookie.Value;
+                Page.ViewStateUserKey = _antiXsrfTokenValue;
+            }
+            else
+            {
+                // Generate a new Anti-XSRF token and save to the cookie
+                _antiXsrfTokenValue = Guid.NewGuid().ToString("N");
+                Page.ViewStateUserKey = _antiXsrfTokenValue;
+
+                var responseCookie = new HttpCookie(AntiXsrfTokenKey)
+                {
+                    HttpOnly = true,
+                    Value = _antiXsrfTokenValue
+                };
+                if (FormsAuthentication.RequireSSL && Request.IsSecureConnection)
+                {
+                    responseCookie.Secure = true;
+                }
+                Response.Cookies.Set(responseCookie);
+            }
+
+            Page.PreLoad += master_Page_PreLoad;
+        }
+
+        protected void master_Page_PreLoad(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                // Set Anti-XSRF token
+                ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
+                ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? String.Empty;
+            }
+            else
+            {
+                // Validate the Anti-XSRF token
+                if ((string)ViewState[AntiXsrfTokenKey] != _antiXsrfTokenValue
+                    || (string)ViewState[AntiXsrfUserNameKey] != (Context.User.Identity.Name ?? String.Empty))
+                {
+                    throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
+                }
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+            if (!Page.IsPostBack)
+            {
+
+                //Request RALT Cookies
+                HttpCookie HasLogInCookie = Request.Cookies["RALTHasLogin"];
+
+                // Read the cookie information
+                if (HasLogInCookie != null)
+                {
+
+                    if (HasLogInCookie.Value == "True")
+                    {
+                        //User has a login, set up page accordingly
+                        ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "HasLogin", "ChangeTabsLogIn();", true);
+                    }
+
+                }
+
+                //Get Querystring Values
+                if (!string.IsNullOrEmpty(Request.QueryString["IsLogIn"]))
+                {
+
+                    //Parss QS items to Hidden field controls
+                    string IsLogIn = Request.QueryString["IsLogIn"];
+
+                    //Load Data
+                    try
+                    {
+
+                        //Get the logged in User if any
+                        MembershipUser LoggedInMembershipUser;
+                        LoggedInMembershipUser = Membership.GetUser();
+
+                        //Check if there is a logged in User
+                        if (LoggedInMembershipUser != null)
+                        {
+                            App_Code.NotificationService.SendNotification("LogInSucess", "Welcome " + LoggedInMembershipUser.UserName, "success", "3000");
+                        }
+
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
+  
+        }
+
+        protected void NewUser_Click(object sender, EventArgs e)
+        {
+            //ServerSide Validation
+            Page.Validate("NewUser");
+
+            if (Page.IsValid)
+            {
+                
+                try
+                { 
+                    //Get Form Values
+                    string Level = SpanishLevel.Value;
+                    //string Frecuency = FrequencyValue.Value;
+                    string Frequency = FrequencySpinner.Value;
+                    string Duration = ddlDuration.SelectedItem.Value.ToString();
+                    
+                    string Period = SpinnerPeriod.Value;
+                    string StartDate = StartingDate.Value;
+                    string StartTime = "";
+
+                    if (BlockTime.SelectedValue == "1")
+                    {
+                         StartTime = "05:00:00";
+                    }
+                    else if (BlockTime.SelectedValue == "2")
+                    {
+                         StartTime = "08:00:00";
+                    }
+                    else if (BlockTime.SelectedValue == "3")
+                    {
+                         StartTime = "11:00:00";
+                    }
+                    else if (BlockTime.SelectedValue == "4")
+                    {
+                         StartTime = "14:00:00";
+                    }
+                    else if (BlockTime.SelectedValue == "5")
+                    {
+                         StartTime = "17:00:00";
+                    }
+                    else if (BlockTime.SelectedValue == "6")
+                    {
+                         StartTime = "20:00:00";
+                    }
+                    else if (BlockTime.SelectedValue == "7")
+                    {
+                         StartTime = "23:00:00";
+                    }
+                    else
+                    {
+                         StartTime = "02:00:00";
+                    }
+
+
+                    StartDate = StartDate + " " + StartTime;
+           
+
+
+                    //Build QueryString
+                    string URL = "?Level=" + Level + "&Frequency=" + Frequency + "&Period=" + Period + "&StartDate=" + StartDate + "&Duration=" + Duration;
+
+                    //Go to Account Setup Page
+                    Response.Redirect("/AccountSetup" + URL);
+
+                }
+
+                catch (Exception ex)
+                {
+                    //CreateUser Error, Notify User
+                    App_Code.NotificationService.SendNotification("CreateUserError", ex.Message, "error");
+                }
+            
+            }
+            else 
+            {
+
+                //Invalid Page Error
+                App_Code.NotificationService.SendNotification("NewUserValidation", "Please complete the required fields", "alert", "3000");
+            }
+   
+        }
+
+        protected void LogIn_Click(object sender, EventArgs e)
+        {
+            //ServerSide Validation
+            Page.Validate("LogIn");
+            
+            if (Page.IsValid)
+            {
+
+                try
+                {
+                    //move loginview controls into view
+                    TextBox UserName = (TextBox)LoginView1.FindControl("LogInUserName");
+                    TextBox Password = (TextBox)LoginView1.FindControl("LogInPassword");
+                    CheckBox IsPersistant = (CheckBox)LoginView1.FindControl("LogInIsPersistant");
+
+                    //Save current URL(needed to set cookie)
+                    string Currenturl = HttpContext.Current.Request.Url.AbsoluteUri;
+                    string Currentpath = HttpContext.Current.Request.Url.AbsolutePath;
+
+                    //Validate Login
+                    bool Authenticated = App_Code.MemberShipService.LogInUser(UserName.Text.ToString(), Password.Text.ToString(), false, "");
+
+                    //If Valid Login, set cookie
+                    if (Authenticated == true)
+                    {
+                        //Set Cookie
+                        Response.Cookies.Remove(FormsAuthentication.FormsCookieName);
+                        FormsAuthentication.SetAuthCookie(UserName.Text.ToString(), IsPersistant.Checked);
+
+                        if (Currentpath == "/Prices")
+                        { Response.Redirect(Currentpath + "?IsLogIn=true"); }
+
+                        if (UserName.Text == "RALTadmin")
+                        {
+                            //Redirect to currentURL (Needed to set cookie)
+                            Response.Redirect("/Administration/ViewStudents" + "?IsLogIn=true");
+                        }
+                        else
+                        {
+                            //Redirect to currentURL (Needed to set cookie)
+                            Response.Redirect("/StudentStatus" + "?IsLogIn=true");
+                        }
+
+                    }
+
+                    else
+                    {
+                        //UserNot validdated
+                        App_Code.NotificationService.SendNotification("LogInAuthenticationInvalid", "There was an error logging in.  Please try again", "alert", "4000");
+ 
+                    }
+                  
+                }
+
+                catch (Exception ex)
+                {
+                   //There was an error in validating login
+                    App_Code.NotificationService.SendNotification("LogInAuthenticationError", ex.Message, "error", "4000");
+                }
+            
+            }
+
+            else 
+            {
+                //Page not valid error
+                App_Code.NotificationService.SendNotification("LogInValidationError", "Please complete the required fields", "error", "4000");
+            }
+   
+        }
+
+        protected void valDateRange_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime minDate = DateTime.Parse("1000/12/28");
+            DateTime maxDate = DateTime.Parse("9999/12/28");
+            DateTime dt;
+
+            args.IsValid = (DateTime.TryParse(args.Value, out dt)
+                            && dt <= maxDate
+                            && dt >= minDate);
+        }
+
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (ddlDuration.SelectedValue == "0")
+            {
+                args.IsValid = false;
+                //ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "DDLInvalid", "DDLRequired("+"Country"+");", true);
+            }
+
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+
+        protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (BlockTime.SelectedItem.Value == "0")
+            {
+                args.IsValid = false;
+                //ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "DDLInvalid", "DDLRequired("+"Country"+");", true);
+            }
+
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+
+    }
+
+}

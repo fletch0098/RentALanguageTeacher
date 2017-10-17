@@ -1,0 +1,2452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="rentalanguageteacherModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="rentalanguageteacherModelStoreContainer">
+          <EntitySet Name="account" EntityType="rentalanguageteacherModel.Store.account" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="accountstatus" EntityType="rentalanguageteacherModel.Store.accountstatus" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="answer" EntityType="rentalanguageteacherModel.Store.answer" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="content" EntityType="rentalanguageteacherModel.Store.content" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="contentcategory" EntityType="rentalanguageteacherModel.Store.contentcategory" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="contentlanguage" EntityType="rentalanguageteacherModel.Store.contentlanguage" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="contentmarkup" EntityType="rentalanguageteacherModel.Store.contentmarkup" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="country" EntityType="rentalanguageteacherModel.Store.country" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="gender" EntityType="rentalanguageteacherModel.Store.gender" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="language" EntityType="rentalanguageteacherModel.Store.language" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="location" EntityType="rentalanguageteacherModel.Store.location" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="my_aspnet_applications" EntityType="rentalanguageteacherModel.Store.my_aspnet_applications" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="my_aspnet_membership" EntityType="rentalanguageteacherModel.Store.my_aspnet_membership" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="my_aspnet_profiles" EntityType="rentalanguageteacherModel.Store.my_aspnet_profiles" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="my_aspnet_roles" EntityType="rentalanguageteacherModel.Store.my_aspnet_roles" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="my_aspnet_sessioncleanup" EntityType="rentalanguageteacherModel.Store.my_aspnet_sessioncleanup" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="my_aspnet_sessions" EntityType="rentalanguageteacherModel.Store.my_aspnet_sessions" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="my_aspnet_users" EntityType="rentalanguageteacherModel.Store.my_aspnet_users" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="my_aspnet_usersinroles" EntityType="rentalanguageteacherModel.Store.my_aspnet_usersinroles" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="payment" EntityType="rentalanguageteacherModel.Store.payment" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="picture" EntityType="rentalanguageteacherModel.Store.picture" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="question" EntityType="rentalanguageteacherModel.Store.question" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="questioncategory" EntityType="rentalanguageteacherModel.Store.questioncategory" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="questionnaire" EntityType="rentalanguageteacherModel.Store.questionnaire" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="questiontype" EntityType="rentalanguageteacherModel.Store.questiontype" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="quickregistration" EntityType="rentalanguageteacherModel.Store.quickregistration" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="review" EntityType="rentalanguageteacherModel.Store.review" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="route_table" EntityType="rentalanguageteacherModel.Store.route_table" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="student" EntityType="rentalanguageteacherModel.Store.student" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="teacher" EntityType="rentalanguageteacherModel.Store.teacher" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="timeslot" EntityType="rentalanguageteacherModel.Store.timeslot" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="timezone" EntityType="rentalanguageteacherModel.Store.timezone" store:Type="Tables" store:Schema="rentalanguageteacher" store:Name="timezone">
+            <DefiningQuery>SELECT
+      `timezone`.`zone_id`, 
+      `timezone`.`abbreviation`, 
+      `timezone`.`time_start`, 
+      `timezone`.`gmt_offset`, 
+      `timezone`.`dst`
+      FROM `timezone` AS `timezone`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="user" EntityType="rentalanguageteacherModel.Store.user" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="weekday" EntityType="rentalanguageteacherModel.Store.weekday" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="wordofday" EntityType="rentalanguageteacherModel.Store.wordofday" store:Type="Tables" Schema="rentalanguageteacher" />
+          <EntitySet Name="zone" EntityType="rentalanguageteacherModel.Store.zone" store:Type="Tables" Schema="rentalanguageteacher" />
+          <AssociationSet Name="account_account_status_accountstatus" Association="rentalanguageteacherModel.Store.account_account_status_accountstatus">
+            <End Role="accountstatus" EntitySet="accountstatus" />
+            <End Role="account" EntitySet="account" />
+          </AssociationSet>
+          <AssociationSet Name="account_language_id_language" Association="rentalanguageteacherModel.Store.account_language_id_language">
+            <End Role="language" EntitySet="language" />
+            <End Role="account" EntitySet="account" />
+          </AssociationSet>
+          <AssociationSet Name="answer_picture_id_picture" Association="rentalanguageteacherModel.Store.answer_picture_id_picture">
+            <End Role="picture" EntitySet="picture" />
+            <End Role="answer" EntitySet="answer" />
+          </AssociationSet>
+          <AssociationSet Name="answer_question_id_question" Association="rentalanguageteacherModel.Store.answer_question_id_question">
+            <End Role="question" EntitySet="question" />
+            <End Role="answer" EntitySet="answer" />
+          </AssociationSet>
+          <AssociationSet Name="author_user_id_user" Association="rentalanguageteacherModel.Store.author_user_id_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="content" EntitySet="content" />
+          </AssociationSet>
+          <AssociationSet Name="category_category" Association="rentalanguageteacherModel.Store.category_category">
+            <End Role="contentcategory" EntitySet="contentcategory" />
+            <End Role="content" EntitySet="content" />
+          </AssociationSet>
+          <AssociationSet Name="content_id_content" Association="rentalanguageteacherModel.Store.content_id_content">
+            <End Role="content" EntitySet="content" />
+            <End Role="contentmarkup" EntitySet="contentmarkup" />
+          </AssociationSet>
+          <AssociationSet Name="language_content_language" Association="rentalanguageteacherModel.Store.language_content_language">
+            <End Role="contentlanguage" EntitySet="contentlanguage" />
+            <End Role="contentmarkup" EntitySet="contentmarkup" />
+          </AssociationSet>
+          <AssociationSet Name="location_country_code_iso2_country" Association="rentalanguageteacherModel.Store.location_country_code_iso2_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="location" EntitySet="location" />
+          </AssociationSet>
+          <AssociationSet Name="location_user_id_user" Association="rentalanguageteacherModel.Store.location_user_id_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="location" EntitySet="location" />
+          </AssociationSet>
+          <AssociationSet Name="location_zone_id_zone" Association="rentalanguageteacherModel.Store.location_zone_id_zone">
+            <End Role="zone" EntitySet="zone" />
+            <End Role="location" EntitySet="location" />
+          </AssociationSet>
+          <AssociationSet Name="payment_user_id_user" Association="rentalanguageteacherModel.Store.payment_user_id_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="payment" EntitySet="payment" />
+          </AssociationSet>
+          <AssociationSet Name="picture_user_id_user" Association="rentalanguageteacherModel.Store.picture_user_id_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="picture" EntitySet="picture" />
+          </AssociationSet>
+          <AssociationSet Name="question_picture_id_picture" Association="rentalanguageteacherModel.Store.question_picture_id_picture">
+            <End Role="picture" EntitySet="picture" />
+            <End Role="question" EntitySet="question" />
+          </AssociationSet>
+          <AssociationSet Name="question_question_category_id_questioncategory" Association="rentalanguageteacherModel.Store.question_question_category_id_questioncategory">
+            <End Role="questioncategory" EntitySet="questioncategory" />
+            <End Role="question" EntitySet="question" />
+          </AssociationSet>
+          <AssociationSet Name="question_question_type_questiontype" Association="rentalanguageteacherModel.Store.question_question_type_questiontype">
+            <End Role="questiontype" EntitySet="questiontype" />
+            <End Role="question" EntitySet="question" />
+          </AssociationSet>
+          <AssociationSet Name="questionnaire_answer_id_answer" Association="rentalanguageteacherModel.Store.questionnaire_answer_id_answer">
+            <End Role="answer" EntitySet="answer" />
+            <End Role="questionnaire" EntitySet="questionnaire" />
+          </AssociationSet>
+          <AssociationSet Name="questionnaire_question_id_question" Association="rentalanguageteacherModel.Store.questionnaire_question_id_question">
+            <End Role="question" EntitySet="question" />
+            <End Role="questionnaire" EntitySet="questionnaire" />
+          </AssociationSet>
+          <AssociationSet Name="questionnaire_user_id_user" Association="rentalanguageteacherModel.Store.questionnaire_user_id_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="questionnaire" EntitySet="questionnaire" />
+          </AssociationSet>
+          <AssociationSet Name="quick_regestration_user_id_user" Association="rentalanguageteacherModel.Store.quick_regestration_user_id_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="quickregistration" EntitySet="quickregistration" />
+          </AssociationSet>
+          <AssociationSet Name="review_reviewee_user_id_user" Association="rentalanguageteacherModel.Store.review_reviewee_user_id_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="review" EntitySet="review" />
+          </AssociationSet>
+          <AssociationSet Name="review_reviewer_user_id_user" Association="rentalanguageteacherModel.Store.review_reviewer_user_id_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="review" EntitySet="review" />
+          </AssociationSet>
+          <AssociationSet Name="student_user_id_user" Association="rentalanguageteacherModel.Store.student_user_id_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="student" EntitySet="student" />
+          </AssociationSet>
+          <AssociationSet Name="teacher_user_id_user" Association="rentalanguageteacherModel.Store.teacher_user_id_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="teacher" EntitySet="teacher" />
+          </AssociationSet>
+          <AssociationSet Name="timeslot_day_weekday" Association="rentalanguageteacherModel.Store.timeslot_day_weekday">
+            <End Role="weekday" EntitySet="weekday" />
+            <End Role="timeslot" EntitySet="timeslot" />
+          </AssociationSet>
+          <AssociationSet Name="timeslot_user_id_user" Association="rentalanguageteacherModel.Store.timeslot_user_id_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="timeslot" EntitySet="timeslot" />
+          </AssociationSet>
+          <AssociationSet Name="timezone_zone_id_zone" Association="rentalanguageteacherModel.Store.timezone_zone_id_zone">
+            <End Role="zone" EntitySet="zone" />
+            <End Role="timezone" EntitySet="timezone" />
+          </AssociationSet>
+          <AssociationSet Name="user_account_status_accountstatus" Association="rentalanguageteacherModel.Store.user_account_status_accountstatus">
+            <End Role="accountstatus" EntitySet="accountstatus" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="user_gender_gender" Association="rentalanguageteacherModel.Store.user_gender_gender">
+            <End Role="gender" EntitySet="gender" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="user_member_id_account" Association="rentalanguageteacherModel.Store.user_member_id_account">
+            <End Role="my_aspnet_users" EntitySet="my_aspnet_users" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="user_member_id_aspMembership" Association="rentalanguageteacherModel.Store.user_member_id_aspMembership">
+            <End Role="my_aspnet_membership" EntitySet="my_aspnet_membership" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="user_member_id_aspusers" Association="rentalanguageteacherModel.Store.user_member_id_aspusers">
+            <End Role="my_aspnet_users" EntitySet="my_aspnet_users" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="zone_country_code_iso2_country" Association="rentalanguageteacherModel.Store.zone_country_code_iso2_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="zone" EntitySet="zone" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="member_id" />
+          </Key>
+          <Property Name="member_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="account_status" Type="varchar" MaxLength="10" />
+          <Property Name="language_id" Type="int" />
+          <Property Name="time_stamp" Type="timestamp" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="accountstatus">
+          <Key>
+            <PropertyRef Name="account_status" />
+          </Key>
+          <Property Name="account_status" Type="varchar" Nullable="false" MaxLength="12" />
+        </EntityType>
+        <EntityType Name="answer">
+          <Key>
+            <PropertyRef Name="answer_id" />
+          </Key>
+          <Property Name="answer_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="question_id" Type="int" />
+          <Property Name="text_english" Type="varchar" MaxLength="255" />
+          <Property Name="text_spanish" Type="varchar" MaxLength="255" />
+          <Property Name="order" Type="int" />
+          <Property Name="picture_id" Type="int" />
+          <Property Name="time_stamp" Type="timestamp" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="content">
+          <Key>
+            <PropertyRef Name="content_id" />
+          </Key>
+          <Property Name="content_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="category" Type="varchar" MaxLength="255" />
+          <Property Name="title" Type="varchar" MaxLength="255" />
+          <Property Name="author_user_id" Type="int" />
+          <Property Name="image_url" Type="varchar" MaxLength="255" />
+          <Property Name="createdate" Type="timestamp" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="contentcategory">
+          <Key>
+            <PropertyRef Name="category" />
+          </Key>
+          <Property Name="category" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="description" Type="text" />
+          <Property Name="image" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="contentlanguage">
+          <Key>
+            <PropertyRef Name="language" />
+          </Key>
+          <Property Name="language" Type="varchar" Nullable="false" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="contentmarkup">
+          <Key>
+            <PropertyRef Name="contentmarkup_id" />
+          </Key>
+          <Property Name="contentmarkup_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="content_id" Type="int" />
+          <Property Name="language" Type="varchar" MaxLength="45" />
+          <Property Name="markup" Type="text" />
+          <Property Name="description" Type="text" />
+          <Property Name="published" Type="bit" Nullable="false" />
+          <Property Name="time_stamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="iso2" />
+          </Key>
+          <Property Name="country_id" Type="int" />
+          <Property Name="iso2" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="short_name" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="long_name" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="iso3" Type="char" MaxLength="3" />
+          <Property Name="numcode" Type="varchar" MaxLength="6" />
+          <Property Name="un_member" Type="varchar" MaxLength="12" />
+          <Property Name="calling_code" Type="varchar" MaxLength="8" />
+          <Property Name="cctld" Type="varchar" MaxLength="5" />
+          <Property Name="spanish_name" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="gender">
+          <Key>
+            <PropertyRef Name="gender" />
+          </Key>
+          <Property Name="gender" Type="varchar" Nullable="false" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="language">
+          <Key>
+            <PropertyRef Name="language_id" />
+          </Key>
+          <Property Name="language_id" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="english_name" Type="varchar" MaxLength="45" />
+          <Property Name="spanish_name" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="line_1" Type="varchar" MaxLength="100" />
+          <Property Name="line_2" Type="varchar" MaxLength="100" />
+          <Property Name="city" Type="varchar" MaxLength="100" />
+          <Property Name="state" Type="varchar" MaxLength="100" />
+          <Property Name="postal_code" Type="varchar" MaxLength="45" />
+          <Property Name="country_code_iso2" Type="char" MaxLength="2" />
+          <Property Name="zone_id" Type="int" />
+          <Property Name="time_stamp" Type="timestamp" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="my_aspnet_applications">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" MaxLength="256" />
+          <Property Name="description" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="my_aspnet_membership">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="128" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordKey" Type="char" MaxLength="32" />
+          <Property Name="PasswordFormat" Type="tinyint" />
+          <Property Name="PasswordQuestion" Type="varchar" MaxLength="255" />
+          <Property Name="PasswordAnswer" Type="varchar" MaxLength="255" />
+          <Property Name="IsApproved" Type="bool" />
+          <Property Name="LastActivityDate" Type="datetime" />
+          <Property Name="LastLoginDate" Type="datetime" />
+          <Property Name="LastPasswordChangedDate" Type="datetime" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="IsLockedOut" Type="bool" />
+          <Property Name="LastLockedOutDate" Type="datetime" />
+          <Property Name="FailedPasswordAttemptCount" Type="uint" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="uint" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" />
+        </EntityType>
+        <EntityType Name="my_aspnet_profiles">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="valueindex" Type="longtext" />
+          <Property Name="stringdata" Type="longtext" />
+          <Property Name="binarydata" Type="longblob" />
+          <Property Name="lastUpdatedDate" Type="timestamp" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="my_aspnet_roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="applicationId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="my_aspnet_sessioncleanup">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="LastRun" Type="datetime" Nullable="false" />
+          <Property Name="IntervalMinutes" Type="int" Nullable="false" />
+          <Property Name="ApplicationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_sessions">
+          <Key>
+            <PropertyRef Name="SessionId" />
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="SessionId" Type="varchar" Nullable="false" MaxLength="191" />
+          <Property Name="ApplicationId" Type="int" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Expires" Type="datetime" Nullable="false" />
+          <Property Name="LockDate" Type="datetime" Nullable="false" />
+          <Property Name="LockId" Type="int" Nullable="false" />
+          <Property Name="Timeout" Type="int" Nullable="false" />
+          <Property Name="Locked" Type="bool" Nullable="false" />
+          <Property Name="SessionItems" Type="longblob" />
+          <Property Name="Flags" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="applicationId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="isAnonymous" Type="bool" Nullable="false" />
+          <Property Name="lastActivityDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="my_aspnet_usersinroles">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="roleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="username" Type="varchar" MaxLength="100" />
+          <Property Name="hours" Type="int" />
+          <Property Name="transaction_date" Type="datetime" />
+          <Property Name="payer_email" Type="varchar" MaxLength="250" />
+          <Property Name="item_name" Type="varchar" MaxLength="45" />
+          <Property Name="transaction_id" Type="varchar" MaxLength="45" />
+          <Property Name="transaction_status" Type="varchar" MaxLength="45" />
+          <Property Name="update_user" Type="varchar" MaxLength="250" />
+          <Property Name="timestamp" Type="timestamp" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="picture">
+          <Key>
+            <PropertyRef Name="picture_id" />
+          </Key>
+          <Property Name="picture_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="url" Type="varchar" MaxLength="255" />
+          <Property Name="caption" Type="varchar" MaxLength="255" />
+          <Property Name="order" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="time_stamp" Type="timestamp" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="question">
+          <Key>
+            <PropertyRef Name="question_id" />
+          </Key>
+          <Property Name="question_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="question_type" Type="int" />
+          <Property Name="prompt_english" Type="varchar" MaxLength="255" />
+          <Property Name="prompt_spanish" Type="varchar" MaxLength="255" />
+          <Property Name="picture_id" Type="int" />
+          <Property Name="time_stamp" Type="timestamp" StoreGeneratedPattern="Identity" />
+          <Property Name="include" Type="bit" />
+          <Property Name="question_category_id" Type="int" />
+          <Property Name="weight" Type="int" />
+        </EntityType>
+        <EntityType Name="questioncategory">
+          <Key>
+            <PropertyRef Name="question_category_id" />
+          </Key>
+          <Property Name="question_category_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" MaxLength="45" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="questionnaire">
+          <Key>
+            <PropertyRef Name="test_id" />
+          </Key>
+          <Property Name="test_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="question_id" Type="int" />
+          <Property Name="answer_id" Type="int" />
+          <Property Name="time_stamp" Type="timestamp" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="questiontype">
+          <Key>
+            <PropertyRef Name="question_type" />
+          </Key>
+          <Property Name="question_type" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="quickregistration">
+          <Key>
+            <PropertyRef Name="quick_registration_id" />
+          </Key>
+          <Property Name="quick_registration_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="languagel_evel" Type="int" />
+          <Property Name="classes" Type="int" />
+          <Property Name="period" Type="varchar" MaxLength="5" />
+          <Property Name="class_duration" Type="int" />
+          <Property Name="start_date" Type="datetime" />
+          <Property Name="specialrequests" Type="longtext" />
+          <Property Name="teacher" Type="varchar" MaxLength="45" />
+          <Property Name="teacher_skypeid" Type="varchar" MaxLength="100" />
+          <Property Name="first_class" Type="datetime" />
+          <Property Name="admin_comments" Type="longtext" />
+          <Property Name="student_comments" Type="longtext" />
+          <Property Name="time_stamp" Type="timestamp" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="review">
+          <Key>
+            <PropertyRef Name="review_id" />
+          </Key>
+          <Property Name="review_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="reviewer_user_id" Type="int" />
+          <Property Name="reviewee_user_id" Type="int" />
+          <Property Name="rating" Type="int" />
+          <Property Name="comments" Type="longtext" />
+          <Property Name="time_stamp" Type="timestamp" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="route_table">
+          <Key>
+            <PropertyRef Name="route_id" />
+          </Key>
+          <Property Name="route_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="rout_name" Type="varchar" MaxLength="255" />
+          <Property Name="rout_url" Type="varchar" MaxLength="255" />
+          <Property Name="physical_file" Type="varchar" MaxLength="255" />
+          <Property Name="time_stamp" Type="timestamp" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="student_id" />
+          </Key>
+          <Property Name="student_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="time_stamp" Type="timestamp" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="teacher">
+          <Key>
+            <PropertyRef Name="teacher_id" />
+          </Key>
+          <Property Name="teacher_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="time_stamp" Type="timestamp" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="timeslot">
+          <Key>
+            <PropertyRef Name="timeslot_id" />
+          </Key>
+          <Property Name="timeslot_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="day" Type="int" />
+          <Property Name="start" Type="datetime" />
+          <Property Name="end" Type="datetime" />
+          <Property Name="available" Type="bit" />
+          <Property Name="notes" Type="text" />
+          <Property Name="time_stamp" Type="timestamp" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'def.rentalanguageteacher.timezone' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="timezone">
+          <Key>
+            <PropertyRef Name="zone_id" />
+            <PropertyRef Name="abbreviation" />
+            <PropertyRef Name="time_start" />
+            <PropertyRef Name="gmt_offset" />
+            <PropertyRef Name="dst" />
+          </Key>
+          <Property Name="zone_id" Type="int" Nullable="false" />
+          <Property Name="abbreviation" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="time_start" Type="int" Nullable="false" />
+          <Property Name="gmt_offset" Type="int" Nullable="false" />
+          <Property Name="dst" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="member_id" Type="int" />
+          <Property Name="first_name" Type="varchar" MaxLength="100" />
+          <Property Name="last_name" Type="varchar" MaxLength="100" />
+          <Property Name="age" Type="int" />
+          <Property Name="gender" Type="varchar" MaxLength="5" />
+          <Property Name="nationality" Type="varchar" MaxLength="45" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="skype_id" Type="varchar" MaxLength="100" />
+          <Property Name="match_score" Type="varchar" MaxLength="45" />
+          <Property Name="account_status" Type="varchar" MaxLength="12" />
+          <Property Name="time_stamp" Type="timestamp" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="weekday">
+          <Key>
+            <PropertyRef Name="day" />
+          </Key>
+          <Property Name="day" Type="int" Nullable="false" />
+          <Property Name="english_name" Type="varchar" MaxLength="10" />
+          <Property Name="spanish_name" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="wordofday">
+          <Key>
+            <PropertyRef Name="word_id" />
+          </Key>
+          <Property Name="word_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="spanish_word" Type="varchar" MaxLength="100" />
+          <Property Name="part_of_speech" Type="varchar" MaxLength="100" />
+          <Property Name="word_group" Type="varchar" MaxLength="100" />
+          <Property Name="english_translation" Type="varchar" MaxLength="100" />
+          <Property Name="spanish_sentence" Type="mediumtext" />
+          <Property Name="english_sentence" Type="mediumtext" />
+        </EntityType>
+        <EntityType Name="zone">
+          <Key>
+            <PropertyRef Name="zone_id" />
+          </Key>
+          <Property Name="zone_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="country_code_iso2" Type="char" MaxLength="2" />
+          <Property Name="zone_name" Type="varchar" MaxLength="35" />
+        </EntityType>
+        <Association Name="account_account_status_accountstatus">
+          <End Role="accountstatus" Type="rentalanguageteacherModel.Store.accountstatus" Multiplicity="0..1" />
+          <End Role="account" Type="rentalanguageteacherModel.Store.account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accountstatus">
+              <PropertyRef Name="account_status" />
+            </Principal>
+            <Dependent Role="account">
+              <PropertyRef Name="account_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="account_language_id_language">
+          <End Role="language" Type="rentalanguageteacherModel.Store.language" Multiplicity="0..1" />
+          <End Role="account" Type="rentalanguageteacherModel.Store.account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="language">
+              <PropertyRef Name="language_id" />
+            </Principal>
+            <Dependent Role="account">
+              <PropertyRef Name="language_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answer_picture_id_picture">
+          <End Role="picture" Type="rentalanguageteacherModel.Store.picture" Multiplicity="0..1" />
+          <End Role="answer" Type="rentalanguageteacherModel.Store.answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="picture">
+              <PropertyRef Name="picture_id" />
+            </Principal>
+            <Dependent Role="answer">
+              <PropertyRef Name="picture_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answer_question_id_question">
+          <End Role="question" Type="rentalanguageteacherModel.Store.question" Multiplicity="0..1" />
+          <End Role="answer" Type="rentalanguageteacherModel.Store.answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="question">
+              <PropertyRef Name="question_id" />
+            </Principal>
+            <Dependent Role="answer">
+              <PropertyRef Name="question_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="author_user_id_user">
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="0..1" />
+          <End Role="content" Type="rentalanguageteacherModel.Store.content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="content">
+              <PropertyRef Name="author_user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_category">
+          <End Role="contentcategory" Type="rentalanguageteacherModel.Store.contentcategory" Multiplicity="0..1" />
+          <End Role="content" Type="rentalanguageteacherModel.Store.content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contentcategory">
+              <PropertyRef Name="category" />
+            </Principal>
+            <Dependent Role="content">
+              <PropertyRef Name="category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="content_id_content">
+          <End Role="content" Type="rentalanguageteacherModel.Store.content" Multiplicity="0..1" />
+          <End Role="contentmarkup" Type="rentalanguageteacherModel.Store.contentmarkup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="content">
+              <PropertyRef Name="content_id" />
+            </Principal>
+            <Dependent Role="contentmarkup">
+              <PropertyRef Name="content_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="language_content_language">
+          <End Role="contentlanguage" Type="rentalanguageteacherModel.Store.contentlanguage" Multiplicity="0..1" />
+          <End Role="contentmarkup" Type="rentalanguageteacherModel.Store.contentmarkup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contentlanguage">
+              <PropertyRef Name="language" />
+            </Principal>
+            <Dependent Role="contentmarkup">
+              <PropertyRef Name="language" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="location_country_code_iso2_country">
+          <End Role="country" Type="rentalanguageteacherModel.Store.country" Multiplicity="0..1" />
+          <End Role="location" Type="rentalanguageteacherModel.Store.location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="iso2" />
+            </Principal>
+            <Dependent Role="location">
+              <PropertyRef Name="country_code_iso2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="location_user_id_user">
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="0..1" />
+          <End Role="location" Type="rentalanguageteacherModel.Store.location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="location">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="location_zone_id_zone">
+          <End Role="zone" Type="rentalanguageteacherModel.Store.zone" Multiplicity="0..1" />
+          <End Role="location" Type="rentalanguageteacherModel.Store.location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zone">
+              <PropertyRef Name="zone_id" />
+            </Principal>
+            <Dependent Role="location">
+              <PropertyRef Name="zone_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="payment_user_id_user">
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="0..1" />
+          <End Role="payment" Type="rentalanguageteacherModel.Store.payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="picture_user_id_user">
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="0..1" />
+          <End Role="picture" Type="rentalanguageteacherModel.Store.picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="picture">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="question_picture_id_picture">
+          <End Role="picture" Type="rentalanguageteacherModel.Store.picture" Multiplicity="0..1" />
+          <End Role="question" Type="rentalanguageteacherModel.Store.question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="picture">
+              <PropertyRef Name="picture_id" />
+            </Principal>
+            <Dependent Role="question">
+              <PropertyRef Name="picture_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="question_question_category_id_questioncategory">
+          <End Role="questioncategory" Type="rentalanguageteacherModel.Store.questioncategory" Multiplicity="0..1" />
+          <End Role="question" Type="rentalanguageteacherModel.Store.question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="questioncategory">
+              <PropertyRef Name="question_category_id" />
+            </Principal>
+            <Dependent Role="question">
+              <PropertyRef Name="question_category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="question_question_type_questiontype">
+          <End Role="questiontype" Type="rentalanguageteacherModel.Store.questiontype" Multiplicity="0..1" />
+          <End Role="question" Type="rentalanguageteacherModel.Store.question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="questiontype">
+              <PropertyRef Name="question_type" />
+            </Principal>
+            <Dependent Role="question">
+              <PropertyRef Name="question_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="questionnaire_answer_id_answer">
+          <End Role="answer" Type="rentalanguageteacherModel.Store.answer" Multiplicity="0..1" />
+          <End Role="questionnaire" Type="rentalanguageteacherModel.Store.questionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="answer">
+              <PropertyRef Name="answer_id" />
+            </Principal>
+            <Dependent Role="questionnaire">
+              <PropertyRef Name="answer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="questionnaire_question_id_question">
+          <End Role="question" Type="rentalanguageteacherModel.Store.question" Multiplicity="0..1" />
+          <End Role="questionnaire" Type="rentalanguageteacherModel.Store.questionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="question">
+              <PropertyRef Name="question_id" />
+            </Principal>
+            <Dependent Role="questionnaire">
+              <PropertyRef Name="question_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="questionnaire_user_id_user">
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="0..1" />
+          <End Role="questionnaire" Type="rentalanguageteacherModel.Store.questionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="questionnaire">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="quick_regestration_user_id_user">
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="0..1" />
+          <End Role="quickregistration" Type="rentalanguageteacherModel.Store.quickregistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="quickregistration">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="review_reviewee_user_id_user">
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="0..1" />
+          <End Role="review" Type="rentalanguageteacherModel.Store.review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="review">
+              <PropertyRef Name="reviewee_user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="review_reviewer_user_id_user">
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="0..1" />
+          <End Role="review" Type="rentalanguageteacherModel.Store.review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="review">
+              <PropertyRef Name="reviewer_user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="student_user_id_user">
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="0..1" />
+          <End Role="student" Type="rentalanguageteacherModel.Store.student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="teacher_user_id_user">
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="0..1" />
+          <End Role="teacher" Type="rentalanguageteacherModel.Store.teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="teacher">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="timeslot_day_weekday">
+          <End Role="weekday" Type="rentalanguageteacherModel.Store.weekday" Multiplicity="0..1" />
+          <End Role="timeslot" Type="rentalanguageteacherModel.Store.timeslot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="weekday">
+              <PropertyRef Name="day" />
+            </Principal>
+            <Dependent Role="timeslot">
+              <PropertyRef Name="day" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="timeslot_user_id_user">
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="0..1" />
+          <End Role="timeslot" Type="rentalanguageteacherModel.Store.timeslot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="timeslot">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="timezone_zone_id_zone">
+          <End Role="zone" Type="rentalanguageteacherModel.Store.zone" Multiplicity="1" />
+          <End Role="timezone" Type="rentalanguageteacherModel.Store.timezone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zone">
+              <PropertyRef Name="zone_id" />
+            </Principal>
+            <Dependent Role="timezone">
+              <PropertyRef Name="zone_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_account_status_accountstatus">
+          <End Role="accountstatus" Type="rentalanguageteacherModel.Store.accountstatus" Multiplicity="0..1" />
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accountstatus">
+              <PropertyRef Name="account_status" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="account_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_gender_gender">
+          <End Role="gender" Type="rentalanguageteacherModel.Store.gender" Multiplicity="0..1" />
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gender">
+              <PropertyRef Name="gender" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_member_id_account">
+          <End Role="my_aspnet_users" Type="rentalanguageteacherModel.Store.my_aspnet_users" Multiplicity="0..1" />
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="my_aspnet_users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_member_id_aspMembership">
+          <End Role="my_aspnet_membership" Type="rentalanguageteacherModel.Store.my_aspnet_membership" Multiplicity="0..1" />
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="my_aspnet_membership">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_member_id_aspusers">
+          <End Role="my_aspnet_users" Type="rentalanguageteacherModel.Store.my_aspnet_users" Multiplicity="0..1" />
+          <End Role="user" Type="rentalanguageteacherModel.Store.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="my_aspnet_users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="zone_country_code_iso2_country">
+          <End Role="country" Type="rentalanguageteacherModel.Store.country" Multiplicity="0..1" />
+          <End Role="zone" Type="rentalanguageteacherModel.Store.zone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="iso2" />
+            </Principal>
+            <Dependent Role="zone">
+              <PropertyRef Name="country_code_iso2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="rentalanguageteacherModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="rentalanguageteacherEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="accountstatus" EntityType="rentalanguageteacherModel.accountstatu" />
+          <EntitySet Name="countries" EntityType="rentalanguageteacherModel.country" />
+          <EntitySet Name="genders" EntityType="rentalanguageteacherModel.gender" />
+          <EntitySet Name="languages" EntityType="rentalanguageteacherModel.language" />
+          <EntitySet Name="my_aspnet_applications" EntityType="rentalanguageteacherModel.my_aspnet_applications" />
+          <EntitySet Name="my_aspnet_membership" EntityType="rentalanguageteacherModel.my_aspnet_membership" />
+          <EntitySet Name="my_aspnet_profiles" EntityType="rentalanguageteacherModel.my_aspnet_profiles" />
+          <EntitySet Name="my_aspnet_roles" EntityType="rentalanguageteacherModel.my_aspnet_roles" />
+          <EntitySet Name="my_aspnet_sessioncleanup" EntityType="rentalanguageteacherModel.my_aspnet_sessioncleanup" />
+          <EntitySet Name="my_aspnet_sessions" EntityType="rentalanguageteacherModel.my_aspnet_sessions" />
+          <EntitySet Name="my_aspnet_users" EntityType="rentalanguageteacherModel.my_aspnet_users" />
+          <EntitySet Name="my_aspnet_usersinroles" EntityType="rentalanguageteacherModel.my_aspnet_usersinroles" />
+          <EntitySet Name="questioncategories" EntityType="rentalanguageteacherModel.questioncategory" />
+          <EntitySet Name="questiontypes" EntityType="rentalanguageteacherModel.questiontype" />
+          <EntitySet Name="timezones" EntityType="rentalanguageteacherModel.timezone" />
+          <EntitySet Name="weekdays" EntityType="rentalanguageteacherModel.weekday" />
+          <EntitySet Name="zones" EntityType="rentalanguageteacherModel.zone" />
+          <AssociationSet Name="zone_country_code_iso2_country" Association="rentalanguageteacherModel.zone_country_code_iso2_country">
+            <End Role="country" EntitySet="countries" />
+            <End Role="zone" EntitySet="zones" />
+          </AssociationSet>
+          <AssociationSet Name="timezone_zone_id_zone" Association="rentalanguageteacherModel.timezone_zone_id_zone">
+            <End Role="zone" EntitySet="zones" />
+            <End Role="timezone" EntitySet="timezones" />
+          </AssociationSet>
+          <EntitySet Name="users" EntityType="rentalanguageteacherModel.user" />
+          <AssociationSet Name="user_gender_gender" Association="rentalanguageteacherModel.user_gender_gender">
+            <End Role="gender" EntitySet="genders" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="user_member_id_account" Association="rentalanguageteacherModel.user_member_id_account">
+            <End Role="my_aspnet_users" EntitySet="my_aspnet_users" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <EntitySet Name="accounts" EntityType="rentalanguageteacherModel.account" />
+          <EntitySet Name="answers" EntityType="rentalanguageteacherModel.answer" />
+          <EntitySet Name="locations" EntityType="rentalanguageteacherModel.location" />
+          <EntitySet Name="pictures" EntityType="rentalanguageteacherModel.picture" />
+          <EntitySet Name="questions" EntityType="rentalanguageteacherModel.question" />
+          <EntitySet Name="questionnaires" EntityType="rentalanguageteacherModel.questionnaire" />
+          <EntitySet Name="quickregistrations" EntityType="rentalanguageteacherModel.quickregistration" />
+          <EntitySet Name="reviews" EntityType="rentalanguageteacherModel.review" />
+          <EntitySet Name="students" EntityType="rentalanguageteacherModel.student" />
+          <EntitySet Name="teachers" EntityType="rentalanguageteacherModel.teacher" />
+          <EntitySet Name="timeslots" EntityType="rentalanguageteacherModel.timeslot" />
+          <AssociationSet Name="account_account_status_accountstatus" Association="rentalanguageteacherModel.account_account_status_accountstatus">
+            <End Role="accountstatu" EntitySet="accountstatus" />
+            <End Role="account" EntitySet="accounts" />
+          </AssociationSet>
+          <AssociationSet Name="account_language_id_language" Association="rentalanguageteacherModel.account_language_id_language">
+            <End Role="language" EntitySet="languages" />
+            <End Role="account" EntitySet="accounts" />
+          </AssociationSet>
+          <AssociationSet Name="answer_picture_id_picture" Association="rentalanguageteacherModel.answer_picture_id_picture">
+            <End Role="picture" EntitySet="pictures" />
+            <End Role="answer" EntitySet="answers" />
+          </AssociationSet>
+          <AssociationSet Name="answer_question_id_question" Association="rentalanguageteacherModel.answer_question_id_question">
+            <End Role="question" EntitySet="questions" />
+            <End Role="answer" EntitySet="answers" />
+          </AssociationSet>
+          <AssociationSet Name="questionnaire_answer_id_answer" Association="rentalanguageteacherModel.questionnaire_answer_id_answer">
+            <End Role="answer" EntitySet="answers" />
+            <End Role="questionnaire" EntitySet="questionnaires" />
+          </AssociationSet>
+          <AssociationSet Name="location_country_code_iso2_country" Association="rentalanguageteacherModel.location_country_code_iso2_country">
+            <End Role="country" EntitySet="countries" />
+            <End Role="location" EntitySet="locations" />
+          </AssociationSet>
+          <AssociationSet Name="location_user_id_user" Association="rentalanguageteacherModel.location_user_id_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="location" EntitySet="locations" />
+          </AssociationSet>
+          <AssociationSet Name="location_zone_id_zone" Association="rentalanguageteacherModel.location_zone_id_zone">
+            <End Role="zone" EntitySet="zones" />
+            <End Role="location" EntitySet="locations" />
+          </AssociationSet>
+          <AssociationSet Name="picture_user_id_user" Association="rentalanguageteacherModel.picture_user_id_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="picture" EntitySet="pictures" />
+          </AssociationSet>
+          <AssociationSet Name="question_picture_id_picture" Association="rentalanguageteacherModel.question_picture_id_picture">
+            <End Role="picture" EntitySet="pictures" />
+            <End Role="question" EntitySet="questions" />
+          </AssociationSet>
+          <AssociationSet Name="question_question_category_id_questioncategory" Association="rentalanguageteacherModel.question_question_category_id_questioncategory">
+            <End Role="questioncategory" EntitySet="questioncategories" />
+            <End Role="question" EntitySet="questions" />
+          </AssociationSet>
+          <AssociationSet Name="question_question_type_questiontype" Association="rentalanguageteacherModel.question_question_type_questiontype">
+            <End Role="questiontype" EntitySet="questiontypes" />
+            <End Role="question" EntitySet="questions" />
+          </AssociationSet>
+          <AssociationSet Name="questionnaire_question_id_question" Association="rentalanguageteacherModel.questionnaire_question_id_question">
+            <End Role="question" EntitySet="questions" />
+            <End Role="questionnaire" EntitySet="questionnaires" />
+          </AssociationSet>
+          <AssociationSet Name="questionnaire_user_id_user" Association="rentalanguageteacherModel.questionnaire_user_id_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="questionnaire" EntitySet="questionnaires" />
+          </AssociationSet>
+          <AssociationSet Name="quick_regestration_user_id_user" Association="rentalanguageteacherModel.quick_regestration_user_id_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="quickregistration" EntitySet="quickregistrations" />
+          </AssociationSet>
+          <AssociationSet Name="review_reviewee_user_id_user" Association="rentalanguageteacherModel.review_reviewee_user_id_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="review" EntitySet="reviews" />
+          </AssociationSet>
+          <AssociationSet Name="review_reviewer_user_id_user" Association="rentalanguageteacherModel.review_reviewer_user_id_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="review" EntitySet="reviews" />
+          </AssociationSet>
+          <AssociationSet Name="student_user_id_user" Association="rentalanguageteacherModel.student_user_id_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="student" EntitySet="students" />
+          </AssociationSet>
+          <AssociationSet Name="teacher_user_id_user" Association="rentalanguageteacherModel.teacher_user_id_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="teacher" EntitySet="teachers" />
+          </AssociationSet>
+          <AssociationSet Name="timeslot_day_weekday" Association="rentalanguageteacherModel.timeslot_day_weekday">
+            <End Role="weekday" EntitySet="weekdays" />
+            <End Role="timeslot" EntitySet="timeslots" />
+          </AssociationSet>
+          <AssociationSet Name="timeslot_user_id_user" Association="rentalanguageteacherModel.timeslot_user_id_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="timeslot" EntitySet="timeslots" />
+          </AssociationSet>
+          <AssociationSet Name="user_account_status_accountstatus" Association="rentalanguageteacherModel.user_account_status_accountstatus">
+            <End Role="accountstatu" EntitySet="accountstatus" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="user_member_id_aspMembership" Association="rentalanguageteacherModel.user_member_id_aspMembership">
+            <End Role="my_aspnet_membership" EntitySet="my_aspnet_membership" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <EntitySet Name="payments" EntityType="rentalanguageteacherModel.payment" />
+          <AssociationSet Name="payment_user_id_user" Association="rentalanguageteacherModel.payment_user_id_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="payment" EntitySet="payments" />
+          </AssociationSet>
+          <EntitySet Name="wordofdays" EntityType="rentalanguageteacherModel.wordofday" />
+          <EntitySet Name="contentcategories" EntityType="rentalanguageteacherModel.contentcategory" />
+          <EntitySet Name="route_table" EntityType="rentalanguageteacherModel.route_table" />
+          <EntitySet Name="contentlanguages" EntityType="rentalanguageteacherModel.contentlanguage" />
+          <EntitySet Name="contents" EntityType="rentalanguageteacherModel.content" />
+          <EntitySet Name="contentmarkups" EntityType="rentalanguageteacherModel.contentmarkup" />
+          <AssociationSet Name="author_user_id_user" Association="rentalanguageteacherModel.author_user_id_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="content" EntitySet="contents" />
+          </AssociationSet>
+          <AssociationSet Name="category_category" Association="rentalanguageteacherModel.category_category">
+            <End Role="contentcategory" EntitySet="contentcategories" />
+            <End Role="content" EntitySet="contents" />
+          </AssociationSet>
+          <AssociationSet Name="content_id_content" Association="rentalanguageteacherModel.content_id_content">
+            <End Role="content" EntitySet="contents" />
+            <End Role="contentmarkup" EntitySet="contentmarkups" />
+          </AssociationSet>
+          <AssociationSet Name="language_content_language" Association="rentalanguageteacherModel.language_content_language">
+            <End Role="contentlanguage" EntitySet="contentlanguages" />
+            <End Role="contentmarkup" EntitySet="contentmarkups" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="accountstatu">
+          <Key>
+            <PropertyRef Name="account_status" />
+          </Key>
+          <Property Name="account_status" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="accounts" Relationship="rentalanguageteacherModel.account_account_status_accountstatus" FromRole="accountstatu" ToRole="account" />
+          <NavigationProperty Name="users" Relationship="rentalanguageteacherModel.user_account_status_accountstatus" FromRole="accountstatu" ToRole="user" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="iso2" />
+          </Key>
+          <Property Name="country_id" Type="Int32" />
+          <Property Name="iso2" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="short_name" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="long_name" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="iso3" Type="String" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="numcode" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="un_member" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="calling_code" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="cctld" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="spanish_name" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="zones" Relationship="rentalanguageteacherModel.zone_country_code_iso2_country" FromRole="country" ToRole="zone" />
+          <NavigationProperty Name="locations" Relationship="rentalanguageteacherModel.location_country_code_iso2_country" FromRole="country" ToRole="location" />
+        </EntityType>
+        <EntityType Name="gender">
+          <Key>
+            <PropertyRef Name="gender1" />
+          </Key>
+          <Property Name="gender1" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="users" Relationship="rentalanguageteacherModel.user_gender_gender" FromRole="gender" ToRole="user" />
+        </EntityType>
+        <EntityType Name="language">
+          <Key>
+            <PropertyRef Name="language_id" />
+          </Key>
+          <Property Name="language_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="english_name" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="spanish_name" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="accounts" Relationship="rentalanguageteacherModel.account_language_id_language" FromRole="language" ToRole="account" />
+        </EntityType>
+        <EntityType Name="my_aspnet_applications">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_membership">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Comment" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="PasswordKey" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="PasswordFormat" Type="SByte" />
+          <Property Name="PasswordQuestion" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="PasswordAnswer" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="LastActivityDate" Type="DateTime" />
+          <Property Name="LastLoginDate" Type="DateTime" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" />
+          <Property Name="CreationDate" Type="DateTime" />
+          <Property Name="IsLockedOut" Type="Boolean" />
+          <Property Name="LastLockedOutDate" Type="DateTime" />
+          <Property Name="FailedPasswordAttemptCount" Type="Int64" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int64" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" />
+          <NavigationProperty Name="users" Relationship="rentalanguageteacherModel.user_member_id_aspMembership" FromRole="my_aspnet_membership" ToRole="user" />
+        </EntityType>
+        <EntityType Name="my_aspnet_profiles">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="valueindex" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="stringdata" Type="String" MaxLength="1073741823" Unicode="false" FixedLength="false" />
+          <Property Name="binarydata" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="lastUpdatedDate" Type="DateTime" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="my_aspnet_roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="applicationId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_sessioncleanup">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="LastRun" Type="DateTime" Nullable="false" />
+          <Property Name="IntervalMinutes" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_sessions">
+          <Key>
+            <PropertyRef Name="SessionId" />
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="SessionId" Type="String" Nullable="false" MaxLength="191" Unicode="false" FixedLength="false" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" />
+          <Property Name="Expires" Type="DateTime" Nullable="false" />
+          <Property Name="LockDate" Type="DateTime" Nullable="false" />
+          <Property Name="LockId" Type="Int32" Nullable="false" />
+          <Property Name="Timeout" Type="Int32" Nullable="false" />
+          <Property Name="Locked" Type="Boolean" Nullable="false" />
+          <Property Name="SessionItems" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Flags" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="applicationId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="isAnonymous" Type="Boolean" Nullable="false" />
+          <Property Name="lastActivityDate" Type="DateTime" />
+          <NavigationProperty Name="users" Relationship="rentalanguageteacherModel.user_member_id_account" FromRole="my_aspnet_users" ToRole="user" />
+        </EntityType>
+        <EntityType Name="my_aspnet_usersinroles">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="roleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="questioncategory">
+          <Key>
+            <PropertyRef Name="question_category_id" />
+          </Key>
+          <Property Name="question_category_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="questions" Relationship="rentalanguageteacherModel.question_question_category_id_questioncategory" FromRole="questioncategory" ToRole="question" />
+        </EntityType>
+        <EntityType Name="questiontype">
+          <Key>
+            <PropertyRef Name="question_type" />
+          </Key>
+          <Property Name="question_type" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="questions" Relationship="rentalanguageteacherModel.question_question_type_questiontype" FromRole="questiontype" ToRole="question" />
+        </EntityType>
+        <EntityType Name="timezone">
+          <Key>
+            <PropertyRef Name="zone_id" />
+            <PropertyRef Name="abbreviation" />
+            <PropertyRef Name="time_start" />
+            <PropertyRef Name="gmt_offset" />
+            <PropertyRef Name="dst" />
+          </Key>
+          <Property Name="zone_id" Type="Int32" Nullable="false" />
+          <Property Name="abbreviation" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="time_start" Type="Int32" Nullable="false" />
+          <Property Name="gmt_offset" Type="Int32" Nullable="false" />
+          <Property Name="dst" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="zone" Relationship="rentalanguageteacherModel.timezone_zone_id_zone" FromRole="timezone" ToRole="zone" />
+        </EntityType>
+        <EntityType Name="weekday">
+          <Key>
+            <PropertyRef Name="day" />
+          </Key>
+          <Property Name="day" Type="Int32" Nullable="false" />
+          <Property Name="english_name" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="spanish_name" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="timeslots" Relationship="rentalanguageteacherModel.timeslot_day_weekday" FromRole="weekday" ToRole="timeslot" />
+        </EntityType>
+        <EntityType Name="zone">
+          <Key>
+            <PropertyRef Name="zone_id" />
+          </Key>
+          <Property Name="zone_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="country_code_iso2" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="zone_name" Type="String" MaxLength="35" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="country" Relationship="rentalanguageteacherModel.zone_country_code_iso2_country" FromRole="zone" ToRole="country" />
+          <NavigationProperty Name="timezones" Relationship="rentalanguageteacherModel.timezone_zone_id_zone" FromRole="zone" ToRole="timezone" />
+          <NavigationProperty Name="locations" Relationship="rentalanguageteacherModel.location_zone_id_zone" FromRole="zone" ToRole="location" />
+        </EntityType>
+        <Association Name="zone_country_code_iso2_country">
+          <End Role="country" Type="rentalanguageteacherModel.country" Multiplicity="0..1" />
+          <End Role="zone" Type="rentalanguageteacherModel.zone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="iso2" />
+            </Principal>
+            <Dependent Role="zone">
+              <PropertyRef Name="country_code_iso2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="timezone_zone_id_zone">
+          <End Role="zone" Type="rentalanguageteacherModel.zone" Multiplicity="1" />
+          <End Role="timezone" Type="rentalanguageteacherModel.timezone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zone">
+              <PropertyRef Name="zone_id" />
+            </Principal>
+            <Dependent Role="timezone">
+              <PropertyRef Name="zone_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Type="Int32" Name="user_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="member_id" />
+          <Property Type="String" Name="first_name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="last_name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="age" />
+          <Property Type="String" Name="gender" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="nationality" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="email" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="skype_id" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="match_score" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="time_stamp" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="gender1" Relationship="rentalanguageteacherModel.user_gender_gender" FromRole="user" ToRole="gender" />
+          <NavigationProperty Name="my_aspnet_users" Relationship="rentalanguageteacherModel.user_member_id_account" FromRole="user" ToRole="my_aspnet_users" />
+          <NavigationProperty Name="locations" Relationship="rentalanguageteacherModel.location_user_id_user" FromRole="user" ToRole="location" />
+          <NavigationProperty Name="pictures" Relationship="rentalanguageteacherModel.picture_user_id_user" FromRole="user" ToRole="picture" />
+          <NavigationProperty Name="questionnaires" Relationship="rentalanguageteacherModel.questionnaire_user_id_user" FromRole="user" ToRole="questionnaire" />
+          <NavigationProperty Name="quickregistrations" Relationship="rentalanguageteacherModel.quick_regestration_user_id_user" FromRole="user" ToRole="quickregistration" />
+          <NavigationProperty Name="reviews" Relationship="rentalanguageteacherModel.review_reviewee_user_id_user" FromRole="user" ToRole="review" />
+          <NavigationProperty Name="reviews1" Relationship="rentalanguageteacherModel.review_reviewer_user_id_user" FromRole="user" ToRole="review" />
+          <NavigationProperty Name="students" Relationship="rentalanguageteacherModel.student_user_id_user" FromRole="user" ToRole="student" />
+          <NavigationProperty Name="teachers" Relationship="rentalanguageteacherModel.teacher_user_id_user" FromRole="user" ToRole="teacher" />
+          <NavigationProperty Name="timeslots" Relationship="rentalanguageteacherModel.timeslot_user_id_user" FromRole="user" ToRole="timeslot" />
+          <Property Type="String" Name="account_status" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="accountstatu" Relationship="rentalanguageteacherModel.user_account_status_accountstatus" FromRole="user" ToRole="accountstatu" />
+          <NavigationProperty Name="my_aspnet_membership" Relationship="rentalanguageteacherModel.user_member_id_aspMembership" FromRole="user" ToRole="my_aspnet_membership" />
+          <NavigationProperty Name="payments" Relationship="rentalanguageteacherModel.payment_user_id_user" FromRole="user" ToRole="payment" />
+          <NavigationProperty Name="contents" Relationship="rentalanguageteacherModel.author_user_id_user" FromRole="user" ToRole="content" />
+        </EntityType>
+        <Association Name="user_gender_gender">
+          <End Type="rentalanguageteacherModel.gender" Role="gender" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gender">
+              <PropertyRef Name="gender1" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_member_id_account">
+          <End Type="rentalanguageteacherModel.my_aspnet_users" Role="my_aspnet_users" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="my_aspnet_users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="member_id" />
+          </Key>
+          <Property Type="Int32" Name="member_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="username" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="account_status" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="language_id" />
+          <Property Type="DateTime" Name="time_stamp" />
+          <NavigationProperty Name="accountstatu" Relationship="rentalanguageteacherModel.account_account_status_accountstatus" FromRole="account" ToRole="accountstatu" />
+          <NavigationProperty Name="language" Relationship="rentalanguageteacherModel.account_language_id_language" FromRole="account" ToRole="language" />
+        </EntityType>
+        <EntityType Name="answer">
+          <Key>
+            <PropertyRef Name="answer_id" />
+          </Key>
+          <Property Type="Int32" Name="answer_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="question_id" />
+          <Property Type="String" Name="text_english" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="text_spanish" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="order" />
+          <Property Type="Int32" Name="picture_id" />
+          <Property Type="DateTime" Name="time_stamp" />
+          <NavigationProperty Name="picture" Relationship="rentalanguageteacherModel.answer_picture_id_picture" FromRole="answer" ToRole="picture" />
+          <NavigationProperty Name="question" Relationship="rentalanguageteacherModel.answer_question_id_question" FromRole="answer" ToRole="question" />
+          <NavigationProperty Name="questionnaires" Relationship="rentalanguageteacherModel.questionnaire_answer_id_answer" FromRole="answer" ToRole="questionnaire" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Type="Int32" Name="location_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="user_id" />
+          <Property Type="String" Name="line_1" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="line_2" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="city" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="state" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="postal_code" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="country_code_iso2" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="zone_id" />
+          <Property Type="DateTime" Name="time_stamp" />
+          <NavigationProperty Name="country" Relationship="rentalanguageteacherModel.location_country_code_iso2_country" FromRole="location" ToRole="country" />
+          <NavigationProperty Name="user" Relationship="rentalanguageteacherModel.location_user_id_user" FromRole="location" ToRole="user" />
+          <NavigationProperty Name="zone" Relationship="rentalanguageteacherModel.location_zone_id_zone" FromRole="location" ToRole="zone" />
+        </EntityType>
+        <EntityType Name="picture">
+          <Key>
+            <PropertyRef Name="picture_id" />
+          </Key>
+          <Property Type="Int32" Name="picture_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="url" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="caption" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="order" />
+          <Property Type="Int32" Name="user_id" />
+          <Property Type="DateTime" Name="time_stamp" />
+          <NavigationProperty Name="answers" Relationship="rentalanguageteacherModel.answer_picture_id_picture" FromRole="picture" ToRole="answer" />
+          <NavigationProperty Name="user" Relationship="rentalanguageteacherModel.picture_user_id_user" FromRole="picture" ToRole="user" />
+          <NavigationProperty Name="questions" Relationship="rentalanguageteacherModel.question_picture_id_picture" FromRole="picture" ToRole="question" />
+        </EntityType>
+        <EntityType Name="question">
+          <Key>
+            <PropertyRef Name="question_id" />
+          </Key>
+          <Property Type="Int32" Name="question_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="question_type" />
+          <Property Type="String" Name="prompt_english" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="prompt_spanish" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="picture_id" />
+          <Property Type="DateTime" Name="time_stamp" />
+          <Property Type="Boolean" Name="include" />
+          <Property Type="Int32" Name="question_category_id" />
+          <Property Type="Int32" Name="weight" />
+          <NavigationProperty Name="answers" Relationship="rentalanguageteacherModel.answer_question_id_question" FromRole="question" ToRole="answer" />
+          <NavigationProperty Name="picture" Relationship="rentalanguageteacherModel.question_picture_id_picture" FromRole="question" ToRole="picture" />
+          <NavigationProperty Name="questioncategory" Relationship="rentalanguageteacherModel.question_question_category_id_questioncategory" FromRole="question" ToRole="questioncategory" />
+          <NavigationProperty Name="questiontype" Relationship="rentalanguageteacherModel.question_question_type_questiontype" FromRole="question" ToRole="questiontype" />
+          <NavigationProperty Name="questionnaires" Relationship="rentalanguageteacherModel.questionnaire_question_id_question" FromRole="question" ToRole="questionnaire" />
+        </EntityType>
+        <EntityType Name="questionnaire">
+          <Key>
+            <PropertyRef Name="test_id" />
+          </Key>
+          <Property Type="Int32" Name="test_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="user_id" />
+          <Property Type="Int32" Name="question_id" />
+          <Property Type="Int32" Name="answer_id" />
+          <Property Type="DateTime" Name="time_stamp" />
+          <NavigationProperty Name="answer" Relationship="rentalanguageteacherModel.questionnaire_answer_id_answer" FromRole="questionnaire" ToRole="answer" />
+          <NavigationProperty Name="question" Relationship="rentalanguageteacherModel.questionnaire_question_id_question" FromRole="questionnaire" ToRole="question" />
+          <NavigationProperty Name="user" Relationship="rentalanguageteacherModel.questionnaire_user_id_user" FromRole="questionnaire" ToRole="user" />
+        </EntityType>
+        <EntityType Name="quickregistration">
+          <Key>
+            <PropertyRef Name="quick_registration_id" />
+          </Key>
+          <Property Type="Int32" Name="quick_registration_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="user_id" />
+          <Property Type="Int32" Name="languagel_evel" />
+          <Property Type="Int32" Name="classes" />
+          <Property Type="String" Name="period" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="start_date" />
+          <Property Type="String" Name="specialrequests" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="time_stamp" />
+          <NavigationProperty Name="user" Relationship="rentalanguageteacherModel.quick_regestration_user_id_user" FromRole="quickregistration" ToRole="user" />
+          <Property Type="Int32" Name="class_duration" />
+          <Property Type="String" Name="teacher" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="teacher_skypeid" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="first_class" />
+          <Property Type="String" Name="admin_comments" FixedLength="false" MaxLength="1073741823" Unicode="false" />
+          <Property Type="String" Name="student_comments" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="review">
+          <Key>
+            <PropertyRef Name="review_id" />
+          </Key>
+          <Property Type="Int32" Name="review_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="reviewer_user_id" />
+          <Property Type="Int32" Name="reviewee_user_id" />
+          <Property Type="Int32" Name="rating" />
+          <Property Type="String" Name="comments" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="time_stamp" />
+          <NavigationProperty Name="user" Relationship="rentalanguageteacherModel.review_reviewee_user_id_user" FromRole="review" ToRole="user" />
+          <NavigationProperty Name="user1" Relationship="rentalanguageteacherModel.review_reviewer_user_id_user" FromRole="review" ToRole="user" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="student_id" />
+          </Key>
+          <Property Type="Int32" Name="student_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="user_id" />
+          <Property Type="DateTime" Name="time_stamp" />
+          <NavigationProperty Name="user" Relationship="rentalanguageteacherModel.student_user_id_user" FromRole="student" ToRole="user" />
+        </EntityType>
+        <EntityType Name="teacher">
+          <Key>
+            <PropertyRef Name="teacher_id" />
+          </Key>
+          <Property Type="Int32" Name="teacher_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="user_id" />
+          <Property Type="DateTime" Name="time_stamp" />
+          <NavigationProperty Name="user" Relationship="rentalanguageteacherModel.teacher_user_id_user" FromRole="teacher" ToRole="user" />
+        </EntityType>
+        <EntityType Name="timeslot">
+          <Key>
+            <PropertyRef Name="timeslot_id" />
+          </Key>
+          <Property Type="Int32" Name="timeslot_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="user_id" />
+          <Property Type="Int32" Name="day" />
+          <Property Type="DateTime" Name="start" />
+          <Property Type="DateTime" Name="end" />
+          <Property Type="Boolean" Name="available" />
+          <Property Type="String" Name="notes" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="time_stamp" />
+          <NavigationProperty Name="weekday" Relationship="rentalanguageteacherModel.timeslot_day_weekday" FromRole="timeslot" ToRole="weekday" />
+          <NavigationProperty Name="user" Relationship="rentalanguageteacherModel.timeslot_user_id_user" FromRole="timeslot" ToRole="user" />
+        </EntityType>
+        <Association Name="account_account_status_accountstatus">
+          <End Type="rentalanguageteacherModel.accountstatu" Role="accountstatu" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.account" Role="account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accountstatu">
+              <PropertyRef Name="account_status" />
+            </Principal>
+            <Dependent Role="account">
+              <PropertyRef Name="account_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="account_language_id_language">
+          <End Type="rentalanguageteacherModel.language" Role="language" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.account" Role="account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="language">
+              <PropertyRef Name="language_id" />
+            </Principal>
+            <Dependent Role="account">
+              <PropertyRef Name="language_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answer_picture_id_picture">
+          <End Type="rentalanguageteacherModel.picture" Role="picture" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.answer" Role="answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="picture">
+              <PropertyRef Name="picture_id" />
+            </Principal>
+            <Dependent Role="answer">
+              <PropertyRef Name="picture_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answer_question_id_question">
+          <End Type="rentalanguageteacherModel.question" Role="question" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.answer" Role="answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="question">
+              <PropertyRef Name="question_id" />
+            </Principal>
+            <Dependent Role="answer">
+              <PropertyRef Name="question_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="questionnaire_answer_id_answer">
+          <End Type="rentalanguageteacherModel.answer" Role="answer" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.questionnaire" Role="questionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="answer">
+              <PropertyRef Name="answer_id" />
+            </Principal>
+            <Dependent Role="questionnaire">
+              <PropertyRef Name="answer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="location_country_code_iso2_country">
+          <End Type="rentalanguageteacherModel.country" Role="country" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.location" Role="location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="iso2" />
+            </Principal>
+            <Dependent Role="location">
+              <PropertyRef Name="country_code_iso2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="location_user_id_user">
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.location" Role="location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="location">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="location_zone_id_zone">
+          <End Type="rentalanguageteacherModel.zone" Role="zone" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.location" Role="location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zone">
+              <PropertyRef Name="zone_id" />
+            </Principal>
+            <Dependent Role="location">
+              <PropertyRef Name="zone_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="picture_user_id_user">
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.picture" Role="picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="picture">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="question_picture_id_picture">
+          <End Type="rentalanguageteacherModel.picture" Role="picture" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.question" Role="question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="picture">
+              <PropertyRef Name="picture_id" />
+            </Principal>
+            <Dependent Role="question">
+              <PropertyRef Name="picture_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="question_question_category_id_questioncategory">
+          <End Type="rentalanguageteacherModel.questioncategory" Role="questioncategory" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.question" Role="question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="questioncategory">
+              <PropertyRef Name="question_category_id" />
+            </Principal>
+            <Dependent Role="question">
+              <PropertyRef Name="question_category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="question_question_type_questiontype">
+          <End Type="rentalanguageteacherModel.questiontype" Role="questiontype" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.question" Role="question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="questiontype">
+              <PropertyRef Name="question_type" />
+            </Principal>
+            <Dependent Role="question">
+              <PropertyRef Name="question_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="questionnaire_question_id_question">
+          <End Type="rentalanguageteacherModel.question" Role="question" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.questionnaire" Role="questionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="question">
+              <PropertyRef Name="question_id" />
+            </Principal>
+            <Dependent Role="questionnaire">
+              <PropertyRef Name="question_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="questionnaire_user_id_user">
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.questionnaire" Role="questionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="questionnaire">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="quick_regestration_user_id_user">
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.quickregistration" Role="quickregistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="quickregistration">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="review_reviewee_user_id_user">
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.review" Role="review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="review">
+              <PropertyRef Name="reviewee_user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="review_reviewer_user_id_user">
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.review" Role="review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="review">
+              <PropertyRef Name="reviewer_user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="student_user_id_user">
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.student" Role="student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="teacher_user_id_user">
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.teacher" Role="teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="teacher">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="timeslot_day_weekday">
+          <End Type="rentalanguageteacherModel.weekday" Role="weekday" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.timeslot" Role="timeslot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="weekday">
+              <PropertyRef Name="day" />
+            </Principal>
+            <Dependent Role="timeslot">
+              <PropertyRef Name="day" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="timeslot_user_id_user">
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.timeslot" Role="timeslot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="timeslot">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_account_status_accountstatus">
+          <End Type="rentalanguageteacherModel.accountstatu" Role="accountstatu" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accountstatu">
+              <PropertyRef Name="account_status" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="account_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_member_id_aspMembership">
+          <End Type="rentalanguageteacherModel.my_aspnet_membership" Role="my_aspnet_membership" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="my_aspnet_membership">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Type="Int32" Name="payment_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="user_id" />
+          <Property Type="String" Name="username" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="hours" />
+          <Property Type="DateTime" Name="transaction_date" />
+          <Property Type="DateTime" Name="timestamp" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="user" Relationship="rentalanguageteacherModel.payment_user_id_user" FromRole="payment" ToRole="user" />
+          <Property Type="String" Name="payer_email" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="item_name" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="transaction_id" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="transaction_status" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="update_user" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="payment_user_id_user">
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.payment" Role="payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="wordofday">
+          <Key>
+            <PropertyRef Name="word_id" />
+          </Key>
+          <Property Type="Int32" Name="word_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="spanish_word" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="part_of_speech" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="word_group" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="english_translation" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="spanish_sentence" MaxLength="16777215" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="english_sentence" MaxLength="16777215" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="contentcategory">
+          <Key>
+            <PropertyRef Name="category" />
+          </Key>
+          <Property Type="String" Name="category" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="contents" Relationship="rentalanguageteacherModel.category_category" FromRole="contentcategory" ToRole="content" />
+          <Property Type="String" Name="description" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="image" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="route_table">
+          <Key>
+            <PropertyRef Name="route_id" />
+          </Key>
+          <Property Type="Int32" Name="route_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="rout_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="rout_url" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="physical_file" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="time_stamp" />
+        </EntityType>
+        <EntityType Name="contentlanguage">
+          <Key>
+            <PropertyRef Name="language" />
+          </Key>
+          <Property Type="String" Name="language" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="contentmarkups" Relationship="rentalanguageteacherModel.language_content_language" FromRole="contentlanguage" ToRole="contentmarkup" />
+        </EntityType>
+        <EntityType Name="content">
+          <Key>
+            <PropertyRef Name="content_id" />
+          </Key>
+          <Property Type="Int32" Name="content_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="category" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="title" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="author_user_id" />
+          <Property Type="String" Name="image_url" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="createdate" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="user" Relationship="rentalanguageteacherModel.author_user_id_user" FromRole="content" ToRole="user" />
+          <NavigationProperty Name="contentcategory" Relationship="rentalanguageteacherModel.category_category" FromRole="content" ToRole="contentcategory" />
+          <NavigationProperty Name="contentmarkups" Relationship="rentalanguageteacherModel.content_id_content" FromRole="content" ToRole="contentmarkup" />
+        </EntityType>
+        <EntityType Name="contentmarkup">
+          <Key>
+            <PropertyRef Name="contentmarkup_id" />
+          </Key>
+          <Property Type="Int32" Name="contentmarkup_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="content_id" />
+          <Property Type="String" Name="language" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="markup" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="description" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="published" Nullable="false" />
+          <Property Type="DateTime" Name="time_stamp" annotation:StoreGeneratedPattern="Identity" Nullable="false" />
+          <NavigationProperty Name="content" Relationship="rentalanguageteacherModel.content_id_content" FromRole="contentmarkup" ToRole="content" />
+          <NavigationProperty Name="contentlanguage" Relationship="rentalanguageteacherModel.language_content_language" FromRole="contentmarkup" ToRole="contentlanguage" />
+        </EntityType>
+        <Association Name="author_user_id_user">
+          <End Type="rentalanguageteacherModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.content" Role="content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="content">
+              <PropertyRef Name="author_user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_category">
+          <End Type="rentalanguageteacherModel.contentcategory" Role="contentcategory" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.content" Role="content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contentcategory">
+              <PropertyRef Name="category" />
+            </Principal>
+            <Dependent Role="content">
+              <PropertyRef Name="category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="content_id_content">
+          <End Type="rentalanguageteacherModel.content" Role="content" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.contentmarkup" Role="contentmarkup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="content">
+              <PropertyRef Name="content_id" />
+            </Principal>
+            <Dependent Role="contentmarkup">
+              <PropertyRef Name="content_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="language_content_language">
+          <End Type="rentalanguageteacherModel.contentlanguage" Role="contentlanguage" Multiplicity="0..1" />
+          <End Type="rentalanguageteacherModel.contentmarkup" Role="contentmarkup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contentlanguage">
+              <PropertyRef Name="language" />
+            </Principal>
+            <Dependent Role="contentmarkup">
+              <PropertyRef Name="language" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="rentalanguageteacherModelStoreContainer" CdmEntityContainer="rentalanguageteacherEntities">
+          <EntitySetMapping Name="accountstatus">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.accountstatu">
+              <MappingFragment StoreEntitySet="accountstatus">
+                <ScalarProperty Name="account_status" ColumnName="account_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="iso2" ColumnName="iso2" />
+                <ScalarProperty Name="short_name" ColumnName="short_name" />
+                <ScalarProperty Name="long_name" ColumnName="long_name" />
+                <ScalarProperty Name="iso3" ColumnName="iso3" />
+                <ScalarProperty Name="numcode" ColumnName="numcode" />
+                <ScalarProperty Name="un_member" ColumnName="un_member" />
+                <ScalarProperty Name="calling_code" ColumnName="calling_code" />
+                <ScalarProperty Name="cctld" ColumnName="cctld" />
+                <ScalarProperty Name="spanish_name" ColumnName="spanish_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="genders">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.gender">
+              <MappingFragment StoreEntitySet="gender">
+                <ScalarProperty Name="gender1" ColumnName="gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="languages">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.language">
+              <MappingFragment StoreEntitySet="language">
+                <ScalarProperty Name="language_id" ColumnName="language_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="english_name" ColumnName="english_name" />
+                <ScalarProperty Name="spanish_name" ColumnName="spanish_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_applications">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.my_aspnet_applications">
+              <MappingFragment StoreEntitySet="my_aspnet_applications">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_membership">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.my_aspnet_membership">
+              <MappingFragment StoreEntitySet="my_aspnet_membership">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordKey" ColumnName="PasswordKey" />
+                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="LastLockedOutDate" ColumnName="LastLockedOutDate" />
+                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_profiles">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.my_aspnet_profiles">
+              <MappingFragment StoreEntitySet="my_aspnet_profiles">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="valueindex" ColumnName="valueindex" />
+                <ScalarProperty Name="stringdata" ColumnName="stringdata" />
+                <ScalarProperty Name="binarydata" ColumnName="binarydata" />
+                <ScalarProperty Name="lastUpdatedDate" ColumnName="lastUpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_roles">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.my_aspnet_roles">
+              <MappingFragment StoreEntitySet="my_aspnet_roles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="applicationId" ColumnName="applicationId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_sessioncleanup">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.my_aspnet_sessioncleanup">
+              <MappingFragment StoreEntitySet="my_aspnet_sessioncleanup">
+                <ScalarProperty Name="LastRun" ColumnName="LastRun" />
+                <ScalarProperty Name="IntervalMinutes" ColumnName="IntervalMinutes" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_sessions">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.my_aspnet_sessions">
+              <MappingFragment StoreEntitySet="my_aspnet_sessions">
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Expires" ColumnName="Expires" />
+                <ScalarProperty Name="LockDate" ColumnName="LockDate" />
+                <ScalarProperty Name="LockId" ColumnName="LockId" />
+                <ScalarProperty Name="Timeout" ColumnName="Timeout" />
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="SessionItems" ColumnName="SessionItems" />
+                <ScalarProperty Name="Flags" ColumnName="Flags" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_users">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.my_aspnet_users">
+              <MappingFragment StoreEntitySet="my_aspnet_users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="applicationId" ColumnName="applicationId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="isAnonymous" ColumnName="isAnonymous" />
+                <ScalarProperty Name="lastActivityDate" ColumnName="lastActivityDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_usersinroles">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.my_aspnet_usersinroles">
+              <MappingFragment StoreEntitySet="my_aspnet_usersinroles">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="questioncategories">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.questioncategory">
+              <MappingFragment StoreEntitySet="questioncategory">
+                <ScalarProperty Name="question_category_id" ColumnName="question_category_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="questiontypes">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.questiontype">
+              <MappingFragment StoreEntitySet="questiontype">
+                <ScalarProperty Name="question_type" ColumnName="question_type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="timezones">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.timezone">
+              <MappingFragment StoreEntitySet="timezone">
+                <ScalarProperty Name="zone_id" ColumnName="zone_id" />
+                <ScalarProperty Name="abbreviation" ColumnName="abbreviation" />
+                <ScalarProperty Name="time_start" ColumnName="time_start" />
+                <ScalarProperty Name="gmt_offset" ColumnName="gmt_offset" />
+                <ScalarProperty Name="dst" ColumnName="dst" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="weekdays">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.weekday">
+              <MappingFragment StoreEntitySet="weekday">
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="english_name" ColumnName="english_name" />
+                <ScalarProperty Name="spanish_name" ColumnName="spanish_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zones">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.zone">
+              <MappingFragment StoreEntitySet="zone">
+                <ScalarProperty Name="zone_id" ColumnName="zone_id" />
+                <ScalarProperty Name="country_code_iso2" ColumnName="country_code_iso2" />
+                <ScalarProperty Name="zone_name" ColumnName="zone_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="account_status" ColumnName="account_status" />
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="match_score" ColumnName="match_score" />
+                <ScalarProperty Name="skype_id" ColumnName="skype_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="accounts">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.account">
+              <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="language_id" ColumnName="language_id" />
+                <ScalarProperty Name="account_status" ColumnName="account_status" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="answers">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.answer">
+              <MappingFragment StoreEntitySet="answer">
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="picture_id" ColumnName="picture_id" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="text_spanish" ColumnName="text_spanish" />
+                <ScalarProperty Name="text_english" ColumnName="text_english" />
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
+                <ScalarProperty Name="answer_id" ColumnName="answer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="locations">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.location">
+              <MappingFragment StoreEntitySet="location">
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="zone_id" ColumnName="zone_id" />
+                <ScalarProperty Name="country_code_iso2" ColumnName="country_code_iso2" />
+                <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="line_2" ColumnName="line_2" />
+                <ScalarProperty Name="line_1" ColumnName="line_1" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pictures">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.picture">
+              <MappingFragment StoreEntitySet="picture">
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="caption" ColumnName="caption" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="picture_id" ColumnName="picture_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="questions">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.question">
+              <MappingFragment StoreEntitySet="question">
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="question_category_id" ColumnName="question_category_id" />
+                <ScalarProperty Name="include" ColumnName="include" />
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="picture_id" ColumnName="picture_id" />
+                <ScalarProperty Name="prompt_spanish" ColumnName="prompt_spanish" />
+                <ScalarProperty Name="prompt_english" ColumnName="prompt_english" />
+                <ScalarProperty Name="question_type" ColumnName="question_type" />
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="questionnaires">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.questionnaire">
+              <MappingFragment StoreEntitySet="questionnaire">
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="answer_id" ColumnName="answer_id" />
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="test_id" ColumnName="test_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quickregistrations">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.quickregistration">
+              <MappingFragment StoreEntitySet="quickregistration">
+                <ScalarProperty Name="student_comments" ColumnName="student_comments" />
+                <ScalarProperty Name="admin_comments" ColumnName="admin_comments" />
+                <ScalarProperty Name="first_class" ColumnName="first_class" />
+                <ScalarProperty Name="teacher_skypeid" ColumnName="teacher_skypeid" />
+                <ScalarProperty Name="teacher" ColumnName="teacher" />
+                <ScalarProperty Name="class_duration" ColumnName="class_duration" />
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="specialrequests" ColumnName="specialrequests" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="period" ColumnName="period" />
+                <ScalarProperty Name="classes" ColumnName="classes" />
+                <ScalarProperty Name="languagel_evel" ColumnName="languagel_evel" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="quick_registration_id" ColumnName="quick_registration_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reviews">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.review">
+              <MappingFragment StoreEntitySet="review">
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="reviewee_user_id" ColumnName="reviewee_user_id" />
+                <ScalarProperty Name="reviewer_user_id" ColumnName="reviewer_user_id" />
+                <ScalarProperty Name="review_id" ColumnName="review_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.student">
+              <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="teachers">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.teacher">
+              <MappingFragment StoreEntitySet="teacher">
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="timeslots">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.timeslot">
+              <MappingFragment StoreEntitySet="timeslot">
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="available" ColumnName="available" />
+                <ScalarProperty Name="end" ColumnName="end" />
+                <ScalarProperty Name="start" ColumnName="start" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="timeslot_id" ColumnName="timeslot_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payments">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.payment">
+              <MappingFragment StoreEntitySet="payment">
+                <ScalarProperty Name="update_user" ColumnName="update_user" />
+                <ScalarProperty Name="transaction_status" ColumnName="transaction_status" />
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="payer_email" ColumnName="payer_email" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+                <ScalarProperty Name="hours" ColumnName="hours" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wordofdays">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.wordofday">
+              <MappingFragment StoreEntitySet="wordofday">
+                <ScalarProperty Name="english_sentence" ColumnName="english_sentence" />
+                <ScalarProperty Name="spanish_sentence" ColumnName="spanish_sentence" />
+                <ScalarProperty Name="english_translation" ColumnName="english_translation" />
+                <ScalarProperty Name="word_group" ColumnName="word_group" />
+                <ScalarProperty Name="part_of_speech" ColumnName="part_of_speech" />
+                <ScalarProperty Name="spanish_word" ColumnName="spanish_word" />
+                <ScalarProperty Name="word_id" ColumnName="word_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contentcategories">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.contentcategory">
+              <MappingFragment StoreEntitySet="contentcategory">
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="category" ColumnName="category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="route_table">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.route_table">
+              <MappingFragment StoreEntitySet="route_table">
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="physical_file" ColumnName="physical_file" />
+                <ScalarProperty Name="rout_url" ColumnName="rout_url" />
+                <ScalarProperty Name="rout_name" ColumnName="rout_name" />
+                <ScalarProperty Name="route_id" ColumnName="route_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contentlanguages">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.contentlanguage">
+              <MappingFragment StoreEntitySet="contentlanguage">
+                <ScalarProperty Name="language" ColumnName="language" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contents">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.content">
+              <MappingFragment StoreEntitySet="content">
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="image_url" ColumnName="image_url" />
+                <ScalarProperty Name="author_user_id" ColumnName="author_user_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="content_id" ColumnName="content_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contentmarkups">
+            <EntityTypeMapping TypeName="rentalanguageteacherModel.contentmarkup">
+              <MappingFragment StoreEntitySet="contentmarkup">
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="published" ColumnName="published" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="markup" ColumnName="markup" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="content_id" ColumnName="content_id" />
+                <ScalarProperty Name="contentmarkup_id" ColumnName="contentmarkup_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

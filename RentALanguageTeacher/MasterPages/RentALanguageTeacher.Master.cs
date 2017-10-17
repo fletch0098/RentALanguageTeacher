@@ -1,0 +1,370 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.Security;
+using System.Web.Services;
+using System.Web.UI.WebControls;
+using System.Security.Permissions;
+using System.Security.Principal;
+
+namespace RentALanguageTeacher.MasterPages
+{
+    public partial class RentALanguageTeacher : System.Web.UI.MasterPage
+    {
+
+
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!Page.IsPostBack)
+            {
+
+               // App_Code.RALTProfile MyProfile = new App_Code.RALTProfile();
+
+//                MyProfile = MyProfile.GetRALTProfile();
+
+                //if (!object.ReferenceEquals(MyProfile, null))
+                //{
+
+                //    if (MyProfile.ProfileType == "Dismiss")
+                //    {
+                //        //Check if we need to popup again
+                //        DateTime CurrentTime = DateTime.UtcNow;
+                //        DateTime NextPopUpTime = MyProfile.LastUpdatedDate.AddDays(1);
+
+                //        if (NextPopUpTime <= CurrentTime)
+                //        {
+                //            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "MailList", "NoAccount();", true);
+                //        }
+
+                //    }
+                //    else if (MyProfile.ProfileType == "EmailList")
+                //    {
+                //        //User Has emaillist
+                //        MyProfile.LastVisitedDate = DateTime.UtcNow;
+                //        MyProfile.SaveRALTProfile(MyProfile);
+
+                //    }
+                //    else if (MyProfile.ProfileType == "Account")
+                //    {
+                //        //User Has an Account
+                //        MyProfile.LastVisitedDate = DateTime.UtcNow;
+                //        MyProfile.SaveRALTProfile(MyProfile);
+                //        ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "HasLogin", "ChangeTabsLogIn();", true);
+
+                //    }
+                //    else
+                //    {
+
+                //        ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "MailList", "NoAccount();", true);
+
+                //    }
+                //}
+
+                //Get Querystring Values
+                if (!string.IsNullOrEmpty(Request.QueryString["IsLogIn"]))
+                {
+
+                    //Parss QS items to Hidden field controls
+                    string IsLogIn = Request.QueryString["IsLogIn"];
+
+                    //Load Data
+                    try
+                    {
+
+                        //Get the logged in User if any
+                        MembershipUser LoggedInMembershipUser;
+                        LoggedInMembershipUser = Membership.GetUser();
+
+                        //Check if there is a logged in User
+                        if (LoggedInMembershipUser != null)
+                        {
+                            App_Code.NotificationService.SendNotification("LogInSucess", "Welcome " + LoggedInMembershipUser.UserName, "success", "3000");
+                        }
+
+                    }
+                    catch
+                    {
+
+                    }
+                }
+
+                GetWordOfDay();
+
+                GetArticleOfDay();
+
+            }
+
+        }
+
+        protected void NewUser_Click(object sender, EventArgs e)
+        {
+            //ServerSide Validation
+            Page.Validate("NewUser");
+
+            if (Page.IsValid)
+            {
+
+                try
+                {
+                    //Get Form Values
+                    string Level = SpanishLevel.Value;
+                    //string Frecuency = FrequencyValue.Value;
+                    string Frequency = FrequencySpinner.Value;
+                    string Duration = ddlDuration.SelectedItem.Value.ToString();
+
+                    string Period = SpinnerPeriod.Value;
+                    string StartDate = StartingDate.Value;
+                    string StartTime = "";
+
+                    if (BlockTime.SelectedValue == "1")
+                    {
+                        StartTime = "05:00:00";
+                    }
+                    else if (BlockTime.SelectedValue == "2")
+                    {
+                        StartTime = "08:00:00";
+                    }
+                    else if (BlockTime.SelectedValue == "3")
+                    {
+                        StartTime = "11:00:00";
+                    }
+                    else if (BlockTime.SelectedValue == "4")
+                    {
+                        StartTime = "14:00:00";
+                    }
+                    else if (BlockTime.SelectedValue == "5")
+                    {
+                        StartTime = "17:00:00";
+                    }
+                    else if (BlockTime.SelectedValue == "6")
+                    {
+                        StartTime = "20:00:00";
+                    }
+                    else if (BlockTime.SelectedValue == "7")
+                    {
+                        StartTime = "23:00:00";
+                    }
+                    else
+                    {
+                        StartTime = "02:00:00";
+                    }
+
+
+                    StartDate = StartDate + " " + StartTime;
+
+
+
+                    //Build QueryString
+                    string URL = "?Level=" + Level + "&Frequency=" + Frequency + "&Period=" + Period + "&StartDate=" + StartDate + "&Duration=" + Duration;
+
+                    //Go to Account Setup Page
+                    Response.Redirect("/AccountSetup" + URL);
+
+                }
+
+                catch (Exception ex)
+                {
+                    //CreateUser Error, Notify User
+                    App_Code.NotificationService.SendNotification("CreateUserError", ex.Message, "error");
+                }
+
+            }
+            else
+            {
+
+                //Invalid Page Error
+                App_Code.NotificationService.SendNotification("NewUserValidation", "Please complete the required fields", "alert", "3000");
+            }
+
+        }
+
+        protected void LogIn_Click(object sender, EventArgs e)
+        {
+            //ServerSide Validation
+            Page.Validate("LogIn");
+
+            if (Page.IsValid)
+            {
+
+                try
+                {
+                    //move loginview controls into view
+                    TextBox UserName = (TextBox)LoginView1.FindControl("LogInUserName");
+                    TextBox Password = (TextBox)LoginView1.FindControl("LogInPassword");
+                    CheckBox IsPersistant = (CheckBox)LoginView1.FindControl("LogInIsPersistant");
+
+                    //Save current URL(needed to set cookie)
+                    string Currenturl = HttpContext.Current.Request.Url.AbsoluteUri;
+                    string Currentpath = HttpContext.Current.Request.Url.AbsolutePath;
+
+                    //Validate Login
+                    bool Authenticated = App_Code.MemberShipService.LogInUser(UserName.Text.ToString(), Password.Text.ToString(), IsPersistant.Checked, "");
+
+                    //If Valid Login, set cookie
+                    if (Authenticated == true)
+                    {
+                        //Set Cookie
+                        // Response.Cookies.Remove(FormsAuthentication.FormsCookieName);
+                        //FormsAuthentication.SetAuthCookie(UserName.Text.ToString(), IsPersistant.Checked);
+
+                        App_Code.CookieService.Authenticate(UserName.Text.ToString(), Password.Text.ToString(), IsPersistant.Checked);
+
+                        App_Code.CookieService.SetAccountCookie("User");
+
+                        MembershipUser user = Membership.GetUser(UserName.Text);
+
+                        if (Roles.IsUserInRole(user.UserName, "Administrators"))
+                        {
+                            Response.Redirect("/Administration/AdministratorMenu" + "?IsLogIn=true");
+                        }
+
+                        if (Roles.IsUserInRole(user.UserName, "Editors"))
+                        {
+                            Response.Redirect("/Administration/AdministerContent" + "?IsLogIn=true");
+                        }
+                        else
+                        {
+                            if (Currentpath == "/default.aspx")
+                            { Response.Redirect("/Home" + "?IsLogIn=true"); }
+                            else
+                            { Response.Redirect(Currentpath + "?IsLogIn=true"); }
+
+
+                        }
+
+                    }
+
+                    else
+                    {
+                        //UserNot validdated
+                        App_Code.NotificationService.SendNotification("LogInAuthenticationInvalid", "There was an error logging in.  Please try again", "alert", "4000");
+
+                    }
+
+                }
+
+                catch (Exception ex)
+                {
+                    //There was an error in validating login
+                    App_Code.NotificationService.SendNotification("LogInAuthenticationError", ex.Message, "error", "4000");
+                }
+
+            }
+
+            else
+            {
+                //Page not valid error
+                App_Code.NotificationService.SendNotification("LogInValidationError", "Please complete the required fields", "error", "4000");
+            }
+
+        }
+
+        protected void valDateRange_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime minDate = DateTime.Parse("1000/12/28");
+            DateTime maxDate = DateTime.Parse("9999/12/28");
+            DateTime dt;
+
+            args.IsValid = (DateTime.TryParse(args.Value, out dt)
+                            && dt <= maxDate
+                            && dt >= minDate);
+        }
+
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (ddlDuration.SelectedValue == "0")
+            {
+                args.IsValid = false;
+                //ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "DDLInvalid", "DDLRequired("+"Country"+");", true);
+            }
+
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+
+        protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (BlockTime.SelectedItem.Value == "0")
+            {
+                args.IsValid = false;
+                //ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "DDLInvalid", "DDLRequired("+"Country"+");", true);
+            }
+
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+
+        protected void GetWordOfDay()
+        {
+            wordofday MyWord = new wordofday();
+
+            if (object.Equals(Session["WordOfDay"], null))
+            {
+                int WODCount = App_Code.WordOfTheDayService.GetCount();
+
+                int WODMax = WODCount + 1;
+
+                int rand = App_Code.RALTService.GetRandomNumber(1, WODMax);
+
+                MyWord = App_Code.WordOfTheDayService.GetObject(rand);
+
+                Session["WordOfDay"] = MyWord;
+            }
+            else
+            {
+                MyWord = (wordofday)Session["WordOfDay"];
+            }
+
+            WordOfDay.Text = MyWord.spanish_word;
+            PartOfSpeach.Text = MyWord.part_of_speech;
+            EnglishTranslation.Text = MyWord.english_translation;
+            SpanishSentence.Text = MyWord.spanish_sentence;
+            EnglishSentence.Text = MyWord.english_sentence;
+        }
+
+        protected void GetArticleOfDay()
+        {
+            content MyArticle = new content();
+
+            if (object.Equals(Session["ArticleOfDay"], null))
+            {
+                List<int> MyList = App_Code.ContentService.GetContentIDList("EN");
+
+                int AODCount = MyList.Count();
+
+                int AODMax = AODCount;
+
+                int rand = App_Code.RALTService.GetRandomNumber(0, AODMax);
+
+                int MyContentID = MyList[rand];
+
+                MyArticle = App_Code.ContentService.GetRandomContent(MyContentID, "EN");
+
+                Session["ArticleOfDay"] = MyArticle;
+            }
+            else
+            {
+                MyArticle = (content)Session["ArticleOfDay"];
+            }
+
+            contentmarkup LatestVersion = new contentmarkup();
+
+            LatestVersion = MyArticle.contentmarkups.FirstOrDefault<contentmarkup>();
+
+      
+            ArticleImage.ImageUrl = MyArticle.image_url;
+            ArticleTitleLink.Text = MyArticle.title.Replace("-", " ");
+            ArticleImageLink.NavigateUrl = "/" + MyArticle.category + "/" + "EN" + "/" + MyArticle.title;
+            ArticleTitleLink.NavigateUrl = "/" + MyArticle.category + "/" + "EN" + "/" + MyArticle.title;
+        }
+
+    }
+
+}

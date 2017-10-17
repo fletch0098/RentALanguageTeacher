@@ -1,0 +1,5 @@
+2014-02-15 14:01:21,700 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId**********************************************************************************************************
+2014-02-15 14:01:21,739 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId() - Start
+2014-02-15 14:01:21,742 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId() - The item for MemberID 84 returned 0 results
+2014-02-15 14:01:21,743 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId() - Finish
+2014-02-15 14:01:21,743 [10] DEBUG RentALanguageTeacher.UserService [(null)]– GetUserByMemberId**********************************************************************************************************

@@ -1,0 +1,22 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/RentALanguageTeacher.Master" AutoEventWireup="true" CodeBehind="captcha.aspx.cs" Inherits="RentALanguageTeacher.captcha" %>
+<%@ Register TagPrefix="recaptcha" Namespace="Recaptcha" Assembly="Recaptcha" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+
+
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="cpMainContent" runat="server">
+
+     <asp:Label Visible=false ID="lblResult" runat="server" />
+    <recaptcha:RecaptchaControl
+    ID="recaptcha"
+    runat="server"
+    PublicKey="6LcQUu0SAAAAAF5RU3hK3Zt5XABzaP8VbIhuhx1J"
+    PrivateKey="6LcQUu0SAAAAABlUGn4BH7n_5afURsgO72z-bRgv"
+    />
+
+    <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+
+</asp:Content>

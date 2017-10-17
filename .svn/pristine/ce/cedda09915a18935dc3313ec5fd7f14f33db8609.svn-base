@@ -1,0 +1,65 @@
+﻿<%@ Page Title="Content Links" Language="C#" MasterPageFile="~/MasterPages/RentALanguageTeacher.Master" AutoEventWireup="true" CodeBehind="ContentLinks.aspx.cs" Inherits="RentALanguageTeacher.Pages.Content.ContentLinks" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+
+    <style>
+
+        .BubbleLink:hover 
+        {
+            border-color:#edac1c;
+        }
+
+        .FullStoryHover 
+        {
+            color:#edac1c;
+        }
+        .FullStoryLink 
+        {
+            color:#1ee0e3;
+        }
+
+
+
+    </style>
+
+    <script>
+        //$(".BubbleLink").hover(
+        //  function () {
+        //      $(".FullStory").removeClass("FullStoryLink");
+        //      $(".FullStory").addClass("FullStoryHover");
+        //  }, function () {
+        //      $(".FullStory").removeClass("FullStoryHover");
+        //      $(".FullStory").addClass("FullStoryLink");
+        //  }
+        //);
+
+</script>
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="cpMainContent" runat="server">
+
+        <div class="ContentSection">
+        
+        <div class="ContentSectionHeader"><div class="ContentSectionHeaderText"><%: Page.Title %></div></div>
+        
+        <div class="ContentSectionContent">
+
+            <div class="Content">
+
+                <div class="ContentTitleImage"><a href="/Home"><img src="/Images/LogoBlack.png" class="center" /></a></div>
+                
+                <div class="ContentTitletext">
+
+                    <p>Below you can browse recent articles from Rent A Language Teacher. Find out more about Rent A Language Teacher and language learning.</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="Links" runat="server"></div>
+</asp:Content>

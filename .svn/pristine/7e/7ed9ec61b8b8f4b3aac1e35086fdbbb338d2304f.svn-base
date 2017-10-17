@@ -1,0 +1,324 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.Security;
+using System.Web.Services;
+using RentALanguageTeacher.App_Code;
+
+namespace RentALanguageTeacher
+{
+    public partial class Questionnaire : System.Web.UI.Page
+    {
+        MembershipUser LoggedInMembershipUser;
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            //Get QS Values if any
+
+            //Set up Page Authorization if any
+            if (!Page.IsPostBack)
+            {
+                if (Country2.SelectedValue == "")
+                {
+                    List<RentALanguageTeacher.App_Code.Time.CountryDDL> list = new List<RentALanguageTeacher.App_Code.Time.CountryDDL>();
+
+                    list = TimeService.FillCountryDDL();
+
+
+
+                    RentALanguageTeacher.App_Code.Time.CountryDDL DefaultCountry = new RentALanguageTeacher.App_Code.Time.CountryDDL();
+
+                    DefaultCountry.CountryCode = "Default";
+                    DefaultCountry.CountryName = "Select your country";
+
+                    list.Add(DefaultCountry);
+
+                    Country2.DataSource = list; // <-- Get your data from somewhere.
+                    Country2.DataValueField = "CountryCode";
+                    Country2.DataTextField = "CountryName";
+                    Country2.DataBind();
+                    Country2.SelectedValue = "Default";
+                    TimeZone.Enabled = false;
+
+                    //Country2.SelectedValue = myValue.ToString();
+                }
+
+                if (Nationality.SelectedValue == "")
+                {
+                    List<RentALanguageTeacher.App_Code.Time.CountryDDL> list = new List<RentALanguageTeacher.App_Code.Time.CountryDDL>();
+
+                    list = TimeService.FillCountryDDL();
+
+
+
+                    RentALanguageTeacher.App_Code.Time.CountryDDL DefaultCountry = new RentALanguageTeacher.App_Code.Time.CountryDDL();
+
+                    DefaultCountry.CountryCode = "Default";
+                    DefaultCountry.CountryName = "Select your country";
+
+                    list.Add(DefaultCountry);
+
+                    Nationality.DataSource = list; // <-- Get your data from somewhere.
+                    Nationality.DataValueField = "CountryCode";
+                    Nationality.DataTextField = "CountryName";
+                    Nationality.DataBind();
+                    Nationality.SelectedValue = "Default";
+
+
+                    //Country2.SelectedValue = myValue.ToString();
+                }
+
+                LoggedInMembershipUser = Membership.GetUser();
+
+                if (LoggedInMembershipUser == null)
+                {
+                    App_Code.NotificationService.SendNotification("UserNotLoggedIn", "Please log in to continue", "information", "4000");
+                    //ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "LogInAlert", "Notification('" + "Please log in" + "','" + "information" + "');", true);
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "LogIn", "OpenSlider();", true);
+                    // ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "LogInTab", "ChangeTabsLogIn();", true);
+                }
+
+                else
+                {
+                    UserName.Text = LoggedInMembershipUser.UserName.ToString();
+                    Email.Text = LoggedInMembershipUser.Email.ToString();
+
+                    //Retrieve data or save data
+                    // ToInt32 can throw FormatException or OverflowException. 
+                    int UserId = -1;
+                    try
+                    {
+                        UserId = Convert.ToInt32(LoggedInMembershipUser.ProviderUserKey.ToString());
+                        user UserData = UserService.GetUserByMemberId(UserId);
+
+                        if (!object.ReferenceEquals(UserData, null))
+                        {
+                            FirstName.Text = UserData.first_name;
+                            Age.SelectedIndex = (int)UserData.age;
+                            LastName.Text = UserData.last_name;
+                            Nationality.SelectedValue = UserData.nationality;
+
+                            location MyLocation = LocationService.GetUserById(UserData.user_id);
+
+                            if (!object.ReferenceEquals(MyLocation, null))
+                            {
+                                Address1.Text = MyLocation.line_1;
+                                Address2.Text = MyLocation.line_2;
+                                City.Text = MyLocation.city;
+                                State.Text = MyLocation.state;
+                                PostalCode.Text = MyLocation.postal_code;
+                                Country2.SelectedValue = MyLocation.country_code_iso2;
+
+                                List<RentALanguageTeacher.App_Code.Time.TimeZoneDDL> list = new List<RentALanguageTeacher.App_Code.Time.TimeZoneDDL>();
+
+                                list = TimeService.FillTimeZoneDDL(Country2.SelectedValue.ToString());
+
+                                RentALanguageTeacher.App_Code.Time.TimeZoneDDL DefaultCountry = new RentALanguageTeacher.App_Code.Time.TimeZoneDDL();
+
+                                DefaultCountry.ZoneId = 0;
+                                DefaultCountry.ZoneName = "Select your country";
+
+                                list.Add(DefaultCountry);
+
+                                TimeZone.DataSource = list; // <-- Get your data from somewhere.
+                                TimeZone.DataValueField = "ZoneId";
+                                TimeZone.DataTextField = "ZoneName";
+                                TimeZone.DataBind();
+                                TimeZone.SelectedValue = "0";
+                                TimeZone.Enabled = true;
+
+
+                                string ZoneId = Convert.ToString(MyLocation.zone_id);
+
+                                TimeZone.SelectedValue = ZoneId;
+                                TimeZone.Enabled = true;
+
+
+                            }
+
+
+
+
+                        }
+                    }
+                    catch (FormatException ex)
+                    {
+                        //Console.WriteLine("Input string is not a sequence of digits.");
+                    }
+                    catch (OverflowException ex)
+                    {
+                        //Console.WriteLine("The number cannot fit in an Int32.");
+                    }
+
+
+
+
+                }
+
+
+            }
+        }
+
+        protected void Save_Click(object sender, EventArgs e)
+        {
+            //Validate Page
+             Page.Validate("Questionniare");
+
+             if (Page.IsValid)
+             {
+                 try
+                 {
+
+                     //Get Loggedin User
+                     LoggedInMembershipUser = Membership.GetUser();
+
+                     //Check if loggedin
+                     if (LoggedInMembershipUser == null)
+                     {
+                         //User not logged in, notify and open slider
+                         ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "LogInAlert", "Notification('" + "Please log in to complete this form" + "','" + "information" + "');", true);
+                         ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "LogIn", "OpenSlider();", true);
+                     }
+
+                     else
+                     {
+                         //UserLogged in, procede to save
+
+                         // ToInt32 can throw FormatException or OverflowException. 
+                         int MemberId = -1;
+                         try
+                         {
+                             MemberId = Convert.ToInt32(LoggedInMembershipUser.ProviderUserKey.ToString());
+                         }
+                         catch (FormatException ex)
+                         {
+                             //Console.WriteLine("Input string is not a sequence of digits.");
+                         }
+                         catch (OverflowException ex)
+                         {
+                             //Console.WriteLine("The number cannot fit in an Int32.");
+                         }
+                 
+
+                          //Check for exsisting User
+                          
+                             user RaltUser = UserService.GetUserByMemberId(MemberId);
+                             user MyUser = new user();
+
+                             if (!object.ReferenceEquals(RaltUser, null))
+                             {
+                                 MyUser.user_id = RaltUser.user_id;
+  
+                             }
+                             else
+                             {
+                                 
+                             }
+
+                             MyUser.first_name = FirstName.Text.ToString();
+                             MyUser.member_id = MemberId;
+                             MyUser.age = Age.SelectedIndex;
+                             MyUser.email = LoggedInMembershipUser.Email;
+                             MyUser.last_name = LastName.Text.ToString();
+                             MyUser.nationality = Nationality.SelectedValue;
+             
+                                 //Save MyUser
+                             int MyUserId = UserService.SaveNewUser(MyUser);
+                             
+
+
+                             location RALTLocation = LocationService.GetUserById(MyUserId);
+                             location MyLocation = new location();
+
+                             if (!object.ReferenceEquals(RALTLocation, null))
+                             {
+                                 MyLocation.location_id = RALTLocation.location_id;
+                             }
+                             else
+                             {
+                                 RALTLocation = new location();
+                             }
+
+
+                             MyLocation.city = City.Text;
+                             MyLocation.country_code_iso2 = Country2.SelectedValue;
+                             MyLocation.line_1 = Address1.Text;
+                             MyLocation.line_2 = Address2.Text;
+                             MyLocation.postal_code = PostalCode.Text;
+                             MyLocation.state = State.Text;
+                             MyLocation.user_id = MyUserId;
+
+
+                             int ZoneID = -1;
+                             try
+                             {
+                                 ZoneID = Convert.ToInt32(TimeZone.SelectedValue);
+                             }
+                             catch (FormatException ex)
+                             {
+                                 //Console.WriteLine("Input string is not a sequence of digits.");
+                             }
+                             catch (OverflowException ex)
+                             {
+                                 //Console.WriteLine("The number cannot fit in an Int32.");
+                             }
+
+                             MyLocation.zone_id = ZoneID;
+
+                             LocationService.SaveObject(MyLocation);
+
+                             Response.Redirect("../Payment/Prices.aspx");
+
+                    }
+                 }
+                 catch
+                 { }
+             }
+
+             else
+             {
+                 //Page invalid, notify user
+             }
+
+        }
+
+
+        protected void Country2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+
+            if (Country2.SelectedValue.ToString() == "Default")
+            {
+                TimeZone.Enabled = false;
+            }
+            else
+            {
+                List<RentALanguageTeacher.App_Code.Time.TimeZoneDDL> list = new List<RentALanguageTeacher.App_Code.Time.TimeZoneDDL>();
+
+                list = TimeService.FillTimeZoneDDL(Country2.SelectedValue.ToString());
+
+                RentALanguageTeacher.App_Code.Time.TimeZoneDDL DefaultCountry = new RentALanguageTeacher.App_Code.Time.TimeZoneDDL();
+
+                DefaultCountry.ZoneId = 0;
+                DefaultCountry.ZoneName = "Select your country";
+
+                list.Add(DefaultCountry);
+
+                TimeZone.DataSource = list; // <-- Get your data from somewhere.
+                TimeZone.DataValueField = "ZoneId";
+                TimeZone.DataTextField = "ZoneName";
+                TimeZone.DataBind();
+                TimeZone.SelectedValue = "0";
+                TimeZone.Enabled = true;
+            }
+
+            
+        }
+       
+     
+
+    }
+}

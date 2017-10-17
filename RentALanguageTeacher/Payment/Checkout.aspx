@@ -1,0 +1,300 @@
+﻿<%@ Page Title="CheckOut" Language="C#" MasterPageFile="~/MasterPages/RentALanguageTeacher.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="RentALanguageTeacher.Payment.Checkout" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    <script>
+
+        function CompleteStep(i) {
+            for (var n = 0; n <= i; n++) {
+                $("ol#Progress li:eq(" + n + ")").removeClass("progtrckr-todo");
+                $("ol#Progress li:eq(" + n + ")").addClass("progtrckr-done");
+            }
+
+
+        };
+
+        function pageLoad() {
+
+            $(function () {
+                $("#accordion").accordion({
+                    heightStyle: "content"
+                });
+            });
+
+        }
+
+        //Stripe.setPublishableKey('pk_test_kRwRJJiz53XS72Du1BLxqpt6');
+        Stripe.setPublishableKey('pk_live_2OEwEty3HmGLFMyB3qCJDGhR');
+
+        jQuery(function ($) {
+            $('#form1').submit(function (event) {
+                var form = $(this);
+
+
+
+                // Disable the submit button to prevent repeated clicks
+                form.find('button').prop('disabled', true);
+
+                // Show the errors on the form
+                form.find('.payment-errors').text("");
+
+                $("#Errors").addClass("Hidden");
+
+                Stripe.card.createToken(form, stripeResponseHandler);
+
+
+
+                // Prevent the form from submitting with the default action
+                return false;
+            });
+        });
+
+        var stripeResponseHandler = function (status, response) {
+            var form = $('#form1');
+
+            if (response.error) {
+                // Show the errors on the form
+                form.find('.payment-errors').text(response.error.message);
+
+                $("#Errors").removeClass("Hidden");
+
+                StickyNotification("There was an error processing your payment, please address the issues below", 'error')
+                form.find('button').prop('disabled', false);
+            } else {
+                // token contains id, last4, and card type
+                var token = response.id;
+                // Insert the token into the form so it gets submitted to the server
+                form.append($('<input type="hidden" name="stripeToken" id="stripeToken" />').val(token));
+
+
+                // and submit
+                form.get(0).submit();
+            }
+        };
+
+        function ClearCC() {
+
+
+        }
+
+    </script>
+
+    
+
+
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="cpMainContent" runat="server">
+
+    <div class="ContentSection">
+
+        <div class="ContentSectionHeader"><div class="ContentSectionHeaderText"><%: Page.Title %></div></div>
+
+        <div class="ContentSectionContent">
+
+            <div class="Content">
+
+                <div class="ContentTitleImage"><img src="../Images/Step3.png" class="center" /></div>
+                
+                <div class="ContentTitletext">
+
+                    <p>You are one step away from connecting with your Spanish teacher. Click buy now and pay with your credit card or paypal. Please save the payment receipt as confirmation. You will receive an email from us within 48 hours confirming your start date and time. Be on Skype at that date and time, and Get Connected!  </p>
+                       <p> *Send us an email at info@rentalanguageteacher.com if you need to change your start date/time, or for other payment options.</p>
+                
+                </div>
+
+                <ol id="Progress" class="progtrckr" data-progtrckr-steps="5">
+                    <li class="progtrckr-todo">Request Made</li><!--
+                    --><li class="progtrckr-todo">Email Verified</li><!--
+                    --><li class="progtrckr-todo">Email Sent</li><!--
+                    --><li class="progtrckr-todo">Paid</li><!--
+                    --><li class="progtrckr-todo">First Class</li>
+                </ol>
+            
+            </div>
+
+        </div>
+        
+    </div>
+
+    <div class="ContentSection">
+
+        <div class="ContentSectionHeader"><div class="ContentSectionHeaderText">Account Information</div></div>
+
+        <div class="ContentSectionContent" id="AccountInfo">
+
+            <div class="Content">
+
+                <div class="formfield-container long">
+                    <asp:Label ID="lblUserName" CssClass="RALT" runat="server" AssociatedControlID="UserName2" Text="UserName"></asp:Label><br />
+                    <asp:TextBox ID="UserName2" cssclass="RALT long" Enabled="false" runat="server"></asp:TextBox>
+                    
+                </div>
+
+                <div class="formfield-container long">
+                    <asp:Label ID="lblEmail" CssClass="RALT" runat="server" AssociatedControlID="Email" Text="Email"></asp:Label><br />
+                    <asp:TextBox ID="Email" cssclass="RALT long" Enabled="false" runat="server"></asp:TextBox>
+                    
+                </div>
+
+            </div>
+
+        </div>    
+
+    </div>
+
+    <div class="ContentSection">
+
+        <div class="ContentSectionHeader"><div class="ContentSectionHeaderText">Shopping Cart Information</div></div>
+
+        <div class="ContentSectionContent">
+
+            <div class="Content">
+
+                <div class="formfield-container long">
+                    <asp:Label ID="lblHours" CssClass="RALT" runat="server" AssociatedControlID="Hours" Text="Hours"></asp:Label><br />
+                    <asp:TextBox ID="Hours" cssclass="RALT long" Enabled="false" runat="server"></asp:TextBox>
+                </div>
+
+                <div class="formfield-container long">
+                    <asp:Label ID="lblPrice" CssClass="RALT" runat="server" AssociatedControlID="Price" Text="Price"></asp:Label><br />
+                    <asp:TextBox ID="Price" cssclass="RALT long" Enabled="false" runat="server"></asp:TextBox>
+                </div>
+                        
+            </div>  
+
+        </div>
+
+    </div>  
+
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+    
+        <div class="ContentSection">
+
+        <div class="ContentSectionHeader"><div class="ContentSectionHeaderText">Payment Options</div></div>
+
+        <div class="ContentSectionContent">
+
+            <div class="Content">
+
+                <div id="accordion">
+
+                    <h3>Pay Securely With You Credit Card</h3>
+
+                    <div>
+                                
+                        <fieldset class="validationGroup"><%-- CreditCard--%>
+                        <legend>CreditCard</legend>
+
+                            
+
+                        <div class="formfield-container " style="width:285px;">
+                            <a href="https://stripe.com/"> <img src="/Images/Stripe.png" style="width:238px;" class="center" /></a> <br /> <br />
+                            <img src="/Images/credit_card_logos_17.gif" style="width:238px;" class="center" />
+                        </div>
+
+                            <div class="formfield-container " style="width:285px;">
+                                Rent A Language Teacher processes all credit cards securely through Stripe.  Stripe is a developer-friendly way to accept payments online and in mobile apps.
+They process billions of dollars a year for thousands of companies of all sizes.
+                        </div>
+
+                            <div class="ui-widget Hidden" id="Errors">
+	                            <div class="ui-state-error ui-corner-all" style="margin-top: 5px; padding: 0 .7em;">
+		                        <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+		                            <span class="payment-errors"></span>  </p>
+	                            </div>
+                            </div>
+                                                                
+                            <div class="formfield-container long">
+                                <asp:Label ID="lblCardHolderName" CssClass="RALT required" runat="server"  Text="Card Holder Name"></asp:Label><br />
+                                <asp:TextBox ID="CardHolderName" cssclass="RALT long validate[required]" data-stripe="name" runat="server"></asp:TextBox>
+                            </div>
+
+                            <div class="formfield-container long">
+                                <asp:Label ID="lblCardNumber" CssClass="RALT required" runat="server"  Text="Card Number"></asp:Label><br />
+                                <asp:TextBox ID="CardNumber" cssclass="RALT long validate[required]" data-stripe="number" runat="server"></asp:TextBox>
+                            </div>
+                
+                            <div class="formfield-container short">
+                                <asp:Label ID="lblCVC" CssClass="RALT required" runat="server"  Text="CVC"></asp:Label><br />
+                                <asp:TextBox ID="CVC" cssclass="RALT short validate[required]" data-stripe="cvc" runat="server"></asp:TextBox>
+                            </div>
+
+                            <div class="formfield-container short">
+                                <asp:Label ID="lblExpirationMonth" CssClass="RALT required" runat="server"  Text="Expiration (MM)"></asp:Label><br />
+                                <asp:TextBox ID="EXPMonth" cssclass="RALT short validate[required]" data-stripe="exp-month" runat="server"></asp:TextBox>
+                            </div>
+
+                            <div class="formfield-container short">
+                                <asp:Label ID="lblExpirationYear" CssClass="RALT required" runat="server"  Text="Expiration (YYYY)"></asp:Label><br />
+                               <asp:TextBox ID="EXPYear" cssclass="RALT short validate[required]" data-stripe="exp-year" runat="server"></asp:TextBox>
+                            </div>
+
+                            <div style="float:left; width:100%; margin-top:10px;"> 
+                            
+                                <div style="width:192px;" class="center">
+
+                                    <div style="float:left;">
+
+                                         <button id="BtnSubmit" type="submit" Class="button causesValidation" runat="server">Submit Payment</button>
+                                           
+                                    </div>
+                        
+                                    <div style="float:left;">
+                                    
+                                        <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+                                            <ProgressTemplate>
+                                                <div class="PleaseWait">
+                                              
+                                                </div>
+                                            </ProgressTemplate>
+                                        </asp:UpdateProgress>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+                  
+                    </div>
+
+                    <h3>Pay with PayPal</h3>
+
+                    <div>
+
+                        <div class="formfield-container long">
+                        </div>
+
+                        <div class="formfield-container long">
+                        </div>
+
+                        <div class="formfield-container long">
+                              PayPal is the faster, safer way to pay and get paid online, via a mobile device and in store.    
+                        </div>
+
+                        <div class="formfield-container short">
+                         
+                            <asp:HyperLink ID="HLPaypal" runat="server"><img alt="buy now with PayPal" border="0" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_buynow_pp_142x27.png" /></asp:HyperLink>
+                               
+                        </div>
+                            
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>  
+
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+</asp:Content>

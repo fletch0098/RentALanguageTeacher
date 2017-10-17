@@ -1,0 +1,171 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.Security;
+using Stripe;
+
+namespace RentALanguageTeacher.Payment
+{
+    public partial class Checkout : System.Web.UI.Page
+    {
+
+        //Public QS Variables
+        public string ItemPrice;
+        public string UserName;
+        public string UserId;
+        public string Item;
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+            //Get Querystring Values
+            if (string.IsNullOrEmpty(Request.QueryString["Item"]) || string.IsNullOrEmpty(Request.QueryString["UserID"]) || string.IsNullOrEmpty(Request.QueryString["UserName"]) || string.IsNullOrEmpty(Request.QueryString["Price"]))
+            {
+                //QueryString null, Redirect USer
+                Response.Redirect("~/Home?MSG=CheckOutError");
+            }
+           
+            else
+            {
+                //Retrieve QS values
+                ItemPrice = Request.QueryString["Price"];
+                Item = Request.QueryString["Item"];
+                UserName = Request.QueryString["UserName"];
+                UserId = Request.QueryString["UserID"];
+            }
+
+            //Check for postback
+            if (!Page.IsPostBack)
+            {
+           
+                //Load Data to form
+                try
+                {
+
+                    //Get the logged in User if any
+                    MembershipUser LoggedInMembershipUser;
+                    LoggedInMembershipUser = Membership.GetUser();
+
+                    //Check if there is a logged in User
+                    if (LoggedInMembershipUser != null)
+                    {
+
+                        //Membership Data
+                        UserName2.Text = LoggedInMembershipUser.UserName.ToString();
+                        Email.Text = LoggedInMembershipUser.Email.ToString();
+                        Price.Text = "$" + ItemPrice;
+                        Hours.Text = Item;
+
+                        //Set link
+                        HLPaypal.NavigateUrl = "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=J9T4RVL3P6SRE&item_name=" + Item +
+                            "&amount=" + ItemPrice + "&on1=RALTUserID&os1=" + UserId + "&on0=RALTUserName&os0=" + UserName;
+
+                        //RALT UserData
+                        user UserData = new user();
+                        UserData = UserService.GetUserByMemberId(Convert.ToInt32(LoggedInMembershipUser.ProviderUserKey.ToString()));
+
+                        //Show User Status
+                        if (UserData.account_status == "Request Made")
+                        {
+                            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "CompleteVerify", "CompleteStep(" + '0' + ");", true);
+                        }
+                        else if (UserData.account_status == "Verified")
+                        {
+                            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "CompleteVerify", "CompleteStep(" + '1' + ");", true);
+                        }
+                        else if (UserData.account_status == "Email Sent")
+                        {
+                            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "CompleteVerify", "CompleteStep(" + '2' + ");", true);
+                        }
+                        else if (UserData.account_status == "Paid")
+                        {
+                            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "CompleteVerify", "CompleteStep(" + '3' + ");", true);
+                        }
+                        else if (UserData.account_status == "First Class")
+                        {
+                            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "CompleteVerify", "CompleteStep(" + '4' + ");", true);
+                        }
+
+                    }
+                }
+                    
+                catch 
+                { 
+                
+
+                
+                }
+                
+            }
+
+            //PostBack
+            else
+            {
+                //Retrieve the StripeToken if any
+                var customerToken = this.Request.Form["stripeToken"];
+
+                //No Token do not proceed
+                if (!object.ReferenceEquals(customerToken, null))
+                {
+                    try
+                    {
+
+                        var myCharge = new StripeChargeCreateOptions();
+
+                        double Price = Convert.ToDouble(ItemPrice);
+
+                        // always set these properties
+                        myCharge.AmountInCents = (int)(Price * 100) ;
+                        myCharge.Currency = "usd";
+
+                        // set this if you want to
+                        myCharge.Description = Request.QueryString["Item"];
+
+                        Dictionary<string, string> dictionary =
+                            new Dictionary<string, string>();
+                        dictionary.Add("RALTUserName", Request.QueryString["UserName"]);
+                        dictionary.Add("RALTUserID", Request.QueryString["UserID"]);
+
+                        myCharge.Metadata = dictionary;
+
+                        // set this property if using a token
+                        myCharge.TokenId = customerToken;
+
+                        // (not required) set this to false if you don't want to capture the charge yet - requires you call capture later
+                        myCharge.Capture = true;
+
+                        var chargeService = new StripeChargeService();
+                        StripeCharge stripeCharge = chargeService.Create(myCharge);
+
+                        //Clear CC details
+                      //  this.Request.Form.Remove("stripeToken");
+
+                        CardHolderName.Text = "";
+                        CardNumber.Text = "";
+                        CVC.Text = "";
+                        EXPMonth.Text = "";
+                        EXPYear.Text = "";
+
+
+                        App_Code.NotificationService.SendNotification("ChargeComplete", "Thank you, your payment is complete.", "success", "3000");
+
+                    }
+
+                    catch (Exception ex)
+                    {
+
+                        App_Code.NotificationService.SendNotification("ChargeError", ex.Message, "error");
+
+                    }
+
+                }
+
+            }
+
+            }
+            
+        }
+    }

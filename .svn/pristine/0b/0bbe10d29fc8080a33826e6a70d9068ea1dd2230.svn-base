@@ -1,0 +1,103 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.Security;
+using System.Web.Services;
+using System.Web.UI.WebControls;
+using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
+using RentALanguageTeacher;
+
+namespace RentALanguageTeacher
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            string MSG =Page.RouteData.Values["msg"] as string;
+
+            if (MSG != "")
+            {
+                if (MSG == "PasswordSet")
+                { 
+                    App_Code.NotificationService.SendNotification("PasswordSet","Your password has been set.  Please login to continue.","success","3000");
+                    //OpenSlider
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "LogIn", "OpenSlider('LogIn');", true);
+                    
+                }
+
+                if (MSG == "PasswordSetError")
+                {
+                    App_Code.NotificationService.SendNotification("PasswordSetError", "There was an error validating your account and you were redirected to our home page", "error", "3000");
+
+                }
+                if (MSG == "VerifyError")
+                {
+                    App_Code.NotificationService.SendNotification("VerifyError", "There was an error validating your account and you were redirected to our home page", "error", "3000");
+
+                }
+
+                if (MSG == "AccountSuccess")
+                {
+                    App_Code.NotificationService.SendNotification("AccountSuccess", "Your Account was created successfully, but you are not done yet. We ask that you confirm your email before we process your request. Please monitor your email for further instructions.", "success");
+
+                }
+                
+            }
+
+            GetWordOfDay();
+
+        }
+
+        protected void GetWordOfDay()
+        {
+            wordofday MyWord = new wordofday();
+
+            if (object.Equals(Session["WordOfDay"], null))
+            {
+                int WODCount = App_Code.WordOfTheDayService.GetCount();
+
+                int WODMax = WODCount + 1;
+
+                int rand = App_Code.RALTService.GetRandomNumber(1, WODMax);
+
+                MyWord = App_Code.WordOfTheDayService.GetObject(rand);
+
+                Session["WordOfDay"] = MyWord;
+            }
+            else
+            {
+                MyWord = (wordofday)Session["WordOfDay"];
+            }
+
+            WordOfDay.Text = MyWord.spanish_word;
+            PartOfSpeach.Text = MyWord.part_of_speech;
+            EnglishTranslation.Text = MyWord.english_translation;
+            SpanishSentence.Text = MyWord.spanish_sentence;
+            EnglishSentence.Text = MyWord.english_sentence;
+        }
+
+        //[WebMethod]
+        //public static string Register(string UserName, string Password, string Email)
+        //{
+        //    string newuseroutput;
+
+        //    try
+        //    {
+        //        newuseroutput = App_Code.MemberShipService.CreateUser(UserName, Password, Email);
+        //        return newuseroutput;
+        //    }
+
+        //    catch (Exception e)
+        //    {
+        //        return e.Message;
+        //    }
+
+
+        //}
+        // }
+    }
+}

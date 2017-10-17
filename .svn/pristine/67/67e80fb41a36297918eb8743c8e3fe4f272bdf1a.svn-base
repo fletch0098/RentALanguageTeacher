@@ -1,0 +1,122 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace RentALanguageTeacher.Pages.Content
+{
+    public partial class ContentLinks : System.Web.UI.Page
+    {
+
+        protected void Page_Init(object sender, EventArgs e)
+        {
+
+            //First Time Load
+            if (!Page.IsPostBack)
+            {
+
+                try
+                {
+
+                    //Get the ContentName from URL Data (psuedo queryString)
+                    string Category = Page.RouteData.Values["Category"] as string;
+                    string Language = Page.RouteData.Values["Language"] as string;
+
+                    //If content variables are correct
+                    if (Category != null && Language != null)
+                    {
+
+                        //Set the page Title
+                        Page.Header.Title = Category + " Links";
+
+                        List<contentmarkup> MyLinks = App_Code.ContentService.GetLinks(Language, Category);
+
+                        foreach (contentmarkup Link in MyLinks)
+                        {
+
+                            //string URL = "/Home";
+                            //string Title = "My-Title";
+                            //string ImageSource = "/Images/logoblack.png";
+                            //string Description = "This is a long description about this article. This is a long description about this article. This is a long description about this article. This is a long description about this article. This is a long description about this article.";
+                            //string Author = "Brian Fletcher";
+                            //string PublishDate = "Thursday, June 7th 1984";
+
+                            string URL = "/" + Link.content.category + "/" + Link.language + "/" + Link.content.title;
+                            string Title = Link.content.title.Replace("-", " "); ;
+                            string ImageSource = Link.content.image_url;
+                            string Description = Link.description;
+                            string Author = Link.content.user.first_name + " " + Link.content.user.last_name;
+                            string PublishDate = Link.time_stamp.ToLongDateString();
+
+                            LiteralControl ContentLink = new LiteralControl();
+
+                            ContentLink.Text = @"<a class=""BubbleLink"" id=""MyContentLinkLink"" href=""" + URL + @""">
+
+                                    <div class=""ContentSection BubbleLink"">
+        
+                                    <div class=""ContentSectionHeader""><div class=""ContentSectionHeaderText"" id=""MyContentLinkTitle"">" + Title + @"</div></div>
+        
+                                    <div class=""ContentSectionContent"">
+
+                                        <div class=""Content"">
+
+                                            <div class=""ContentTitleImage""><img id=""MyContentLinkImage"" src=""" + ImageSource + @""" class=""center"" /></div>
+                        
+                                            <div style=""float:left;width:400px;"">
+                                            <div class=""ContentTitleText"">
+
+                                                    <div id=""MyContentLinkDescription"">" + Description + @"</div>
+                           
+                                                    <span id=""FullStory"" class=""FullStoryLink"" style=""font-size:1.3em;font-weight:bold;"">>> Full Story...</span>
+                                                <br />
+                                                <br />
+                                            </div>
+
+                                            <div class=""LinkContentAuthor"">
+
+                                                    <span>Author: </span><span  style=""font-weight:400;"" id=""MyContentLinkAuthor"">" + Author + @"</span><br />
+                                                    <span>Published On: </span><span  style=""font-weight:400;"" id=""MyContentLinkPublishDate"">" + PublishDate + @"</span>
+
+                                                </div></div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                </a>";
+
+
+                            this.Links.Controls.Add(ContentLink);
+                        }
+
+                        
+                    }
+                    else
+                    {
+                        throw new Exception("There was an error gathering page data.  Please try again");
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+
+                    App_Code.NotificationService.SendNotification("LinksError","There was an error Loading this page.  Please try again","error");
+
+                }
+            }
+        
+        }
+        
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+            
+
+       }
+    }
+}

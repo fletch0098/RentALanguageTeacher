@@ -1,0 +1,250 @@
+﻿function pageLoad() {
+    $(function () {
+        //Format spinner to a list
+        $(document).ready(function () {
+            $.widget("ui.formatSpinner", $.ui.spinner, {
+                options: {
+                },
+                _parse: function (value) {
+                    if (typeof value === "string") {
+                        return this.options.values.indexOf(value);
+                    }
+                    return value;
+                },
+                _format: function (value) {
+                    //wrap around
+                    if (value < 0) {
+                        value = this.options.count - 1;
+                    }
+                    if (value > this.options.count - 1) {
+                        value = 0;
+                    }
+                    var format = this.options.values[value];
+                    return format;
+                },
+            })
+        });
+
+        //paper type spinner
+        var arrPaperTypes = ["Week", "Month", "Year"];
+
+        $(document).ready(function () {
+            $("#SpinnerPeriod").formatSpinner({
+                values: arrPaperTypes,
+                count: arrPaperTypes.length
+            });
+        });
+
+        $(function () {
+            
+ 
+        });
+        $(document).ready(function () {
+
+            $('#FrequencySlider').slider();
+            $("#StartingDate").datepicker({
+                inline: true
+            });
+            $("#StartingDate").datepicker("option", "dateFormat", "yy-mm-dd");
+
+        });
+
+        $(document).ready(function () {
+            $("#FrequencySlider").slider({
+                range: "min",
+                value: 7,
+                min: 1,
+                max: 50,
+                slide: function (event, ui) {
+                    $("#FrequencyValue").val(ui.value);
+                }
+            });
+        });
+
+        $(function () {
+            $("#FrequencySpinner").spinner({
+                spin: function (event, ui) {
+                    if (ui.value > 50) {
+                        $(this).spinner("value", 1);
+                        return false;
+                    } else if (ui.value < 1) {
+                        $(this).spinner("value", 50);
+                        return false;
+                    }
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $("#LevelSlider").slider({
+                range: "min",
+                value: 0,
+                min: 1,
+                max: 4,
+                slide: function (event, ui) {
+
+                    if (ui.value == 1) {
+                        $("#LevelValue").val("Total Beginner - I need a teacher that can speak some English");
+                        $('#SpanishLevel').val("1");
+                    };
+                    if (ui.value == 2) {
+                        $("#LevelValue").val("Beginner - I have learnt Spanish before, but not much");
+                        $('#SpanishLevel').val("2");
+                    };
+                    if (ui.value == 3) {
+                        $("#LevelValue").val("Intermediate - I can hold a conversation in Spanish");
+                        $('#SpanishLevel').val("3");
+                    };
+                    if (ui.value == 4) {
+                        $("#LevelValue").val("Advanced - I speak fluently in Spanish");
+                        $('#SpanishLevel').val("4");
+                    };
+
+
+                }
+            });
+        });
+
+        $(function () {
+            $(document).tooltip();
+        });
+
+        $("#tabs").tabs();
+
+        $(document).ready(function () {
+
+            $('#LevelSlider').labeledslider({ max: 3, tickInterval: 1 });
+
+        });
+    });
+
+    //var manager = Sys.WebForms.PageRequestManager.getInstance();
+    //manager.add_endRequest(endRequest);
+
+
+}
+
+function BindRequestForm() {
+
+    $(function () {
+        //Format spinner to a list
+        $(document).ready(function () {
+            $.widget("ui.formatSpinner", $.ui.spinner, {
+                options: {
+                },
+                _parse: function (value) {
+                    if (typeof value === "string") {
+                        return this.options.values.indexOf(value);
+                    }
+                    return value;
+                },
+                _format: function (value) {
+                    //wrap around
+                    if (value < 0) {
+                        value = this.options.count - 1;
+                    }
+                    if (value > this.options.count - 1) {
+                        value = 0;
+                    }
+                    var format = this.options.values[value];
+                    return format;
+                },
+            })
+        });
+
+        //paper type spinner
+        var arrPaperTypes = ["Week", "Month", "Year"];
+
+        $(document).ready(function () {
+            $("#SpinnerPeriod").formatSpinner({
+                values: arrPaperTypes,
+                count: arrPaperTypes.length
+            });
+        });
+
+        $(function () {
+
+
+        });
+        $(document).ready(function () {
+
+            $('#FrequencySlider').slider();
+            $("#StartingDate").datepicker({
+                inline: true
+            });
+            $("#StartingDate").datepicker("option", "dateFormat", "yy-mm-dd");
+
+        });
+
+        $(document).ready(function () {
+            $("#FrequencySlider").slider({
+                range: "min",
+                value: 7,
+                min: 1,
+                max: 50,
+                slide: function (event, ui) {
+                    $("#FrequencyValue").val(ui.value);
+                }
+            });
+        });
+
+        $(function () {
+            $("#FrequencySpinner").spinner({
+                spin: function (event, ui) {
+                    if (ui.value > 50) {
+                        $(this).spinner("value", 1);
+                        return false;
+                    } else if (ui.value < 1) {
+                        $(this).spinner("value", 50);
+                        return false;
+                    }
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $("#LevelSlider").slider({
+                range: "min",
+                value: 0,
+                min: 1,
+                max: 4,
+                slide: function (event, ui) {
+
+                    if (ui.value == 1) {
+                        $("#LevelValue").val("Total Beginner - I need a teacher that can speak some English");
+                        $('#SpanishLevel').val("1");
+                    };
+                    if (ui.value == 2) {
+                        $("#LevelValue").val("Beginner - I have learnt Spanish before, but not much");
+                        $('#SpanishLevel').val("2");
+                    };
+                    if (ui.value == 3) {
+                        $("#LevelValue").val("Intermediate - I can hold a conversation in Spanish");
+                        $('#SpanishLevel').val("3");
+                    };
+                    if (ui.value == 4) {
+                        $("#LevelValue").val("Advanced - I speak fluently in Spanish");
+                        $('#SpanishLevel').val("4");
+                    };
+
+
+                }
+            });
+        });
+
+        $(function () {
+            $(document).tooltip();
+        });
+
+        $("#tabs").tabs();
+
+        $(document).ready(function () {
+
+            $('#LevelSlider').labeledslider({ max: 3, tickInterval: 1 });
+
+        });
+    });
+
+
+
+}

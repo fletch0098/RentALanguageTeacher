@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace RentALanguageTeacher.App_Code
+{
+    [Serializable]
+    public class ProfileInfo
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+}

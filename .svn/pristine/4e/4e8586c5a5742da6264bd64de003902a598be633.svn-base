@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Profile;
+
+namespace RentALanguageTeacher.App_Code
+{
+    public class wProfile2 : ProfileBase
+    {
+
+        public ProfileInfo ProfileInfo
+        {
+            get { return (ProfileInfo)GetPropertyValue("ProfileInfo"); }
+        }
+
+        public static wProfile2 GetProfile()
+        {
+            return (wProfile2)HttpContext.Current.Profile;
+        }
+
+        public static wProfile2 GetProfile(string userName)
+        {
+            return (wProfile2)Create(userName);
+        }
+    }
+}

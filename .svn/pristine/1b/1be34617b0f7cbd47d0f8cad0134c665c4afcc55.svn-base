@@ -1,0 +1,196 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Optimization;
+using System.Web.Routing;
+using System.Web.Security;
+using RentALanguageTeacher;
+
+namespace RentALanguageTeacher
+{
+    public class Global : HttpApplication
+    {
+        void Application_Start(object sender, EventArgs e)
+        {
+            // Code that runs on application startup
+            ////BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ////RouteConfig.RegisterRoutes(RouteTable.Routes);
+            registerroute(RouteTable.Routes);
+
+    RegisterBundlers();
+
+        }
+
+        void Application_End(object sender, EventArgs e)
+        {
+            //  Code that runs on application shutdown
+
+        }
+
+        private static void RegisterBundlers() {
+
+
+           //BundleTable.Bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+           //         "~/Scripts/jquery-{version}.js"));
+
+           BundleTable.Bundles.Add(new StyleBundle("~/Styles/css").Include(
+                       "~/Styles/RALT.css"));
+
+	}
+
+
+        void Application_Error(object sender, EventArgs e)
+        {
+            // Code that runs when an unhandled error occurs
+
+        }
+
+        void registerroute(RouteCollection routes)
+        {
+            routes.MapPageRoute(
+                "Home-Route",
+                "Home",
+                "~/Default.aspx"
+                );
+
+            routes.MapPageRoute(
+            "HomeMsg-Route",
+            "Home/{msg}",
+            "~/Default.aspx"
+            );
+            routes.MapPageRoute(
+                "AboutUs-Route",
+                "About-Us",
+                "~/Pages/AboutUs.aspx"
+                );
+            routes.MapPageRoute(
+            "ContactUs-Route",
+            "Contact-Us",
+            "~/Pages/ContactUs.aspx"
+            );
+            routes.MapPageRoute(
+            "FAQ-Route",
+            "Frequently-Asked-Questions",
+            "~/Pages/FAQ.aspx"
+            );
+            routes.MapPageRoute(
+            "FAQQS-Route",
+            "Frequently-Asked-Questions/{faq}",
+            "~/Pages/FAQ.aspx"
+            );
+
+            routes.MapPageRoute(
+            "Prices-Route",
+            "Prices",
+            "~/Payment/Prices.aspx"
+            );
+            routes.MapPageRoute(
+            "PricesMSG-Route",
+            "Prices/{msg}",
+            "~/Payment/Prices.aspx"
+            );
+
+            routes.MapPageRoute(
+          "Veryify-Route",
+          "Verify/{Verify}",
+          "~/Account/Verify.aspx"
+          );
+
+            //AccountSetUp
+            routes.MapPageRoute(
+            "AccountSetUp-Route",
+            "AccountSetup",
+            "~/Account/AccountSetUp.aspx"
+            );
+
+            routes.MapPageRoute(
+            "AccountSetUpQS-Route",
+            "AccountSetUps/{Account}",
+            "~/Account/AccountSetup.aspx"
+            );
+
+            //CheckOut
+            routes.MapPageRoute(
+            "CheckOut-Route",
+            "Checkout",
+            "~/Payment/Checkout.aspx"
+            );
+
+            //Error404
+            routes.MapPageRoute(
+            "Error404-Route",
+            "Error404",
+            "~/ErrorPages/error404.aspx"
+            );
+
+            //ErrorOther
+            routes.MapPageRoute(
+            "OtherErrors-Route",
+            "OtherError",
+            "~/ErrorPages/OtherErrors.aspx"
+            );
+
+            //PasswordReset
+            routes.MapPageRoute(
+            "PasswordResetQS-Route",
+            "PasswordReset/{Password}",
+            "~/Account/PasswordReset.aspx"
+            );
+
+            //RetrieveAccount
+            routes.MapPageRoute(
+            "RetrieveAccount-Route",
+            "RetrieveAccount",
+            "~/Account/RetrieveAccount.aspx"
+            );
+
+            //TermsOfService
+            routes.MapPageRoute(
+            "TOS-Route",
+            "Terms-Of-Service",
+            "~/Pages/TermsOfService.aspx"
+            );
+
+            //PrivacyPolicy
+            routes.MapPageRoute(
+            "PP-Route",
+            "Privacy-Policy",
+            "~/Pages/PrivacyPolicy.aspx"
+            );
+
+            //AdministerStudent
+            routes.MapPageRoute(
+            "AdministerStudent-Route",
+            "Administration/AdministerStudent/{Student}",
+            "~/Pages/Administrator/AdministerStudent.aspx"
+            );
+
+            //AdministerStudents
+            routes.MapPageRoute(
+            "AdministerStudents-Route",
+            "Administration/ViewStudents",
+            "~/Pages/Administrator/ViewStudents.aspx"
+            );
+
+            //StudentStatus
+            routes.MapPageRoute(
+            "StudentStatus-Route",
+            "StudentStatus",
+            "~/Pages/Account/StudentStatus.aspx"
+            );
+
+            //Tips 
+            routes.MapPageRoute(
+            "Tips-Route",
+            "Articles/Tips-For-Learning-Spanish-Over-Skype",
+            "~/Pages/articles/SkypeTips.aspx"
+            );
+
+           // routes.MapPageRoute("Route1", "Pages/{page}.aspx", "~/404.aspx");
+            //routes.MapPageRoute("Route2", "Pages/{folder}/{page}.aspx", "~/404.aspx");
+            //routes.MapPageRoute("Route3", "{page}", "~/404.aspx");
+
+        }
+    }
+}

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8e3672996daa4518b4608c6ea4ae1bcd" Name="Diagram1" ZoomLevel="70">
+        <EntityTypeShape EntityType="rentalanguageteacherModel.accountstatu" Width="1.5" PointX="0.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.country" Width="1.5" PointX="6" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.gender" Width="1.5" PointX="0.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.language" Width="1.5" PointX="3.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.my_aspnet_applications" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.my_aspnet_membership" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.my_aspnet_profiles" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.my_aspnet_roles" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.my_aspnet_sessioncleanup" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.my_aspnet_sessions" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.my_aspnet_users" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.my_aspnet_usersinroles" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.questioncategory" Width="1.5" PointX="5.25" PointY="41" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.questiontype" Width="1.5" PointX="5.25" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.timezone" Width="1.5" PointX="8.25" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.weekday" Width="1.5" PointX="3" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.zone" Width="1.5" PointX="6" PointY="35.375" IsExpanded="true" />
+        <AssociationConnector Association="rentalanguageteacherModel.zone_country_code_iso2_country" ManuallyRouted="false" />
+        <AssociationConnector Association="rentalanguageteacherModel.timezone_zone_id_zone" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.user" Width="1.5" PointX="3" PointY="15.875" />
+        <AssociationConnector Association="rentalanguageteacherModel.user_gender_gender" />
+        <AssociationConnector Association="rentalanguageteacherModel.user_member_id_account" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.account" Width="1.5" PointX="6" PointY="17.375" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.answer" Width="1.5" PointX="9.75" PointY="24.5" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.location" Width="1.5" PointX="8.25" PointY="17" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.picture" Width="1.5" PointX="5.25" PointY="24.5" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.question" Width="1.5" PointX="7.5" PointY="24.125" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.questionnaire" Width="1.5" PointX="12" PointY="20.5" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.quickregistration" Width="1.5" PointX="5.25" PointY="13.25" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.review" Width="1.5" PointX="5.25" PointY="32.375" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.student" Width="1.5" PointX="5.25" PointY="27.75" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.teacher" Width="1.5" PointX="5.25" PointY="30" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.timeslot" Width="1.5" PointX="5.25" PointY="21.25" />
+        <AssociationConnector Association="rentalanguageteacherModel.account_account_status_accountstatus" />
+        <AssociationConnector Association="rentalanguageteacherModel.account_language_id_language" />
+        <AssociationConnector Association="rentalanguageteacherModel.answer_picture_id_picture" />
+        <AssociationConnector Association="rentalanguageteacherModel.answer_question_id_question" />
+        <AssociationConnector Association="rentalanguageteacherModel.questionnaire_answer_id_answer" />
+        <AssociationConnector Association="rentalanguageteacherModel.location_country_code_iso2_country" />
+        <AssociationConnector Association="rentalanguageteacherModel.location_user_id_user" />
+        <AssociationConnector Association="rentalanguageteacherModel.location_zone_id_zone" />
+        <AssociationConnector Association="rentalanguageteacherModel.picture_user_id_user" />
+        <AssociationConnector Association="rentalanguageteacherModel.question_picture_id_picture" />
+        <AssociationConnector Association="rentalanguageteacherModel.question_question_category_id_questioncategory" />
+        <AssociationConnector Association="rentalanguageteacherModel.question_question_type_questiontype" />
+        <AssociationConnector Association="rentalanguageteacherModel.questionnaire_question_id_question" />
+        <AssociationConnector Association="rentalanguageteacherModel.questionnaire_user_id_user" />
+        <AssociationConnector Association="rentalanguageteacherModel.quick_regestration_user_id_user" />
+        <AssociationConnector Association="rentalanguageteacherModel.review_reviewee_user_id_user" />
+        <AssociationConnector Association="rentalanguageteacherModel.review_reviewer_user_id_user" />
+        <AssociationConnector Association="rentalanguageteacherModel.student_user_id_user" />
+        <AssociationConnector Association="rentalanguageteacherModel.teacher_user_id_user" />
+        <AssociationConnector Association="rentalanguageteacherModel.timeslot_day_weekday" />
+        <AssociationConnector Association="rentalanguageteacherModel.timeslot_user_id_user" />
+        <AssociationConnector Association="rentalanguageteacherModel.user_account_status_accountstatus" />
+        <AssociationConnector Association="rentalanguageteacherModel.user_member_id_aspMembership" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.payment" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <AssociationConnector Association="rentalanguageteacherModel.payment_user_id_user" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.wordofday" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.contentcategory" Width="1.5" PointX="13.375" PointY="25.375" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.route_table" Width="1.5" PointX="4.75" PointY="3.625" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.contentlanguage" Width="1.5" PointX="12.75" PointY="55.25" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.content" Width="1.5" PointX="4.0119849965032124" PointY="3.1334000840472989" />
+        <EntityTypeShape EntityType="rentalanguageteacherModel.contentmarkup" Width="1.5" PointX="6.403829598056074" PointY="31.85313875966386" />
+        <AssociationConnector Association="rentalanguageteacherModel.author_user_id_user" />
+        <AssociationConnector Association="rentalanguageteacherModel.category_category" />
+        <AssociationConnector Association="rentalanguageteacherModel.content_id_content" />
+        <AssociationConnector Association="rentalanguageteacherModel.language_content_language" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

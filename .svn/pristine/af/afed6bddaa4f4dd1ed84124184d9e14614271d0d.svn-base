@@ -1,0 +1,351 @@
+﻿<%@ Page Title="Content" Language="C#" MasterPageFile="~/MasterPages/RentALanguageTeacher.Master" AutoEventWireup="true" ValidateRequest="false" CodeBehind="Content.aspx.cs" Inherits="RentALanguageTeacher.Pages.Content.Content" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script src="/ckeditor/adapters/jquery.js"></script>
+    <script>
+
+        //Page variable for the editor instance
+        var editor;
+
+
+        $(document).ready(function () {
+            LoadPage();
+
+            var url = window.location.href;
+            $("#FB").attr("href", url);
+            
+        });
+
+        window.onload = function () {
+
+            // Listen to the double click event.
+            if (window.addEventListener)
+                document.body.addEventListener('dblclick', onDoubleClick, false);
+            else if (window.attachEvent)
+                document.body.attachEvent('ondblclick', onDoubleClick);
+        };
+
+        function onDoubleClick(ev) {
+
+            // Get the element which fired the event. This is not necessarily the
+            // element to which the event has been attached.
+            var element = ev.target || ev.srcElement;
+
+            // Find out the div that holds this element.
+            var name;
+
+            do {
+                element = element.parentNode;
+            }
+            while (element && (name = element.nodeName.toLowerCase()) &&
+                (name != 'div' || element.className.indexOf('editable') == -1) && name != 'body');
+
+            if (name == 'div' && element.className.indexOf('editable') != -1)
+                replaceDiv(element);
+        }
+
+        function replaceDiv(div) {
+
+            //Destroy existing editor if any
+            if (editor)
+                editor.destroy();
+
+            //Create new Editor
+            editor = CKEDITOR.replace(div);
+
+            //Set CSS inside editor
+            editor.config.contentsCss = '/Styles/RALT.css';
+
+            //Extra Plugins
+            editor.config.extraPlugins = 'timestamp,closeeditor,abbr';
+
+            //FileManager
+            editor.config.filebrowserBrowseUrl = '/FileManager/Explorer.aspx';
+
+            // Toolbar configuration generated automatically by the editor based on config.toolbarGroups.
+            editor.config.toolbar = [
+                { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates'] },
+                { name: 'clipboard', groups: ['clipboard', 'undo'], items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'editing', groups: ['find', 'selection', 'spellchecker'], items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt'] },
+                { name: 'forms', items: ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'] },
+                '/',
+                { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language'] },
+                { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                { name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] },
+                '/',
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+                { name: 'colors', items: ['TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize', 'ShowBlocks'] },
+                { name: 'extras', items: ['Timestamp', 'closeeditor', 'Abbr'] },
+                { name: 'others', items: ['-'] },
+                { name: 'about', items: ['About'] }
+            ];
+
+            // Toolbar groups configuration.
+            editor.config.toolbarGroups = [
+                { name: 'document', groups: ['mode', 'document', 'doctools'] },
+                { name: 'clipboard', groups: ['clipboard', 'undo'] },
+                { name: 'editing', groups: ['find', 'selection', 'spellchecker'] },
+                { name: 'forms' },
+                '/',
+                { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+                { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] },
+                { name: 'links' },
+                { name: 'insert' },
+                '/',
+                { name: 'styles' },
+                { name: 'colors' },
+                { name: 'tools' },
+                { name: 'extras' },
+                { name: 'others' },
+                { name: 'about' }
+            ];
+
+        }
+
+        //Function to place Content HTML in serverside accessible control
+        function SaveContent() {
+            var me = $("#ContentPlaceHolder").html();
+            $('#<%=HFContent.ClientID %>').val(me);
+        };
+
+        //Function to place Content HTML from Serverside Control to PlaceHolder
+        function SetContent() {
+            var me = $('#<%=HFContent.ClientID %>').val();
+            $("#ContentPlaceHolder").html(me);
+        };
+
+        //Save the page HTML
+        function SavePage() {
+
+            //Destroy existing editor if any
+            if (editor)
+                editor.destroy();
+
+            //Save Content
+            SaveContent();
+        }
+
+        //Load the page HTML
+        function LoadPage() {
+
+            //Destroy existing editor if any
+            if (editor)
+                editor.destroy();
+
+            //Save Content
+           // SetHeader();
+            SetContent();
+
+            var Title = $('#<%=HFTitle.ClientID %>').val();
+            var Author = $('#<%=HFAuthor.ClientID %>').val();
+            var PublishDate = $('#<%=HFPublishDate.ClientID %>').val();
+            var NavLink = $('#<%=HFNavLink.ClientID %>').val();
+            var ImageURL = $('#<%=HFImageURL.ClientID %>').val();
+
+            $("#MyNewContentTitle").html(Title);
+            $("#MyNewContentAuthor").html(Author);
+            $("#MyNewContentPublishDate").html(PublishDate);
+            $("#MyNewContentLink").attr("href", NavLink);
+            $("#MyNewContentImage").attr('src', ImageURL);
+
+        };
+
+        function IsDirty() {
+
+            var ContentControl = $('#<%=HFContent.ClientID %>').val();
+            var Content = $("#ContentPlaceHolder").html();
+
+            if ((ContentControl == Content))
+            { return true; }
+            else
+            { return false; };
+
+        };
+
+        $(window).bind('beforeunload', function () {
+
+            if (!IsDirty()){
+
+                return "Are you sure you want to leave without saving?";
+            }
+        });
+
+        function ToggleEditorTools() {
+
+            var MyDiv = $("#EditorTools");
+
+            MyDiv.removeClass("Hidden");
+
+        };
+
+        function LanguageChange(obj) {
+
+            //Get Variables
+            var Id = $('#<%=HFContentId.ClientID %>').val();
+            var Language = obj.val();
+
+    
+
+            //Call WebMethod
+            $.ajax({
+                type: "POST",
+                url: "/Default.aspx/CheckLanguage",
+                data: "{'ContentId': '" + Id + "', 'Language': '" + Language + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                //Success Function
+                success: function (ReturnValue) {
+                    if (ReturnValue.d == 'False') {
+                        //No Languages, Prompt User
+                        //$("#dialog-confirm").dialog("open");
+                        if (!confirm('This does not exsist for this page, Would you like to create one in this language?'))
+                        {
+                            var PreviousLanguage = $('#<%=HFLanguage.ClientID %>').val();
+                            $('#<%=ddlContentLanguage.ClientID %>').val(PreviousLanguage);
+                            return false;
+                        }
+                        else
+                        { __doPostBack(obj.id, ''); };
+
+                    } else {
+                        __doPostBack(obj.id, '');
+                    }
+
+                },
+                //Error
+                error: function (request, status, error) {
+                    var n = noty({ text: "There was an error, Please Try again", type: error });
+                },
+            });
+        };
+
+
+        //Add Content Bubble
+        function AddContentBubble() {
+            $("#ContentPlaceHolder").append("<div class=\"ContentSection editable\"><div class=\"ContentSectionHeader\"><div class=\"ContentSectionHeaderText\">TitleHere</div></div><div class=\"ContentSectionContent\"><div class=\"Content\"><p>Type here...</p></div></div></div>");
+        };
+
+    </script>
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="cpMainContent" runat="server">
+
+<%--    <asp:HiddenField ID="HFHeader" runat="server" />
+    <asp:HiddenField ID="HFHeaderControl" runat="server" />
+    <div id="HeaderPlaceHolder">
+      
+                
+
+    </div>--%>
+
+    <asp:HiddenField ID="HFTitle" runat="server" />
+    <asp:HiddenField ID="HFImageURL" runat="server" />
+    <asp:HiddenField ID="HFAuthor" runat="server" />
+    <asp:HiddenField ID="HFPublishDate" runat="server" />
+    <asp:HiddenField ID="HFNavLink" runat="server" />
+
+        <asp:HiddenField ID="HFPublishedControl" runat="server" />
+
+    <div class="ContentSection">
+
+        <div class="ContentSectionContent">
+
+            <div class="Content">
+
+                <div class="ContentTitleImage">
+                            
+                    <a id="MyNewContentLink" href="/Home"><img id="MyNewContentImage" src="/Images/LogoBlack.png" class="center" /></a>
+
+                </div>
+
+                <div class="ContentTitleText" id="MyNewContentTitle">
+
+                </div>
+
+                <div style="float:left;">
+
+                    <div class="ContentSocialMedia">
+
+                        <%--<div class="fb-like" data-href="https://www.rentalanguageteacher.com" 
+                            data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>--%>
+
+                        <iframe id="FB" src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.rentalanguageteacher2.com&amp;width&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:20px;" allowTransparency="true"></iframe>
+                        
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-hashtags="RALT" data-dnt="true">Tweet</a>
+                        <script>!function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                            if (!d.getElementById(id)) {
+                            js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js';
+                            fjs.parentNode.insertBefore(js, fjs);
+                            }
+                            }(document, 'script', 'twitter-wjs');</script>
+
+                    </div>
+                            
+                    <div class="ContentAuthor">
+
+                        <span>Author: </span><span style="font-weight:400;" id="MyNewContentAuthor"></span><br />
+                        <span>Published On: </span><span  style="font-weight:400;" id="MyNewContentPublishDate"></span>
+
+                    </div>
+                           
+                </div >
+                       
+            </div>
+
+        </div>
+
+    </div>
+    
+    <asp:HiddenField ID="HFContent" runat="server" />
+    <asp:HiddenField ID="HFcontentControl" runat="server" />
+    <div id="ContentPlaceHolder">
+      
+                
+
+    </div>
+
+    <div class="ContentSection Hidden" id="EditorTools">
+        
+        <div class="ContentSectionHeader"><div class="ContentSectionHeaderText">Administrator Controls</div></div>
+        
+        <div class="ContentSectionInput">
+
+            <div class="Content">
+
+                <asp:Button ID="btnSavePage" runat="server" CssClass="button" Text="Save Page" OnClientClick="SavePage()" OnClick="btnSavePage_Click" />
+                <asp:Button ID="btnNewBubble" runat="server" Text="New Bubble" CssClass="button" OnClientClick="return AddContentBubble()" UseSubmitBehavior="false"/>
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel Edit" CssClass="button" OnClientClick="return LoadPage()" UseSubmitBehavior="false"/>
+
+                <div class="formfield-container long">
+                    <asp:Label ID="lblContentVersion" CssClass="RALT long" runat="server" AssociatedControlID="ddlContentVersion" Text="Version Control"></asp:Label><br />
+                    <asp:DropDownList ID="ddlContentVersion" CssClass="DDLlong ui-spinner ui-widget ui-widget-content ui-corner-all" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlContentVersion_SelectedIndexChanged"></asp:DropDownList>                                 
+                </div>
+
+                <div class="formfield-container short">
+                    <asp:Label ID="lblContentLanguage" CssClass="RALT short" runat="server" AssociatedControlID="ddlContentLanguage" Text="Language"></asp:Label><br />
+                    <asp:DropDownList ID="ddlContentLanguage" CssClass="DDLshort ui-spinner ui-widget ui-widget-content ui-corner-all" runat="server" onChange="return LanguageChange($(this))" AutoPostBack="true" OnSelectedIndexChanged="ddlContentLanguage_SelectedIndexChanged"></asp:DropDownList>                                 
+                </div>
+
+                <div class="formfield-container short">
+                    <asp:Label ID="lblPublished" CssClass="RALT short" runat="server" AssociatedControlID="chkPublished" Text="Published"></asp:Label><br />
+                    <asp:CheckBox ID="chkPublished"  runat="server" />
+                
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <asp:HiddenField ID="HFContentTitle" runat="server" />
+    <asp:HiddenField ID="HFContentId" runat="server" />
+    <asp:HiddenField ID="HFLanguage" runat="server" />
+
+</asp:Content>

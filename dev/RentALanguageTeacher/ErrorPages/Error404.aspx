@@ -1,0 +1,33 @@
+﻿<%@ Page Title="File not found" Language="C#" MasterPageFile="~/MasterPages/RentALanguageTeacher.Master" AutoEventWireup="true" CodeBehind="Error404.aspx.cs" Inherits="RentALanguageTeacher.ErrorPages.Error404" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cpMainContent" runat="server">
+
+    <div class="ContentSection">
+        
+        <div class="ContentSectionHeader"><div class="ContentSectionHeaderText"><%: Page.Title %></div></div>
+        
+        <div class="ContentSectionContent">
+
+            <div class="Content">
+
+                <div class="ContentTitleImage"><a href="/Home"><img src="/Images/LogoBlack.png" class="center" /></a></div>
+                
+                <div class="ContentTitletext">
+
+                        <p>The page you requested could not be found or is unavailble. If you feel this was an error please contact us at</p> <p> <a href="mailto:Administrator@rentalanguageteacher.com">Administrator@rentalanguageteacher.com</a>. </P>  <p> Otherwise please check out the 
+    <a id="A2" href="~/Home" runat="server">Homepage</a> 
+    or choose a different page from the menu.</p>
+                    <p>Thank you,</p>
+    <p>Rentalanguageteacher.com</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</asp:Content>

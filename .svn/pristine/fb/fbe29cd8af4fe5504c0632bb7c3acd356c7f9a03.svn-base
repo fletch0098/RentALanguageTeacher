@@ -1,0 +1,486 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Security.Cryptography;
+using System.Text;
+using System.Web.Security;
+using System.Text.RegularExpressions;
+using System.Net.Mail;
+using System.IO;
+
+
+
+namespace RentALanguageTeacher.App_Code
+{
+    public static class MemberShipService
+    {
+
+
+        public static string GetMd5Hash(MD5 md5Hash, string input)
+        {
+
+            // Convert the input string to a byte array and compute the hash.
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            // Create a new Stringbuilder to collect the bytes
+            // and create a string.
+            StringBuilder sBuilder = new StringBuilder();
+
+            // Loop through each byte of the hashed data 
+            // and format each one as a hexadecimal string.
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            // Return the hexadecimal string.
+            return sBuilder.ToString();
+        }
+
+        // Verify a hash against a string.
+        public static bool VerifyMd5Hash(MD5 md5Hash, string input, string hash)
+        {
+            // Hash the input.
+            string hashOfInput = GetMd5Hash(md5Hash, input);
+
+            // Create a StringComparer an compare the hashes.
+            StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+
+            if (0 == comparer.Compare(hashOfInput, hash))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static string GetErrorMessage(MembershipCreateStatus status)
+        {
+            switch (status)
+            {
+                case MembershipCreateStatus.DuplicateUserName:
+                    return "Username already exists. Please enter a different user name.";
+
+                case MembershipCreateStatus.DuplicateEmail:
+                    return "A username for that e-mail address already exists. Please enter a different e-mail address.";
+
+                case MembershipCreateStatus.InvalidPassword:
+                    return "The password provided is invalid. Please enter a valid password value.";
+
+                case MembershipCreateStatus.InvalidEmail:
+                    return "The e-mail address provided is invalid. Please check the value and try again.";
+
+                case MembershipCreateStatus.InvalidAnswer:
+                    return "The password retrieval answer provided is invalid. Please check the value and try again.";
+
+                case MembershipCreateStatus.InvalidQuestion:
+                    return "The password retrieval question provided is invalid. Please check the value and try again.";
+
+                case MembershipCreateStatus.InvalidUserName:
+                    return "The user name provided is invalid. Please check the value and try again.";
+
+                case MembershipCreateStatus.ProviderError:
+                    return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+
+                case MembershipCreateStatus.UserRejected:
+                    return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+
+                default:
+                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+            }
+        }
+
+        public static int CreateUser(string UserName, string Password, string Email)
+        {
+            // Create new user and retrieve create status result.
+
+            MembershipCreateStatus status;
+            string passwordQuestion = null;
+            string passwordAnswer = null;
+
+            //if (Membership.RequiresQuestionAndAnswer)
+            //{
+            //    passwordQuestion = PasswordQuestionTextbox.Text;
+            //    passwordAnswer = PasswordAnswerTextbox.Text;
+            //}
+
+            try
+            {
+                MembershipUser newUser = Membership.CreateUser(UserName, Password,
+                                                               Email, passwordQuestion,
+                                                               passwordAnswer, false, out status);
+                if (newUser == null)
+                {
+
+                    throw new NewUserException(GetErrorMessage(status));
+                }
+
+                int UserID = -1;
+
+                try
+                {
+                    UserID = Convert.ToInt32(newUser.ProviderUserKey.ToString());
+                    return UserID;
+                }
+                catch (FormatException e)
+                {
+                    //Console.WriteLine("Input string is not a sequence of digits.");
+                    throw e;
+                }
+                catch (OverflowException e)
+                {
+                    //Console.WriteLine("The number cannot fit in an Int32.");
+                    throw e;
+                }
+
+            }
+
+            catch
+            {
+                //return "An exception occurred creating the user.";
+                throw;
+            }
+
+        }
+
+        public static void NewUserEmail(MembershipUser MyUser)
+        {
+            string hash = CreateHash(MyUser.UserName.ToString());
+
+            string host = HttpContext.Current.Request.Url.Host;
+            // localhost
+
+            string URL = host + "/Verify/" + MyUser.ProviderUserKey.ToString() + hash;
+
+            try
+            {
+                SendConfirmationEmail(URL, MyUser);
+                
+            }
+
+            catch
+            {
+                throw;
+            }
+        }
+
+        //public static string CreateUser(string UserName, string Password, string Email)
+        //{
+        //    // Create new user and retrieve create status result.
+
+        //    MembershipCreateStatus status;
+        //    string passwordQuestion = null;
+        //    string passwordAnswer = null;
+
+        //    //if (Membership.RequiresQuestionAndAnswer)
+        //    //{
+        //    //    passwordQuestion = PasswordQuestionTextbox.Text;
+        //    //    passwordAnswer = PasswordAnswerTextbox.Text;
+        //    //}
+            
+        //    try
+        //    {
+        //        MembershipUser newUser = Membership.CreateUser(UserName, Password,
+        //                                                       Email, passwordQuestion,
+        //                                                       passwordAnswer, false, out status);
+        //        if (newUser == null)
+        //        {
+
+        //            throw new Exception(GetErrorMessage(status));
+        //        }
+
+        //        else
+        //        {
+
+        //            string hash = CreateHash(newUser.UserName.ToString());
+                
+        //            string URL = "http://localhost:1165/" + "/Account/Verify.aspx?ID=" + newUser.ProviderUserKey.ToString() + hash;
+
+        //            try
+        //            {
+        //                SendConfirmationEmail(URL, newUser);
+        //                return "User Created Successfully";
+        //            }
+
+        //            catch
+        //            {
+        //                throw;
+        //            }
+
+        //        }
+
+        //    }
+         
+        //    catch
+        //    {
+        //       //return "An exception occurred creating the user.";
+        //        throw;
+        //    }
+
+        //}
+
+        public static string CreateHash(string UserName)
+        {
+            using (MD5 md5Hash = MD5.Create())
+            {
+                string hash = App_Code.MemberShipService.GetMd5Hash(md5Hash, UserName);
+                return hash;
+            }
+        }
+
+        public static void SendConfirmationEmail(string URL, MembershipUser MyUser)
+        {
+            try
+            {
+
+                //System.IO.StreamReader r = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/App_Data/email.txt"));
+                //string body = r.ReadToEnd();
+                //r.Dispose();
+
+                //mail.Body = body;
+
+                //string name = "Some Name";
+                //mail.Body = mail.Body.Replace("<%YourVariableNameHere%>", name);
+
+                //mail.IsBodyHtml = true;
+
+
+                string fileName = System.Web.HttpContext.Current.Server.MapPath("~/App_Data/RegisterConfirmation.txt");
+                string mailBody = File.ReadAllText(fileName);
+
+                mailBody = mailBody.Replace("##UserName##", MyUser.UserName);
+                mailBody = mailBody.Replace("##URL##", URL);
+
+                MailMessage myMessage = new MailMessage();
+                myMessage.Subject = "*Attention* Please Verify Your Email";
+                myMessage.Body = mailBody;
+                myMessage.From = new MailAddress(AppConfiguration.FromAddress, AppConfiguration.FromName);
+                myMessage.To.Add(new MailAddress(MyUser.Email, MyUser.UserName));
+                SmtpClient mySmtpClient = new SmtpClient();
+                mySmtpClient.Send(myMessage);
+
+            }
+            catch
+
+            {
+                throw;
+            }
+
+
+        }
+
+        public static MembershipUser GetUserById(string UserID)
+        {
+            try
+            {
+                object ProvidorUserKey = UserID;
+
+                MembershipUser user = Membership.GetUser(ProvidorUserKey);
+
+                return user;
+            }
+
+            catch
+            {
+                throw;
+            }
+            
+        }
+
+        public static bool VerifyHash(string UserID, string QShash)
+        {
+
+            try
+            {
+                MembershipUser user = GetUserById(UserID);
+
+                string userhash = CreateHash(user.UserName.ToString());
+
+                using (MD5 md5Hash = MD5.Create())
+                {
+                    if (VerifyMd5Hash(md5Hash, user.UserName.ToString(), QShash))
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+            }
+
+            catch
+            {
+                throw;
+            }
+            
+           
+        }
+
+        public static void ApproveUserById(string UserID)
+        {
+            MembershipUser user = GetUserById(UserID);
+
+            user.IsApproved = true;
+            Membership.UpdateUser(user);
+        }
+
+        public static bool LogInUser(string UserName, string Password, bool IsPersistant, string URL)
+        {
+
+            try 
+            {
+                bool LogInSuccessful = Membership.ValidateUser(UserName, Password);
+                return LogInSuccessful;
+            }
+
+            catch 
+            { 
+                throw; 
+            }
+
+           
+        }
+
+        public static MembershipUser GetUserByEmail(string Email)
+        {
+            try
+            {
+
+                string UserName = Membership.GetUserNameByEmail(Email);
+                MembershipUser MyUser = Membership.GetUser(UserName); 
+
+                return MyUser;
+            }
+
+            catch (System.ArgumentNullException exN)
+            {
+
+                throw exN;
+            }
+
+            catch 
+            {
+                throw;
+            }
+            
+           
+        }
+
+        private static string ResetPassword(MembershipUser User)
+        {
+            try
+            {
+                string NewPassword;
+                NewPassword = User.ResetPassword();
+                return NewPassword;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public static MembershipUser DisApproveUser(MembershipUser User)
+        {
+            try
+            {
+                User.IsApproved = false;
+                return User;
+
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public static MembershipUser UnlockUser(MembershipUser User)
+        {
+            try
+            {
+                User.UnlockUser();
+                return User;
+
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public static void ResetPasswordEmail(string URL, MembershipUser MyUser)
+        {
+            try
+            {
+
+                string fileName = System.Web.HttpContext.Current.Server.MapPath("~/App_Data/ResetPassword.txt");
+                string mailBody = File.ReadAllText(fileName);
+
+                mailBody = mailBody.Replace("##UserName##", MyUser.UserName);
+                mailBody = mailBody.Replace("##URL##", URL);
+
+                MailMessage myMessage = new MailMessage();
+                myMessage.Subject = "Rent a Language Teacher Password Reset";
+                myMessage.Body = mailBody;
+                myMessage.From = new MailAddress(AppConfiguration.FromAddress, AppConfiguration.FromName);
+                myMessage.To.Add(new MailAddress(MyUser.Email, MyUser.UserName));
+                SmtpClient mySmtpClient = new SmtpClient();
+                mySmtpClient.Send(myMessage);
+
+            }
+            catch
+            {
+                throw;
+            }
+
+
+        }
+        public static void RetrievePassword(string Email)
+        {
+            try
+            {
+                MembershipUser MyUser = GetUserByEmail(Email);
+            
+                DisApproveUser(MyUser);
+
+                string hash = CreateHash(MyUser.UserName);
+
+                string host = HttpContext.Current.Request.Url.Host;
+                // localhost
+
+                string URL = host + "/PasswordReset/" + MyUser.ProviderUserKey.ToString() + hash;
+
+                ResetPasswordEmail(URL, MyUser);
+
+            }
+
+            catch
+            {
+                throw;
+            }
+        }
+
+        public static void SetPAssword(string UserId, string NewPassword)
+        {
+            try
+            {
+                MembershipUser MyUser = GetUserById(UserId);
+
+                string Password = ResetPassword(MyUser);
+                MyUser.ChangePassword(Password, NewPassword);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
+    }
+}

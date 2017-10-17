@@ -1,0 +1,29 @@
+﻿RALT Info,
+
+A New User has Signed up:
+
+First Name:		##FirstName##
+Last Name:		##LastName##
+UserName:		##UserName##
+Age:			##Age##
+Nationality:		##Nationality##
+Email:			##Email##
+
+Country:		##Country##
+Student Local Time:		
+##LocalTime##
+Hours from GT:  	##TZDiff##
+
+Classes:		##Classes##
+Period:			##Period##
+Class Duration:			##Duration##
+Level:			##Level##
+GT Start Window:		
+##StartDate##
+
+User Start Window:		
+##StartDateUser##
+
+Special Requests:
+
+##SpecialRequests##
